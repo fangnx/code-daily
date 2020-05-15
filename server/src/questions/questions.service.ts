@@ -1,21 +1,51 @@
 import { Injectable, HttpService, HttpException } from '@nestjs/common';
 import { catchError, map } from 'rxjs/operators';
 import { stackExchangeBaseUrl } from 'src/constants';
-import { convertIdsToString } from 'src/utils';
+import { OrderBy, SortBy } from 'src/shared/stackExchangeModels';
+import { of } from 'rxjs';
 
 @Injectable()
 export class QuestionsService {
   constructor(private readonly httpService: HttpService) {}
 
-  async getQuestionsByIds(ids: string) {
-    const url: string = `${stackExchangeBaseUrl}$/questions/${ids}`;
+  async getQuestionsByTags(
+    tagged: string[],
+    order = OrderBy.Desc,
+    sort = SortBy.Activity,
+  ) {
+    const url: string = `${stackExchangeBaseUrl}/questions/`;
+    console.log(tagged);
     return this.httpService
       .get(url, {
         params: {
+          order,
+          sort,
+          tagged: '["javascript"]',
           site: 'stackoverflow',
         },
       })
-      .pipe(map(response => response.data))
+      .pipe(map(res => res.data))
+      .toPromise();
+  }
+
+  async getQuestionsByIds(
+    ids: string,
+    order = OrderBy.Desc,
+    sort = SortBy.Activity,
+  ) {
+    const url: string = `${stackExchangeBaseUrl}/questions/${ids}`;
+    return this.httpService
+      .get(url, {
+        params: {
+          order,
+          sort,
+          site: 'stackoverflow',
+        },
+      })
+      .pipe(
+        map(res => res.data),
+        catchError(error => of({ error })),
+      )
       .toPromise();
   }
 
@@ -27,7 +57,10 @@ export class QuestionsService {
           site: 'stackoverflow',
         },
       })
-      .pipe(map(response => response.data))
+      .pipe(
+        map(response => response.data),
+        catchError(error => of({ error })),
+      )
       .toPromise();
   }
 }
