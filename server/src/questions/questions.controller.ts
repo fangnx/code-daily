@@ -2,15 +2,16 @@ import {
   Controller,
   Param,
   InternalServerErrorException,
-  Body,
-  Post,
+  Get,
+  Query,
 } from '@nestjs/common';
 import { QuestionsService } from './questions.service';
-import { OrderBy, SortBy } from '../shared/stackExchangeModels';
+import { OrderBy, QuestionsSortBy } from '../shared/stackExchangeModels';
+import { BaseQuery } from 'src/app.controller';
 
-export class QuestionsQuery {
-  order: OrderBy;
-  sort: SortBy;
+export class QuestionsQuery extends BaseQuery {
+  order: OrderBy = OrderBy.Desc;
+  sort: QuestionsSortBy = QuestionsSortBy.Activity;
   tags?: string[];
 }
 
@@ -18,47 +19,33 @@ export class QuestionsQuery {
 export class QuestionsController {
   constructor(private readonly questionsService: QuestionsService) {}
 
-  @Post('/:ids')
+  @Get('')
+  async getQuestionsByTags(@Query() questionsQuery: QuestionsQuery) {
+    try {
+      return this.questionsService.getQuestionsByTags(questionsQuery);
+    } catch (error) {
+      throw new InternalServerErrorException(error);
+    }
+  }
+
+  @Get('/:ids')
   async getQuestionsByIds(
-    @Body() questionsQuery: QuestionsQuery,
     @Param('ids') ids: string,
+    @Query() questionsQuery: QuestionsQuery,
   ) {
-    console.log(questionsQuery);
-
     try {
-      return this.questionsService.getQuestionsByIds(
-        ids,
-        questionsQuery.order,
-        questionsQuery.sort,
-      );
+      return this.questionsService.getQuestionsByIds(ids, questionsQuery);
     } catch (error) {
-      console.log(error);
       throw new InternalServerErrorException(error);
     }
   }
 
-  @Post('')
-  async getQuestionsByTags(@Body() questionsQuery: QuestionsQuery) {
-    console.log(questionsQuery);
-
+  @Get('/:ids/answers')
+  async getAnswersByQuestionIds(@Param('ids') ids: string) {
     try {
-      return this.questionsService.getQuestionsByTags(
-        questionsQuery.tags,
-        questionsQuery.order,
-        questionsQuery.sort,
-      );
+      return this.questionsService.getAnswersByQuestionIds(ids);
     } catch (error) {
-      console.log(error);
       throw new InternalServerErrorException(error);
     }
   }
-
-  // @Get('/:ids/answers')
-  // async getAnswersByQuestionIds(@Param('ids') ids: string) {
-  //   try {
-  //     return this.questionsService.getAnswersByQuestionIds(ids);
-  //   } catch (error) {
-  //     throw new InternalServerErrorException(error);
-  //   }
-  // }
 }

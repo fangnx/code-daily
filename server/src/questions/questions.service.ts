@@ -1,26 +1,24 @@
 import { Injectable, HttpService, HttpException } from '@nestjs/common';
 import { catchError, map } from 'rxjs/operators';
 import { stackExchangeBaseUrl } from 'src/constants';
-import { OrderBy, SortBy } from 'src/shared/stackExchangeModels';
+import { OrderBy, QuestionsSortBy } from 'src/shared/stackExchangeModels';
 import { of } from 'rxjs';
+import { QuestionsQuery } from './questions.controller';
 
 @Injectable()
 export class QuestionsService {
   constructor(private readonly httpService: HttpService) {}
 
-  async getQuestionsByTags(
-    tagged: string[],
-    order = OrderBy.Desc,
-    sort = SortBy.Activity,
-  ) {
+  async getQuestionsByTags(questionsQuery: QuestionsQuery) {
     const url: string = `${stackExchangeBaseUrl}/questions/`;
-    console.log(tagged);
     return this.httpService
       .get(url, {
         params: {
-          order,
-          sort,
-          tagged: '["javascript"]',
+          page: questionsQuery.page,
+          pagesize: questionsQuery.pagesize,
+          order: questionsQuery.order,
+          sort: questionsQuery.sort,
+          tagged: questionsQuery.tags.join(),
           site: 'stackoverflow',
         },
       })
@@ -28,12 +26,31 @@ export class QuestionsService {
       .toPromise();
   }
 
-  async getQuestionsByIds(
+  async getQuestionsByIds(ids: string, questionsQuery: QuestionsQuery) {
+    const url: string = `${stackExchangeBaseUrl}/questions/${ids}`;
+    return this.httpService
+      .get(url, {
+        params: {
+          page: questionsQuery.page,
+          pagesize: questionsQuery.pagesize,
+          order: questionsQuery.order,
+          sort: questionsQuery.sort,
+          site: 'stackoverflow',
+        },
+      })
+      .pipe(
+        map(res => res.data),
+        catchError(err => of({ err })),
+      )
+      .toPromise();
+  }
+
+  async getAnswersByQuestionIds(
     ids: string,
     order = OrderBy.Desc,
-    sort = SortBy.Activity,
+    sort = QuestionsSortBy.Activity,
   ) {
-    const url: string = `${stackExchangeBaseUrl}/questions/${ids}`;
+    const url: string = `${stackExchangeBaseUrl}/questions/${ids}/answers`;
     return this.httpService
       .get(url, {
         params: {
@@ -43,23 +60,8 @@ export class QuestionsService {
         },
       })
       .pipe(
-        map(res => res.data),
-        catchError(error => of({ error })),
-      )
-      .toPromise();
-  }
-
-  async getAnswersByQuestionIds(ids: string) {
-    const url: string = `${stackExchangeBaseUrl}/questions/${ids}/answers`;
-    return this.httpService
-      .get(url, {
-        params: {
-          site: 'stackoverflow',
-        },
-      })
-      .pipe(
         map(response => response.data),
-        catchError(error => of({ error })),
+        catchError(err => of({ err })),
       )
       .toPromise();
   }
