@@ -1,0 +1,14 @@
+<main>
+  <div class="card clickable">
+    <div class="card-header">
+      {{ title }}
+
+      <div class="tags">
+        <button *ngFor="let tag of tags" class="btn btn-outline btn-sm">
+          {{ tag }}
+        </button>
+      </div>
+    </div>
+    <div class="card-block"></div>
+  </div>
+</main>
