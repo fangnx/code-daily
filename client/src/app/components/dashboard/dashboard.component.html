@@ -1,9 +1,10 @@
 <main>
-  <tags-selector
-    [tags]="tags$ | async"
-    [selectedTags]="selectedTags$ | async"
-    (onTagSelected)="onTagSelected($event)"
-    (onTagUnselected)="onTagUnselected($event)"
-  ></tags-selector>
-  <question-card-board [questions]="questions$ | async"></question-card-board>
+  <div class="flex-container">
+    <control-panel
+      [tags]="tags$ | async"
+      (onTagSelected)="onTagSelected($event)"
+    ></control-panel>
+
+    <question-card-board [questions]="questions$ | async"></question-card-board>
+  </div>
 </main>

@@ -1,0 +1,11 @@
+<main>
+  <clr-vertical-nav>
+    <a
+      clrVerticalNavLink
+      *ngFor="let tag of tags"
+      (click)="onSelectTag(tag)"
+      [ngClass]="getTagClass(tag)"
+      >{{ tag.name | titlecase }}</a
+    >
+  </clr-vertical-nav>
+</main>

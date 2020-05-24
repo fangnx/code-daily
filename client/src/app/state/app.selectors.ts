@@ -12,3 +12,8 @@ export const selectSelectedTags = createSelector(
   selectAppState,
   (state: AppState) => state.selectedTags
 );
+
+export const selectQuestions = createSelector(
+  selectAppState,
+  (state: AppState) => state.questions
+);

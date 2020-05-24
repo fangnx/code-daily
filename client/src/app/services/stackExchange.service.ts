@@ -17,10 +17,14 @@ export class StackExchangeService {
   }
 
   getQuestionsByTags(query: QuestionsQuery): Observable<Question[]> {
-    const params = new HttpParams().set("tags", '["python"]');
-    return this.httpClient.get<Question[]>("api/questions", {
-      params,
-    });
+    let params = new HttpParams();
+    params = params.append("tags", query.tags);
+    console.log(params);
+    return this.httpClient
+      .get<Question[]>("api/questions", {
+        params,
+      })
+      .pipe(map((res) => res["items"]));
   }
 
   getPopularTags() {

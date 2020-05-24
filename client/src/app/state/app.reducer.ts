@@ -6,6 +6,7 @@ import * as AppActions from "./app.actions";
 export interface AppState extends EntityState<Question> {
   tags: Array<string>;
   selectedTags: Set<Tag>;
+  questions: Array<Question>;
 }
 
 export const adapter: EntityAdapter<Question> = createEntityAdapter<Question>({
@@ -25,10 +26,13 @@ export const appReducer = createReducer(
     selectedTags: state.selectedTags.add(tag),
   })),
   on(AppActions.unselectTag, (state, { tag }) => {
-    console.log(state);
     state.selectedTags.delete(tag);
     return {
       ...state,
     };
+  }),
+  on(AppActions.fetchQuestionsSuccess, (state, { questions }) => {
+    console.log(questions);
+    return { ...state, questions: questions };
   })
 );

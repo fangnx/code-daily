@@ -11,20 +11,20 @@ import { StoreDevtoolsModule } from "@ngrx/store-devtools";
 import { appReducer } from "./state/app.reducer";
 import { AppEffects } from "./state/app.effects";
 import { QuestionCardComponent } from "./components/shared/question-card/question-card.component";
-import { NavigationBarComponent } from "./components/navigation-bar/navigation-bar.component";
 import { DashboardComponent } from "./components/dashboard/dashboard.component";
 import { StackExchangeService } from "./services/stackExchange.service";
 import { QuestionCardBoardComponent } from "./components/dashboard/question-card-board/question-card-board.component";
 import { TagsSelectorComponent } from "./components/dashboard/tags-selector/tags-selector.component";
+import { ControlPanelComponent } from "./components/dashboard/control-panel/control-panel.component";
 
 @NgModule({
   declarations: [
     AppComponent,
     QuestionCardComponent,
-    NavigationBarComponent,
     DashboardComponent,
     QuestionCardBoardComponent,
     TagsSelectorComponent,
+    ControlPanelComponent,
   ],
   imports: [
     ClarityModule,

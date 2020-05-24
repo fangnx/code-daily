@@ -23,7 +23,7 @@ export class TagsSelectorComponent implements OnChanges {
   constructor() {}
 
   ngOnChanges() {
-    console.log(this.tags);
+    // console.log(this.tags);
   }
 
   public isTagSelected(tag: Tag): boolean {
@@ -35,12 +35,12 @@ export class TagsSelectorComponent implements OnChanges {
   }
 
   public onSelectTag(tag: Tag): void {
-    if (!this.isTagSelected(tag)) {
-      this.selectedTags.add(tag);
-      this.onTagSelected.emit(tag);
-    } else {
-      this.selectedTags.delete(tag);
-      this.onTagUnselected.emit(tag);
-    }
+    // if (!this.isTagSelected(tag)) {
+    //   this.selectedTags.add(tag);
+    //   this.onTagSelected.emit(tag);
+    // } else {
+    //   this.selectedTags.delete(tag);
+    //   this.onTagUnselected.emit(tag);
+    // }
   }
 }

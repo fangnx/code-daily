@@ -6,7 +6,10 @@ import { Tag } from "src/app/app.model";
 import { Store } from "@ngrx/store";
 import { AppState } from "src/app/state/app.reducer";
 import * as AppActions from "src/app/state/app.actions";
-import { selectSelectedTags } from "src/app/state/app.selectors";
+import {
+  selectSelectedTags,
+  selectQuestions,
+} from "src/app/state/app.selectors";
 
 @Component({
   selector: "dashboard",
@@ -24,9 +27,7 @@ export class DashboardComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.questions$ = this.stackExchangeService
-      .getQuestionsByTags(null)
-      .pipe(map((res) => res["items"]));
+    this.questions$ = this.store.select((state) => selectQuestions(state));
 
     this.tags$ = this.stackExchangeService
       .getPopularTags()

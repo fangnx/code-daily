@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { Actions, createEffect, ofType, Effect } from "@ngrx/effects";
+import { Actions, ofType, Effect } from "@ngrx/effects";
 import { Store } from "@ngrx/store";
 import * as AppActions from "./app.actions";
 import {
@@ -10,10 +10,9 @@ import {
   withLatestFrom,
 } from "rxjs/operators";
 import { StackExchangeService } from "../services/stackExchange.service";
-import { EMPTY } from "rxjs/internal/observable/empty";
 import { AppState } from "./app.reducer";
-import { selectSelectedTags } from "./app.selectors";
 import { QuestionsQuery } from "../app.model";
+import { StringifyTag } from "../helpers";
 
 @Injectable()
 export class AppEffects {
@@ -23,33 +22,35 @@ export class AppEffects {
     private stackExchangeApiService: StackExchangeService
   ) {}
 
-  // fetchQuestions$ = createEffect(() => {
-  //   return this.actions$.pipe(
-  //     ofType(AppActions.fetchQuestions),
-  //     switchMap(() => {
-  //       return this.stackExchangeApiService.getPopularTags().pipe(
-  //         map((res) => res),
-  //         catchError(() => EMPTY)
-  //       );
-  //     })
-  //   );
-  // });
-
   @Effect()
   fetchQuestions$ = this.actions$.pipe(
     ofType(AppActions.fetchQuestions),
-    withLatestFrom(this.store.select((state) => selectSelectedTags(state))),
-    map(([action, selectedTags]) => {
+    switchMap((action) => {
       const query: QuestionsQuery = {
-        tags: '["javascript"]',
+        tags: StringifyTag(action.tag),
       };
-      return this.stackExchangeApiService.getQuestionsByTags(query);
+
+      return this.stackExchangeApiService
+        .getQuestionsByTags(query)
+        .pipe(
+          map((questions) => AppActions.fetchQuestionsSuccess({ questions }))
+        );
     })
   );
 
   @Effect()
-  UpdateTags$ = this.actions$.pipe(
-    ofType(AppActions.unselectTag),
-    mapTo(AppActions.fetchQuestions())
+  addTag$ = this.actions$.pipe(
+    ofType(AppActions.selectTag),
+    switchMap((action) => {
+      return [AppActions.fetchQuestions({ tag: action.tag })];
+    })
   );
+
+  // @Effect()
+  // removeTag$ = this.actions$.pipe(
+  //   ofType(AppActions.unselectTag),
+  //   switchMap((action) => {
+  //     return [AppActions.fetchQuestions({ tag: action.tag })];
+  //   })
+  // );
 }

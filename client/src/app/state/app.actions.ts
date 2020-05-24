@@ -12,11 +12,11 @@ export const unselectTag = createAction(
 );
 
 export const fetchQuestions = createAction(
-  "[App] Fetch Questions"
-  // props<{ query: QuestionsQuery }>()
+  "[App] Fetch Questions",
+  props<{ tag: Tag }>()
 );
 
 export const fetchQuestionsSuccess = createAction(
   "[App] Fetch Questions Success",
-  props<{ questions: Question[] }>
-)
+  props<{ questions: Question[] }>()
+);

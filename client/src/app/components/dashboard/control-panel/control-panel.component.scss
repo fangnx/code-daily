@@ -1,0 +1,13 @@
+main {
+  height: 100%;
+  width: 100%;
+
+  clr-vertical-nav {
+    margin: 0;
+    width: 100%;
+
+    .active {
+      color: pink;
+    }
+  }
+}

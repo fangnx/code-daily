@@ -4,6 +4,7 @@ import {
   OnChanges,
   ChangeDetectionStrategy,
 } from "@angular/core";
+import { Question } from "src/app/app.model";
 
 @Component({
   selector: "question-card-board",
@@ -12,13 +13,11 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class QuestionCardBoardComponent implements OnChanges {
-  @Input() questions: any[];
-  @Input() tags: any[];
+  @Input() questions: Question[];
 
   constructor() {}
 
   ngOnChanges() {
     console.log(this.questions);
-    console.log(this.tags);
   }
 }
