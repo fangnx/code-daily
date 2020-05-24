@@ -12,7 +12,7 @@ import { BaseQuery } from 'src/app.controller';
 export class QuestionsQuery extends BaseQuery {
   order: OrderBy = OrderBy.Desc;
   sort: QuestionsSortBy = QuestionsSortBy.Activity;
-  tags?: string[];
+  tags?: string;
 }
 
 @Controller('questions')

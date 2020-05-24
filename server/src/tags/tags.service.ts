@@ -1,14 +1,15 @@
 import { HttpService, Injectable } from '@nestjs/common';
 import { stackExchangeBaseUrl } from 'src/constants';
-import { map } from 'rxjs/operators';
+import { map, catchError } from 'rxjs/operators';
 import { TagsQuery } from './tags.controller';
+import { of } from 'rxjs';
 
 @Injectable()
 export class TagsService {
   constructor(private readonly httpService: HttpService) {}
 
   async getTags(tagsQuery: TagsQuery) {
-    const url: string = `${stackExchangeBaseUrl}/tags/`;
+    const url: string = `${stackExchangeBaseUrl}/tags`;
     return this.httpService
       .get(url, {
         params: {
@@ -19,7 +20,10 @@ export class TagsService {
           site: 'stackoverflow',
         },
       })
-      .pipe(map(res => res.data))
+      .pipe(
+        map(res => res.data),
+        catchError(err => of({ err })),
+      )
       .toPromise();
   }
 
@@ -33,7 +37,10 @@ export class TagsService {
           site: 'stackoverflow',
         },
       })
-      .pipe(map(res => res.data))
+      .pipe(
+        map(res => res.data),
+        catchError(err => of({ err })),
+      )
       .toPromise();
   }
 }

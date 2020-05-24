@@ -10,7 +10,7 @@ export class QuestionsService {
   constructor(private readonly httpService: HttpService) {}
 
   async getQuestionsByTags(questionsQuery: QuestionsQuery) {
-    const url: string = `${stackExchangeBaseUrl}/questions/`;
+    const url: string = `${stackExchangeBaseUrl}/questions`;
     return this.httpService
       .get(url, {
         params: {
@@ -18,11 +18,14 @@ export class QuestionsService {
           pagesize: questionsQuery.pagesize,
           order: questionsQuery.order,
           sort: questionsQuery.sort,
-          tagged: questionsQuery.tags.join(),
+          tagged: questionsQuery.tags,
           site: 'stackoverflow',
         },
       })
-      .pipe(map(res => res.data))
+      .pipe(
+        map(res => res.data),
+        catchError(err => of({ err })),
+      )
       .toPromise();
   }
 
