@@ -1,4 +1,9 @@
 <main>
-  <tags-selector [tags]="tags$ | async"></tags-selector>
+  <tags-selector
+    [tags]="tags$ | async"
+    [selectedTags]="selectedTags$ | async"
+    (onTagSelected)="onTagSelected($event)"
+    (onTagUnselected)="onTagUnselected($event)"
+  ></tags-selector>
   <question-card-board [questions]="questions$ | async"></question-card-board>
 </main>

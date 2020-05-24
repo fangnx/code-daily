@@ -70,7 +70,9 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "stackoverflow-daily:build"
+            "browserTarget": "stackoverflow-daily:build",
+            "proxyConfig": "proxy.config.json",
+            "disableHostCheck": true
           },
           "configurations": {
             "production": {

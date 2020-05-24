@@ -3,8 +3,11 @@ import {
   Input,
   ChangeDetectionStrategy,
   OnChanges,
+  Output,
+  EventEmitter,
 } from "@angular/core";
 import { parseHtmlEntities } from "../../../helpers";
+import { Question, Tag } from "src/app/app.model";
 
 @Component({
   selector: "question-card",
@@ -13,10 +16,12 @@ import { parseHtmlEntities } from "../../../helpers";
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class QuestionCardComponent implements OnChanges {
-  @Input() question;
+  @Input() public question: Question;
+  @Input() public selectedTagNames: Set<string> = new Set();
+  @Output() public onTagSelected: EventEmitter<Tag> = new EventEmitter();
 
   public title: string;
-  public tags: string[];
+  public tags: Tag[];
 
   constructor() {}
 
@@ -24,6 +29,4 @@ export class QuestionCardComponent implements OnChanges {
     this.title = parseHtmlEntities(this.question["title"]);
     this.tags = this.question["tags"];
   }
-
-  public onSelectTag(tag: string) {}
 }

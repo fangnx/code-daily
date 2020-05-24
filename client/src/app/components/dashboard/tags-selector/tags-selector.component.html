@@ -1,5 +1,10 @@
 <main>
-  <button *ngFor="let tag of tags" class="btn btn-outline btn-sm">
+  <button
+    *ngFor="let tag of tags"
+    class="btn btn-sm"
+    [ngClass]="getTagClass(tag)"
+    (click)="onSelectTag(tag)"
+  >
     {{ tag.name }}
   </button>
 </main>

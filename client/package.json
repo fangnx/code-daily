@@ -24,8 +24,12 @@
     "@clr/core": "^3.1.1",
     "@clr/icons": "^3.1.1",
     "@clr/ui": "^3.1.1",
+    "@ngrx/effects": "^8.4.0",
+    "@ngrx/entity": "^8.4.0",
+    "@ngrx/store": "^8.4.0",
+    "@ngrx/store-devtools": "^8.6.0",
     "@webcomponents/webcomponentsjs": "^2.4.3",
-    "rxjs": "~6.4.0",
+    "rxjs": "^6.5.3",
     "tslib": "^1.10.0",
     "zone.js": "~0.9.1"
   },
