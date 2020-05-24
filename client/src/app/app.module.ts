@@ -13,18 +13,20 @@ import { AppEffects } from "./state/app.effects";
 import { QuestionCardComponent } from "./components/shared/question-card/question-card.component";
 import { DashboardComponent } from "./components/dashboard/dashboard.component";
 import { StackExchangeService } from "./services/stackExchange.service";
-import { QuestionCardBoardComponent } from "./components/dashboard/question-card-board/question-card-board.component";
 import { TagsSelectorComponent } from "./components/dashboard/tags-selector/tags-selector.component";
 import { ControlPanelComponent } from "./components/dashboard/control-panel/control-panel.component";
+import { UserPanelComponent } from "./components/dashboard/user-panel/user-panel.component";
+import { ContentPanelComponent } from "./components/dashboard/content-panel/content-panel.component";
 
 @NgModule({
   declarations: [
     AppComponent,
     QuestionCardComponent,
     DashboardComponent,
-    QuestionCardBoardComponent,
     TagsSelectorComponent,
     ControlPanelComponent,
+    UserPanelComponent,
+    ContentPanelComponent,
   ],
   imports: [
     ClarityModule,

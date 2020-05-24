@@ -2,8 +2,22 @@ main {
   .flex-container {
     display: flex;
 
+    > * {
+      height: 100vh;
+    }
+
+    user-panel {
+      flex-shrink: 0;
+      width: 2.5rem;
+    }
+
     control-panel {
-      width: 12rem;
+      flex-shrink: 0;
+      width: 12.5rem;
+    }
+
+    content-panel {
+      flex-grow: 1;
     }
   }
 }

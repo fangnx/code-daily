@@ -7,12 +7,12 @@ import {
 import { Question } from "src/app/app.model";
 
 @Component({
-  selector: "question-card-board",
-  templateUrl: "./question-card-board.component.html",
-  styleUrls: ["./question-card-board.component.scss"],
+  selector: "content-panel",
+  templateUrl: "./content-panel.component.html",
+  styleUrls: ["./content-panel.component.scss"],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class QuestionCardBoardComponent implements OnChanges {
+export class ContentPanelComponent implements OnChanges {
   @Input() questions: Question[];
 
   constructor() {}

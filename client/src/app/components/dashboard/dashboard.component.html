@@ -1,10 +1,12 @@
 <main>
   <div class="flex-container">
+    <user-panel> </user-panel>
+
     <control-panel
       [tags]="tags$ | async"
       (onTagSelected)="onTagSelected($event)"
     ></control-panel>
 
-    <question-card-board [questions]="questions$ | async"></question-card-board>
+    <content-panel [questions]="questions$ | async"></content-panel>
   </div>
 </main>
