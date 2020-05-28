@@ -1,5 +1,10 @@
 export interface Question {
   question_id: string;
+  answers?: Array<Answer>;
+}
+
+export interface Answer {
+  body: any;
 }
 
 export interface Tag {

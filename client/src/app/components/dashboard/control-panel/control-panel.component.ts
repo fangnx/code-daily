@@ -5,6 +5,7 @@ import {
   ChangeDetectionStrategy,
   Output,
   EventEmitter,
+  OnInit,
 } from "@angular/core";
 import { Tag } from "src/app/app.model";
 
@@ -14,15 +15,19 @@ import { Tag } from "src/app/app.model";
   styleUrls: ["./control-panel.component.scss"],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ControlPanelComponent implements OnChanges {
+export class ControlPanelComponent implements OnInit, OnChanges {
   @Input() public tags: Array<Tag>;
   @Input() public selectedTag: Tag;
   @Output() public onTagSelected: EventEmitter<Tag> = new EventEmitter();
 
   constructor() {}
 
+  ngOnInit() {}
+
   ngOnChanges() {
-    console.log(this.tags);
+    if (this.tags && this.tags.length > 0 && !this.selectedTag) {
+      this.onSelectTag(this.tags[0]);
+    }
   }
 
   public isTagSelected(tag: Tag): boolean {

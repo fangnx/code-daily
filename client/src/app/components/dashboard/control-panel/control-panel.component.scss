@@ -1,14 +1,17 @@
+@import "../../../styles/colors.scss";
+
 main {
   height: 100%;
   width: 100%;
-  overflow: scroll;
+  overflow-y: scroll;
 
   clr-vertical-nav {
+    background: $control-panel-bg-color;
+
     margin: 0;
     width: 100%;
 
     .active {
-      color: pink;
     }
   }
 }

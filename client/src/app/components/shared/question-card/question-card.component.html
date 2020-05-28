@@ -1,7 +1,12 @@
 <main>
-  <div class="card clickable">
+  <div class="card clickable" (click)="onCardClicked()">
     <div class="card-header">
-      {{ title }}
+      <h3>
+        {{ title | titlecase }}
+      </h3>
+      <div clas="meta-info">
+        <h5>Viewed {{ viewCount }} times</h5>
+      </div>
 
       <div class="tags">
         <button *ngFor="let tag of tags" class="btn btn-sm">
@@ -9,6 +14,12 @@
         </button>
       </div>
     </div>
-    <div class="card-block"></div>
+
+    <div class="card-body" *ngIf="isExpanded">
+      <answer-section
+        *ngFor="let answer of answers"
+        [answer]="answer"
+      ></answer-section>
+    </div>
   </div>
 </main>

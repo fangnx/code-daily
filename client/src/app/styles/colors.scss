@@ -4,5 +4,12 @@ $teal: #84ceeb;
 $skyblue: #5ab9ea;
 $fog: #c1c8e4;
 
-$user-panel-bg-color: $indigo;
-$control-panel-bg-color: $teal;
+$darkgrey-0: #121212;
+$darkgrey-1: #181818;
+
+$lightgrey-0: rgb(240, 240, 240);
+$lightgrey-1: rgb(225, 225, 225);
+
+$user-panel-bg-color: $lightgrey-0;
+$control-panel-bg-color: $lightgrey-1;
+$content-panel-bg-color: $lightgrey-0;
