@@ -1,3 +1,26 @@
 <main>
-  <div class="answer-content" [innerHTML]="contentRawHtml"></div>
+  <div class="owner-profile">
+    <img [src]="ownerProfileImageUrl" loading="lazy" />
+    <span class="owner-name">{{ ownerName }}</span>
+    <span class="owner-meta">
+      <clr-icon shape="animation" size="18"></clr-icon>
+      {{ ownerReputation }}</span
+    >
+  </div>
+
+  <div class="answer-content">
+    <markdown [data]="answerContentMarkdown"></markdown>
+  </div>
+
+  <div class="answer-status">
+    <div>
+      <clr-icon shape="thumbs-up" size="30"></clr-icon>
+      {{ answerUpvotes }}
+    </div>
+
+    <div>
+      <clr-icon shape="thumbs-down" size="30"></clr-icon>
+      {{ answerDownvotes }}
+    </div>
+  </div>
 </main>

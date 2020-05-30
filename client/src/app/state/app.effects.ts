@@ -11,7 +11,7 @@ import {
 } from "rxjs/operators";
 import { StackExchangeService } from "../services/stackExchange.service";
 import { AppState } from "./app.reducer";
-import { QuestionsQuery } from "../app.model";
+import { QuestionsQuery, QuestionsSortBy } from "../app.model";
 import { StringifyTag } from "../helpers";
 
 @Injectable()
@@ -28,6 +28,7 @@ export class AppEffects {
     switchMap((action) => {
       const query: QuestionsQuery = {
         tags: StringifyTag(action.tag),
+        sort: QuestionsSortBy.Votes,
       };
 
       return this.stackExchangeApiService

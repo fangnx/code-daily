@@ -1,3 +1,6 @@
+@import "./theme.scss";
+@import "./app/styles/colors.scss";
+
 body {
   h3 {
     font-size: 22px;
@@ -6,8 +9,9 @@ body {
   }
 
   h5 {
-    color: grey;
+    color: $darkgrey-3;
     font-size: 12px;
+    padding: 3px 0 3px 0;
     margin: 0;
   }
 }

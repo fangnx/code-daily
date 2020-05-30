@@ -4,6 +4,15 @@ main {
   .card-header {
     word-wrap: break-word;
 
+    .meta-info {
+      display: flex;
+
+      > .division {
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+      }
+    }
+
     .tags {
       margin-top: 0.75rem;
     }

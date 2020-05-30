@@ -11,7 +11,15 @@ main {
     margin: 0;
     width: 100%;
 
-    .active {
+    a {
+      color: $darkgrey-1;
+      cursor: pointer;
+      font-size: 0.7rem;
+
+      &.active {
+        background: transparent;
+        color: $green;
+      }
     }
   }
 }

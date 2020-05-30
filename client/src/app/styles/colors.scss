@@ -1,14 +1,16 @@
-$violet: #8860d0;
-$indigo: #5680e9;
-$teal: #84ceeb;
-$skyblue: #5ab9ea;
-$fog: #c1c8e4;
-
-$darkgrey-0: #121212;
-$darkgrey-1: #181818;
+$darkgrey-0: rgb(15, 15, 15);
+$darkgrey-1: rgb(30, 30, 30);
+$darkgrey-2: rgb(45, 45, 45);
+$darkgrey-3: rgb(60, 60, 60);
 
 $lightgrey-0: rgb(240, 240, 240);
-$lightgrey-1: rgb(225, 225, 225);
+$lightgrey-1: rgb(233, 233, 233);
+
+$green: #52afa6;
+$lightgreen: #63b7af;
+$teal: #abf0e9;
+$lightteal: #d4f3ef;
+$red: #ee8572;
 
 $user-panel-bg-color: $lightgrey-0;
 $control-panel-bg-color: $lightgrey-1;

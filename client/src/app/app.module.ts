@@ -17,6 +17,7 @@ import { ControlPanelComponent } from "./components/dashboard/control-panel/cont
 import { UserPanelComponent } from "./components/dashboard/user-panel/user-panel.component";
 import { ContentPanelComponent } from "./components/dashboard/content-panel/content-panel.component";
 import { AnswerSectionComponent } from "./components/shared/answer-section/answer-section.component";
+import { MarkdownModule } from "ngx-markdown";
 
 @NgModule({
   declarations: [
@@ -37,7 +38,9 @@ import { AnswerSectionComponent } from "./components/shared/answer-section/answe
     NoopAnimationsModule,
     HttpClientModule,
     StoreDevtoolsModule,
+    MarkdownModule.forRoot(),
   ],
+  entryComponents: [AnswerSectionComponent],
   providers: [StackExchangeService],
   bootstrap: [AppComponent],
 })

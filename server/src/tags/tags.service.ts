@@ -3,6 +3,7 @@ import { stackExchangeBaseUrl } from 'src/constants';
 import { map, catchError } from 'rxjs/operators';
 import { TagsQuery } from './tags.controller';
 import { of } from 'rxjs';
+import { StackExchangeAppKey } from '../secrets';
 
 @Injectable()
 export class TagsService {
@@ -18,6 +19,7 @@ export class TagsService {
           order: tagsQuery.order,
           sort: tagsQuery.sort,
           site: 'stackoverflow',
+          key: StackExchangeAppKey,
         },
       })
       .pipe(
@@ -35,6 +37,7 @@ export class TagsService {
           page: tagsQuery.page,
           pagesize: tagsQuery.pagesize,
           site: 'stackoverflow',
+          key: StackExchangeAppKey,
         },
       })
       .pipe(

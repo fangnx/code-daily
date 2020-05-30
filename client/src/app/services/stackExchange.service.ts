@@ -19,6 +19,7 @@ export class StackExchangeService {
   getQuestionsByTags(query: QuestionsQuery): Observable<Question[]> {
     let params = new HttpParams();
     params = params.append("tags", query.tags);
+    params = params.append("sort", query.sort);
     console.log(params);
     return this.httpClient
       .get<Question[]>("api/questions", {

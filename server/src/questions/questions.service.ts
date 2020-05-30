@@ -4,6 +4,8 @@ import { stackExchangeBaseUrl } from 'src/constants';
 import { OrderBy, QuestionsSortBy } from 'src/shared/stackExchangeModels';
 import { of } from 'rxjs';
 import { QuestionsQuery } from './questions.controller';
+import { StackExchangeAppKey } from 'src/secrets';
+import { QuestionsApiQueryFilter } from 'src/shared/stackExchangeConstants';
 
 @Injectable()
 export class QuestionsService {
@@ -11,6 +13,7 @@ export class QuestionsService {
 
   async getQuestionsByTags(questionsQuery: QuestionsQuery) {
     const url: string = `${stackExchangeBaseUrl}/questions`;
+    console.log(questionsQuery);
     return this.httpService
       .get(url, {
         params: {
@@ -20,6 +23,8 @@ export class QuestionsService {
           sort: questionsQuery.sort,
           tagged: questionsQuery.tags,
           site: 'stackoverflow',
+          key: StackExchangeAppKey,
+          filter: QuestionsApiQueryFilter,
         },
       })
       .pipe(
@@ -39,6 +44,8 @@ export class QuestionsService {
           order: questionsQuery.order,
           sort: questionsQuery.sort,
           site: 'stackoverflow',
+          key: StackExchangeAppKey,
+          filter: QuestionsApiQueryFilter,
         },
       })
       .pipe(
@@ -60,6 +67,8 @@ export class QuestionsService {
           order,
           sort,
           site: 'stackoverflow',
+          key: StackExchangeAppKey,
+          filter: QuestionsApiQueryFilter,
         },
       })
       .pipe(
