@@ -8,7 +8,9 @@
       <div class="meta-info">
         <h5>Viewed {{ viewCount }} times</h5>
         <h5 class="division">/</h5>
-        <h5>Answered at {{ creationDate }}</h5>
+        <h5>Answered on {{ creationDate }}</h5>
+        <h5 class="division">/</h5>
+        <h5>Last edited on {{ lastEditDate }}</h5>
       </div>
 
       <div class="tags">
@@ -18,11 +20,15 @@
       </div>
     </div>
 
-    <div class="card-body" *ngIf="isExpanded">
-      <answer-section
-        *ngFor="let answer of answers"
-        [answer]="answer"
-      ></answer-section>
-    </div>
+    <ng-container *ngIf="isExpanded">
+      <hr />
+
+      <div class="card-body">
+        <ng-container *ngFor="let answer of answers">
+          <answer-section [answer]="answer"></answer-section>
+          <hr />
+        </ng-container>
+      </div>
+    </ng-container>
   </div>
 </main>

@@ -7,7 +7,7 @@ import {
   EventEmitter,
   OnInit,
 } from "@angular/core";
-import { parseHtmlEntities } from "../../../helpers";
+import { parseHtmlEntities, parseUnixTimestamp } from "../../../helpers";
 import { Question, Tag, Answer } from "src/app/app.model";
 
 @Component({
@@ -27,8 +27,8 @@ export class QuestionCardComponent implements OnInit {
   public viewCount: number;
   public upvoteCount: number;
   public downvoteCount: number;
-  public creationDate: number;
-  public lastEditDate: number;
+  public creationDate: string;
+  public lastEditDate: string;
   public tags: Array<Tag>;
   public answers: Array<Answer>;
 
@@ -38,7 +38,10 @@ export class QuestionCardComponent implements OnInit {
     this.viewCount = this.question.view_count;
     this.upvoteCount = this.question.up_vote_count;
     this.downvoteCount = this.question.down_vote_count;
-    this.creationDate = this.question.creation_date;
+
+    this.creationDate = parseUnixTimestamp(this.question.creation_date);
+    this.lastEditDate = parseUnixTimestamp(this.question.last_edit_date);
+
     this.tags = this.question["tags"];
     this.answers = this.question.answers
       ? this.question.answers.slice(0, 5)

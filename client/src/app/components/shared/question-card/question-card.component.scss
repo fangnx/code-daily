@@ -1,7 +1,10 @@
+@import "../../../styles/colors.scss";
+
 main {
   width: 100%;
 
   .card-header {
+    border: none;
     word-wrap: break-word;
 
     .meta-info {
@@ -18,7 +21,20 @@ main {
     }
   }
 
+  hr {
+    border: 12px solid $primary-color;
+    box-sizing: border-box;
+    margin: auto;
+    width: 97.5%;
+  }
+
   .card-body {
     margin-bottom: 3rem;
+
+    hr {
+      border: 1px solid $lightgrey-3;
+      margin: auto;
+      width: 97.5%;
+    }
   }
 }

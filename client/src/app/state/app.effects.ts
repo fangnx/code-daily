@@ -17,7 +17,6 @@ import { StringifyTag } from "../helpers";
 @Injectable()
 export class AppEffects {
   constructor(
-    private store: Store<AppState>,
     private actions$: Actions,
     private stackExchangeApiService: StackExchangeService
   ) {}
@@ -29,6 +28,7 @@ export class AppEffects {
       const query: QuestionsQuery = {
         tags: StringifyTag(action.tag),
         sort: QuestionsSortBy.Votes,
+        pagesize: 10,
       };
 
       return this.stackExchangeApiService

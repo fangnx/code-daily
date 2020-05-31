@@ -6,7 +6,7 @@ export interface Question {
   body_markdown: string;
   creation_date: number;
   down_vote_count: number;
-  last_edit_date: string;
+  last_edit_date: number;
   owner: Owner;
   title: string;
   up_vote_count: number;
@@ -16,9 +16,9 @@ export interface Question {
 export interface Answer {
   body: string;
   body_markdown: string;
-  creation_date: string;
+  creation_date: number;
   down_vote_count: number;
-  last_edit_date: string;
+  last_edit_date: number;
   owner: Owner;
   up_vote_count: number;
 }
@@ -56,4 +56,6 @@ export interface QuestionsQuery {
   tags?: string;
   order?: OrderBy;
   sort?: QuestionsSortBy;
+  page?: number;
+  pagesize: number;
 }

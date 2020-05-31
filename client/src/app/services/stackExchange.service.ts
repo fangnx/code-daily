@@ -20,7 +20,7 @@ export class StackExchangeService {
     let params = new HttpParams();
     params = params.append("tags", query.tags);
     params = params.append("sort", query.sort);
-    console.log(params);
+    params = params.append("pagesize", query.pagesize.toString());
     return this.httpClient
       .get<Question[]>("api/questions", {
         params,

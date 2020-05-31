@@ -12,14 +12,20 @@
     <markdown [data]="answerContentMarkdown"></markdown>
   </div>
 
+  <div>
+    <h5>Answered on {{ creationDate }}</h5>
+    <h5 class="division">/</h5>
+    <h5>Last edited on {{ lastEditDate }}</h5>
+  </div>
+
   <div class="answer-status">
     <div>
-      <clr-icon shape="thumbs-up" size="30"></clr-icon>
+      <clr-icon shape="thumbs-up" flip="horizontal" size="24"></clr-icon>
       {{ answerUpvotes }}
     </div>
 
     <div>
-      <clr-icon shape="thumbs-down" size="30"></clr-icon>
+      <clr-icon shape="thumbs-down" size="24"></clr-icon>
       {{ answerDownvotes }}
     </div>
   </div>

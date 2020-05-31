@@ -1,14 +1,21 @@
 @import "../../../styles/colors.scss";
 
 main {
-  margin: 0 0 2rem 0;
+  margin: 0 0 20px 0;
 
-  .owner-profile {
+  > div {
+    margin: auto;
+    padding: 5px 0 5px 0;
+    width: 95%;
+  }
+
+  > div:nth-child(1) {
     display: grid;
     grid-template-columns: minmax(0, 1fr) 3fr;
     grid-template-rows: 1fr 1fr;
     padding: 0.5rem 0 0.5rem 0;
-    width: 12rem;
+    margin-left: 10px;
+    width: 200px;
 
     img {
       border-radius: 50%;
@@ -28,42 +35,53 @@ main {
     }
 
     .owner-meta {
-      font-size: 9px;
+      font-size: 11px;
       grid-column: 2 / 3;
     }
   }
 
-  .answer-content {
+  > div:nth-child(2) {
     margin: auto;
-    padding-bottom: 2rem;
+    padding-bottom: 30px;
     width: 95%;
 
-    h1,
-    h2,
-    h3,
-    h4,
-    h5 {
-      font-size: 1rem;
+    markdown ::ng-deep {
+      p {
+        color: $darkgrey-2;
+      }
+
+      pre {
+        white-space: pre-wrap !important;
+
+        code {
+          display: inline-block;
+          overflow-x: auto;
+          white-space: pre-line;
+          width: 100%;
+        }
+      }
     }
 
-    pre {
-      white-space: pre-wrap !important;
-
-      code {
-        display: inline-block;
-        overflow-x: auto;
-        white-space: pre-line;
-        width: 100%;
-      }
+    img {
+      width: 100%;
     }
   }
 
-  .answer-status {
+  > div:nth-child(3) {
+    display: flex;
+
+    > .division {
+      padding-left: 0.5rem;
+      padding-right: 0.5rem;
+    }
+  }
+
+  > div:nth-child(4) {
     display: flex;
     font-size: 14px;
 
     > div {
-      margin: 0 0.5rem 0 0.5rem;
+      margin-right: 14px;
     }
   }
 }

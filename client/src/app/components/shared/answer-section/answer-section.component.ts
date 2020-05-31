@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, ViewEncapsulation } from "@angular/core";
 import { Answer } from "src/app/app.model";
+import { parseUnixTimestamp } from "src/app/helpers";
 @Component({
   selector: "answer-section",
   templateUrl: "./answer-section.component.html",
@@ -14,6 +15,8 @@ export class AnswerSectionComponent implements OnInit {
   public answerUpvotes: number;
   public answerDownvotes: number;
   public answerContentMarkdown: string;
+  public creationDate: string;
+  public lastEditDate: string;
 
   ngOnInit() {
     this.ownerName = this.answer.owner.display_name;
@@ -22,6 +25,9 @@ export class AnswerSectionComponent implements OnInit {
     this.answerContentMarkdown = this.answer.body_markdown;
     this.answerUpvotes = this.answer.up_vote_count;
     this.answerDownvotes = this.answer.down_vote_count;
+
+    this.creationDate = parseUnixTimestamp(this.answer.creation_date);
+    this.lastEditDate = parseUnixTimestamp(this.answer.last_edit_date);
   }
 
   public get contentRawHtml() {
