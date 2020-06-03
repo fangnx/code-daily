@@ -1,24 +1,26 @@
 @import "../../../styles/colors.scss";
 
 main {
+  background: $control-panel-bg-color;
   height: 100%;
-  width: 100%;
   overflow-y: scroll;
+  width: 100%;
 
-  clr-vertical-nav {
-    background: $control-panel-bg-color;
-
+  clr-tree {
+    color: $darkgrey-0;
+    cursor: pointer;
+    font-weight: 500;
     margin: 0;
     width: 100%;
 
-    a {
-      color: $darkgrey-1;
-      cursor: pointer;
-      font-size: 0.7rem;
+    clr-tree-node {
+      margin: 5px 0 5px 0;
 
-      &.active {
-        background: transparent;
-        color: $green;
+      button {
+        &.active {
+          background: transparent;
+          color: $green;
+        }
       }
     }
   }

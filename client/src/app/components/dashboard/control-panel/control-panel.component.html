@@ -1,11 +1,16 @@
 <main>
-  <clr-vertical-nav>
-    <a
-      clrVerticalNavLink
-      *ngFor="let tag of tags"
-      (click)="onSelectTag(tag)"
-      [ngClass]="getTagClass(tag)"
-      >{{ tag.name | titlecase }}</a
-    >
-  </clr-vertical-nav>
+  <clr-tree>
+    <clr-tree-node [clrExpanded]="true">
+      POPULAR TAGS
+      <clr-tree-node *ngFor="let tag of tags">
+        <button
+          class="clr-treenode-link"
+          (click)="onSelectTag(tag)"
+          [ngClass]="getTagClass(tag)"
+        >
+          {{ tag.name | titlecase }}
+        </button>
+      </clr-tree-node>
+    </clr-tree-node>
+  </clr-tree>
 </main>

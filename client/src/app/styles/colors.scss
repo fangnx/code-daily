@@ -2,9 +2,10 @@ $darkgrey-0: rgb(15, 15, 15);
 $darkgrey-1: rgb(30, 30, 30);
 $darkgrey-2: rgb(45, 45, 45);
 $darkgrey-3: rgb(60, 60, 60);
-
 $grey: rgb(120, 120, 120);
 
+$white: rgb(255, 255, 255);
+$almostwhite: rgb(253, 253, 253);
 $lightgrey-0: rgb(240, 240, 240);
 $lightgrey-1: rgb(225, 225, 225);
 $lightgrey-2: rgb(210, 210, 210);
@@ -19,6 +20,6 @@ $red: #ee8572;
 $primary-color: $green;
 $secondary-color: $red;
 
-$user-panel-bg-color: $lightgrey-0;
-$control-panel-bg-color: $lightgrey-1;
-$content-panel-bg-color: $lightgrey-0;
+$user-panel-bg-color: $almostwhite;
+$control-panel-bg-color: #f6f7f8;
+$content-panel-bg-color: $almostwhite;

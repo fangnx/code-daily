@@ -7,13 +7,13 @@ main {
     }
 
     user-panel {
-      flex-shrink: 0;
-      width: 2.5rem;
+      flex: 0 0 50px;
+      width: 50px;
     }
 
     control-panel {
-      flex-shrink: 0;
-      width: 12.5rem;
+      flex: 0 0 275px;
+      width: 275px;
     }
 
     content-panel {

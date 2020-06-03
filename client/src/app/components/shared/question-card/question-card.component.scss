@@ -3,38 +3,50 @@
 main {
   width: 100%;
 
-  .card-header {
-    border: none;
-    word-wrap: break-word;
+  .card {
+    background: $white;
+    box-shadow: none;
+    border-radius: 3px;
+    border-width: 1x;
+    border-color: $grey;
 
-    .meta-info {
-      display: flex;
+    &:hover {
+      border-color: $primary-color;
+    }
 
-      > .division {
-        padding-left: 0.5rem;
-        padding-right: 0.5rem;
+    .card-header {
+      border: none;
+      word-wrap: break-word;
+
+      .meta-info {
+        display: flex;
+
+        > .division {
+          padding-left: 0.5rem;
+          padding-right: 0.5rem;
+        }
+      }
+
+      .tags {
+        margin-top: 0.75rem;
       }
     }
 
-    .tags {
-      margin-top: 0.75rem;
-    }
-  }
-
-  hr {
-    border: 12px solid $primary-color;
-    box-sizing: border-box;
-    margin: auto;
-    width: 97.5%;
-  }
-
-  .card-body {
-    margin-bottom: 3rem;
-
     hr {
-      border: 1px solid $lightgrey-3;
-      margin: auto;
+      border: 6px solid $grey;
+      box-sizing: border-box;
+      margin: 5px auto 5px auto;
       width: 97.5%;
+    }
+
+    .card-body {
+      margin-bottom: 3rem;
+
+      hr {
+        border: 1px solid $lightgrey-3;
+        margin: auto;
+        width: 97.5%;
+      }
     }
   }
 }

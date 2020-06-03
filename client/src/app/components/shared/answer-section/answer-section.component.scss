@@ -45,9 +45,10 @@ main {
     padding-bottom: 30px;
     width: 95%;
 
-    markdown ::ng-deep {
+    ::ng-deep {
       p {
-        color: $darkgrey-2;
+        color: $darkgrey-1;
+        margin-top: 10px;
       }
 
       pre {
@@ -60,10 +61,10 @@ main {
           width: 100%;
         }
       }
-    }
 
-    img {
-      width: 100%;
+      img {
+        width: 100%;
+      }
     }
   }
 
