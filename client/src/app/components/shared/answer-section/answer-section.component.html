@@ -1,21 +1,13 @@
 <main>
-  <div class="owner-profile">
-    <img [src]="ownerProfileImageUrl" loading="lazy" />
-    <span class="owner-name">{{ ownerName }}</span>
-    <span class="owner-meta">
-      <clr-icon shape="animation" size="18"></clr-icon>
-      {{ ownerReputation }}</span
-    >
-  </div>
+  <answer-badge
+    [ownerName]="ownerName"
+    [ownerProfileImageUrl]="ownerProfileImageUrl"
+    [creationDate]="creationDate"
+  >
+  </answer-badge>
 
   <div class="answer-content">
     <div [innerHTML]="contentRawHtml"></div>
-  </div>
-
-  <div>
-    <h5>Answered on {{ creationDate }}</h5>
-    <h5 class="division">/</h5>
-    <h5>Last edited on {{ lastEditDate }}</h5>
   </div>
 
   <div class="answer-status">

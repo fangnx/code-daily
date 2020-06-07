@@ -6,8 +6,11 @@ main {
   width: 100%;
   overflow-y: scroll;
 
+  .content-header-container {
+    margin: 20px 10% 0 10%;
+  }
+
   .card-list-container {
-    margin-left: 10%;
-    margin-right: 10%;
+    margin: 20px 10% 0 10%;
   }
 }

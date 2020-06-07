@@ -6,11 +6,20 @@
       </h3>
 
       <div class="meta-info">
-        <h5>Viewed {{ viewCount }} times</h5>
-        <h5 class="division">/</h5>
-        <h5>Answered on {{ creationDate }}</h5>
-        <h5 class="division">/</h5>
-        <h5>Last edited on {{ lastEditDate }}</h5>
+        <h5>
+          <clr-icon shape="eye" size="20"></clr-icon>
+          {{ viewCount }} views
+        </h5>
+
+        <h5>
+          <clr-icon shape="talk-bubbles" size="20"></clr-icon>
+          {{ answerCount }} answers
+        </h5>
+
+        <h5>
+          <clr-icon shape="pencil" size="20"></clr-icon>
+          {{ creationDate }}
+        </h5>
       </div>
 
       <div class="tags">

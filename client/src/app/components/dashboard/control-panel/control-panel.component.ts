@@ -34,6 +34,10 @@ export class ControlPanelComponent implements OnInit, OnChanges {
     return this.selectedTag === tag;
   }
 
+  public getTreeNodeClass(tag: Tag): string {
+    return this.isTagSelected(tag) ? "selected" : "";
+  }
+
   public getTagClass(tag: Tag): string {
     return this.isTagSelected(tag) ? "active" : "";
   }

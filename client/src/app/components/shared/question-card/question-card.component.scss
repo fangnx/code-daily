@@ -7,12 +7,8 @@ main {
     background: $white;
     box-shadow: none;
     border-radius: 3px;
-    border-width: 1x;
-    border-color: $grey;
-
-    &:hover {
-      border-color: $primary-color;
-    }
+    border-width: 2.5px;
+    border-color: $primary-color;
 
     .card-header {
       border: none;
@@ -21,9 +17,12 @@ main {
       .meta-info {
         display: flex;
 
-        > .division {
-          padding-left: 0.5rem;
-          padding-right: 0.5rem;
+        h5 {
+          margin-right: 20px;
+
+          clr-icon {
+            margin-right: 2px;
+          }
         }
       }
 
@@ -33,7 +32,7 @@ main {
     }
 
     hr {
-      border: 6px solid $grey;
+      border: 3px solid $primary-color;
       box-sizing: border-box;
       margin: 5px auto 5px auto;
       width: 97.5%;
@@ -43,8 +42,8 @@ main {
       margin-bottom: 3rem;
 
       hr {
-        border: 1px solid $lightgrey-3;
-        margin: auto;
+        border: 1px solid $primary-color;
+        margin: 10px auto 10px auto;
         width: 97.5%;
       }
     }

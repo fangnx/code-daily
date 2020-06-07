@@ -6,6 +6,10 @@ main {
   overflow-y: scroll;
   width: 100%;
 
+  ::ng-deep .clr-treenode-children {
+    margin-left: 0;
+  }
+
   clr-tree {
     color: $darkgrey-0;
     cursor: pointer;
@@ -13,13 +17,18 @@ main {
     margin: 0;
     width: 100%;
 
-    clr-tree-node {
+    .tag-node {
+      border-left: 5px solid transparent;
       margin: 5px 0 5px 0;
+
+      &.selected {
+        border-left-color: $primary-color;
+      }
 
       button {
         &.active {
           background: transparent;
-          color: $green;
+          color: $primary-color;
         }
       }
     }

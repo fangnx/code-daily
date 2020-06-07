@@ -25,6 +25,7 @@ export class QuestionCardComponent implements OnInit {
 
   public title: string;
   public viewCount: number;
+  public answerCount: number;
   public upvoteCount: number;
   public downvoteCount: number;
   public creationDate: string;
@@ -36,6 +37,7 @@ export class QuestionCardComponent implements OnInit {
     this.isExpanded = false;
     this.title = parseHtmlEntities(this.question.title);
     this.viewCount = this.question.view_count;
+    this.answerCount = this.question.answer_count;
     this.upvoteCount = this.question.up_vote_count;
     this.downvoteCount = this.question.down_vote_count;
 

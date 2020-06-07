@@ -18,6 +18,8 @@ import { UserPanelComponent } from "./components/dashboard/user-panel/user-panel
 import { ContentPanelComponent } from "./components/dashboard/content-panel/content-panel.component";
 import { AnswerSectionComponent } from "./components/shared/answer-section/answer-section.component";
 import { MarkdownModule } from "ngx-markdown";
+import { ContentHeaderComponent } from './components/dashboard/content-panel/content-header/content-header.component';
+import { AnswerBadgeComponent } from './components/shared/answer-section/answer-badge/answer-badge.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +30,8 @@ import { MarkdownModule } from "ngx-markdown";
     UserPanelComponent,
     ContentPanelComponent,
     AnswerSectionComponent,
+    ContentHeaderComponent,
+    AnswerBadgeComponent,
   ],
   imports: [
     ClarityModule,

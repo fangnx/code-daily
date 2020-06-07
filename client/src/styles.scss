@@ -4,15 +4,20 @@
 body {
   h3 {
     color: $darkgrey-0;
-    font-size: 22px;
-    font-weight: 500;
+    font-size: 24px;
+    font-weight: 600;
     padding: 8px 0 8px 0;
     margin: 0;
+
+    &:hover {
+      color: $lightnavy;
+    }
   }
 
   h5 {
-    color: $grey;
+    color: $darkgrey-1;
     font-size: 12px;
+    font-weight: 500;
     padding: 3px 0 3px 0;
     margin: 0;
   }
