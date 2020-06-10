@@ -5,29 +5,37 @@ main {
 
   .card {
     background: $white;
-    box-shadow: none;
-    border-radius: 3px;
-    border-width: 2.5px;
-    border-color: $primary-color;
+    box-shadow: 0 2px 4px $lightgrey-1;
+    border-radius: 10px;
+    border-width: 1.5px;
+    border-color: $almostwhite;
 
     .card-header {
       border: none;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
       word-wrap: break-word;
 
-      .meta-info {
-        display: flex;
+      // .meta-info {
+      //   display: flex;
+      //   padding: 10px 0 10px 0;
 
-        h5 {
-          margin-right: 20px;
+      //   h5 {
+      //     margin-right: 20px;
 
-          clr-icon {
-            margin-right: 2px;
-          }
-        }
+      //     clr-icon {
+      //       margin-right: 2px;
+      //     }
+      //   }
+      // }
+
+      question-badge {
+        padding: 10px 0 10px 0;
       }
 
       .tags {
-        margin-top: 0.75rem;
+        padding: 10px 0 10px 0;
       }
     }
 

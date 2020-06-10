@@ -1,0 +1,20 @@
+<main>
+  <div>
+    <img [src]="ownerProfileImageUrl" loading="lazy" />
+    <h4>{{ ownerName }}</h4>
+    <h4>
+      <clr-icon shape="eye" size="20"></clr-icon>
+      {{ viewCount }} views
+    </h4>
+
+    <h4>
+      <clr-icon shape="talk-bubbles" size="20"></clr-icon>
+      {{ answerCount }} answers
+    </h4>
+
+    <h4>
+      <clr-icon shape="pencil" size="20"></clr-icon>
+      {{ creationDate }}
+    </h4>
+  </div>
+</main>

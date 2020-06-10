@@ -1,11 +1,23 @@
 @import "./theme.scss";
 @import "./app/styles/colors.scss";
+@import "./app/styles/fonts.scss";
 
 body {
+  font-family: $mainfont;
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    font-family: $mainfont;
+  }
+
   h3 {
     color: $darkgrey-0;
-    font-size: 24px;
+    font-size: 28px;
     font-weight: 600;
+    line-height: 1.4;
     padding: 8px 0 8px 0;
     margin: 0;
 
@@ -14,11 +26,19 @@ body {
     }
   }
 
+  h4 {
+    color: $darkgrey-3;
+    font-size: 14px;
+    font-weight: 400;
+    margin: 0;
+    padding: 0;
+  }
+
   h5 {
-    color: $darkgrey-1;
+    color: $darkgrey-3;
     font-size: 12px;
     font-weight: 500;
-    padding: 3px 0 3px 0;
     margin: 0;
+    padding: 3px 0 3px 0;
   }
 }

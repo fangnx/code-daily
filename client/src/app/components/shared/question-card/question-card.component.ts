@@ -8,7 +8,7 @@ import {
   OnInit,
 } from "@angular/core";
 import { parseHtmlEntities, parseUnixTimestamp } from "../../../helpers";
-import { Question, Tag, Answer } from "src/app/app.model";
+import { Question, Tag, Answer, Owner } from "src/app/app.model";
 
 @Component({
   selector: "question-card",
@@ -24,6 +24,7 @@ export class QuestionCardComponent implements OnInit {
   public isExpanded: boolean;
 
   public title: string;
+  public owner: Owner;
   public viewCount: number;
   public answerCount: number;
   public upvoteCount: number;
@@ -36,6 +37,7 @@ export class QuestionCardComponent implements OnInit {
   ngOnInit(): void {
     this.isExpanded = false;
     this.title = parseHtmlEntities(this.question.title);
+    this.owner = this.question.owner;
     this.viewCount = this.question.view_count;
     this.answerCount = this.question.answer_count;
     this.upvoteCount = this.question.up_vote_count;

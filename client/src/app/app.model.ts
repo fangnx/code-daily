@@ -39,6 +39,7 @@ export enum QuestionsSortBy {
   Activity = "activity",
   Votes = "votes",
   Creation = "creation",
+  Week = "week",
 }
 
 export enum TagsSortBy {

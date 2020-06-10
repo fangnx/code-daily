@@ -1,14 +1,19 @@
-@import "../../../../styles/colors.scss";
+@import "../../../styles/colors.scss";
 
 main > div {
+  align-items: center;
   display: flex;
-  padding: 0.5rem 0 0.5rem 0;
-  margin-left: 30px;
+  flex-direction: row;
   width: 100%;
 
   img {
     border-radius: 50%;
+    height: 40px;
     width: 40px;
+  }
+
+  h4 {
+    margin: 0 10px 0 10px;
   }
 
   .owner-name {
@@ -19,9 +24,5 @@ main > div {
     overflow-x: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-  }
-
-  .owner-meta {
-    font-size: 12px;
   }
 }
