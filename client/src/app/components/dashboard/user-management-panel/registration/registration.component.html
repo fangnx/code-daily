@@ -1,0 +1,30 @@
+<main>
+  <div class="login-wrapper">
+    <form class="login">
+      <section class="title">
+        <h3 class="welcome">Register</h3>
+      </section>
+      <div class="login-group">
+        <clr-input-container>
+          <label class="clr-sr-only">Username</label>
+          <input type="text" name="username" clrInput placeholder="Username" />
+        </clr-input-container>
+
+        <clr-password-container>
+          <label class="clr-sr-only">Password</label>
+          <input
+            type="password"
+            name="password"
+            clrPassword
+            placeholder="Password"
+          />
+        </clr-password-container>
+
+        <div class="error active">
+          Invalid user name or password
+        </div>
+        <button type="submit" class="btn btn-primary">NEXT</button>
+      </div>
+    </form>
+  </div>
+</main>

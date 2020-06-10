@@ -11,12 +11,6 @@ $lightgrey-1: rgb(225, 225, 225);
 $lightgrey-2: rgb(210, 210, 210);
 $lightgrey-3: rgb(195, 195, 195);
 
-$green: #52afa6;
-$lightgreen: #63b7af;
-$teal: #abf0e9;
-$lightteal: #d4f3ef;
-$red: #ee8572;
-
 $darknavy: #162447;
 $pink: #e43f5a;
 $lightnavy: #242629;
@@ -25,6 +19,7 @@ $navyblack: #1b1b2f;
 $primary-color: $darknavy;
 $secondary-color: $pink;
 
-$user-panel-bg-color: $almostwhite;
-$control-panel-bg-color: #f6f7f8;
+$user-panel-bg-color: #f6f7f8;
+$control-panel-bg-color: $almostwhite;
 $content-panel-bg-color: #f6f7f8;
+$user-management-bg-color: #f6f7f8;

@@ -13,13 +13,16 @@ import { AppEffects } from "./state/app.effects";
 import { QuestionCardComponent } from "./components/shared/question-card/question-card.component";
 import { DashboardComponent } from "./components/dashboard/dashboard.component";
 import { StackExchangeService } from "./services/stackExchange.service";
-import { ControlPanelComponent } from "./components/dashboard/control-panel/control-panel.component";
-import { UserPanelComponent } from "./components/dashboard/user-panel/user-panel.component";
-import { ContentPanelComponent } from "./components/dashboard/content-panel/content-panel.component";
+import { ControlPanelComponent } from "./components/dashboard/presentation-panel/control-panel/control-panel.component";
+import { NavigationPanelComponent } from "./components/dashboard/navigation-panel/navigation-panel.component";
+import { ContentPanelComponent } from "./components/dashboard/presentation-panel/content-panel/content-panel.component";
 import { AnswerSectionComponent } from "./components/shared/answer-section/answer-section.component";
 import { MarkdownModule } from "ngx-markdown";
-import { ContentHeaderComponent } from "./components/dashboard/content-panel/content-header/content-header.component";
+import { ContentHeaderComponent } from "./components/dashboard/presentation-panel/content-panel/content-header/content-header.component";
 import { QuestionBadgeComponent } from "./components/shared/question-badge/question-badge";
+import { UserManagementPanelComponent } from "./components/dashboard/user-management-panel/user-management-panel.component";
+import { RegistrationComponent } from "./components/dashboard/user-management-panel/registration/registration.component";
+import { PresentationPanelComponent } from "./components/dashboard/presentation-panel/presentation-panel.component";
 
 @NgModule({
   declarations: [
@@ -27,11 +30,14 @@ import { QuestionBadgeComponent } from "./components/shared/question-badge/quest
     QuestionCardComponent,
     DashboardComponent,
     ControlPanelComponent,
-    UserPanelComponent,
+    NavigationPanelComponent,
     ContentPanelComponent,
     AnswerSectionComponent,
     ContentHeaderComponent,
     QuestionBadgeComponent,
+    UserManagementPanelComponent,
+    RegistrationComponent,
+    PresentationPanelComponent,
   ],
   imports: [
     ClarityModule,
