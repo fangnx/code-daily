@@ -11,7 +11,7 @@ import { BaseQuery } from 'src/app.controller';
 
 export class QuestionsQuery extends BaseQuery {
   order: OrderBy = OrderBy.Desc;
-  sort: QuestionsSortBy = QuestionsSortBy.Activity;
+  sort: QuestionsSortBy = QuestionsSortBy.Votes;
   tags?: string;
 }
 

@@ -6,6 +6,7 @@ import { of } from 'rxjs';
 import { QuestionsQuery } from './questions.controller';
 import { StackExchangeAppKey } from 'src/secrets';
 import { QuestionsApiQueryFilter } from 'src/shared/stackExchangeConstants';
+import { TimeRangeHelper } from 'src/shared/timeRangeHelper';
 
 @Injectable()
 export class QuestionsService {
@@ -13,7 +14,7 @@ export class QuestionsService {
 
   async getQuestionsByTags(questionsQuery: QuestionsQuery) {
     const url: string = `${stackExchangeBaseUrl}/questions`;
-    console.log(questionsQuery);
+    const { fromDate, toDate } = TimeRangeHelper.lastWeekTimeRange();
     return this.httpService
       .get(url, {
         params: {
@@ -22,6 +23,8 @@ export class QuestionsService {
           order: questionsQuery.order,
           sort: questionsQuery.sort,
           tagged: questionsQuery.tags,
+          fromDate,
+          toDate,
           site: 'stackoverflow',
           key: StackExchangeAppKey,
           filter: QuestionsApiQueryFilter,
@@ -36,6 +39,7 @@ export class QuestionsService {
 
   async getQuestionsByIds(ids: string, questionsQuery: QuestionsQuery) {
     const url: string = `${stackExchangeBaseUrl}/questions/${ids}`;
+    const { fromDate, toDate } = TimeRangeHelper.lastDayTimeRange();
     return this.httpService
       .get(url, {
         params: {
@@ -61,6 +65,7 @@ export class QuestionsService {
     sort = QuestionsSortBy.Activity,
   ) {
     const url: string = `${stackExchangeBaseUrl}/questions/${ids}/answers`;
+    const { fromDate, toDate } = TimeRangeHelper.lastDayTimeRange();
     return this.httpService
       .get(url, {
         params: {

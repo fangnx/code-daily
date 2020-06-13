@@ -1,5 +1,5 @@
 import { Document } from 'mongoose';
 
-export interface CreateUserDto extends Document {
+export interface CreateUserDto {
   readonly email: string;
 }
