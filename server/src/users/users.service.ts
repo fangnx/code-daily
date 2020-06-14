@@ -6,6 +6,8 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { LoginUserDto } from './dto/login-user.dto';
 import { Payload } from 'src/auth/auth.interface';
 import * as bcrypt from 'bcrypt';
+import { DtoHelper } from 'src/shared/dtoHelper';
+import { UserDto } from './dto/user.dto';
 
 @Injectable()
 export class UsersService {
@@ -20,11 +22,12 @@ export class UsersService {
     return await this.userModel.find().exec();
   }
 
-  public async findUserByEmail(email: string): Promise<User> {
-    return await this.userModel.findOne({ email }).exec();
+  public async findUserByEmail(email: string): Promise<UserDto> {
+    const user: User = await this.userModel.findOne({ email }).exec();
+    return DtoHelper.toUserDto(user);
   }
 
-  public async findUserByLogin(loginUserDto: LoginUserDto) {
+  public async findUserByLogin(loginUserDto: LoginUserDto): Promise<UserDto> {
     const user = await this.userModel.findOne({ email: loginUserDto.email });
     if (!user) {
       throw new HttpException('User not found', HttpStatus.UNAUTHORIZED);
@@ -38,10 +41,13 @@ export class UsersService {
       throw new HttpException('Invalid password', HttpStatus.UNAUTHORIZED);
     }
 
-    return;
+    return DtoHelper.toUserDto(user);
   }
 
-  public async findUserByPayload(payload: Payload): Promise<User> {
-    return await this.userModel.findOne({ email: payload.email }).exec();
+  public async findUserByPayload(payload: Payload): Promise<UserDto> {
+    const user: User = await this.userModel
+      .findOne({ email: payload.email })
+      .exec();
+    return DtoHelper.toUserDto(user);
   }
 }

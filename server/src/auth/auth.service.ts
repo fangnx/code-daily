@@ -3,7 +3,7 @@ import { CreateUserDto } from '../users/dto/create-user.dto';
 import { UserDto } from '../users/dto/user.dto';
 import { LoginUserDto } from '../users/dto/login-user.dto';
 import { UsersService } from '../users/users.service';
-import { RegistrationStatus, Payload } from './auth.interface';
+import { RegistrationStatus, Payload, LoginStatus } from './auth.interface';
 import { JwtService } from '@nestjs/jwt';
 
 @Injectable()
@@ -32,14 +32,11 @@ export class AuthService {
   }
 
   public async login(loginUserDto: LoginUserDto): Promise<LoginStatus> {
-    // find user in db
-    const user = await this.usersService.findByLogin(loginUserDto);
-
-    // generate and sign token
+    const user = await this.usersService.findUserByLogin(loginUserDto);
     const token = this.createToken(user);
 
     return {
-      username: user.username,
+      email: user.email,
       ...token,
     };
   }
