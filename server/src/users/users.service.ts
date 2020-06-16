@@ -33,10 +33,14 @@ export class UsersService {
       throw new HttpException('User not found', HttpStatus.UNAUTHORIZED);
     }
 
-    const isPasswordCorrect: boolean = await bcrypt.compare(
-      user.password,
-      loginUserDto.password,
-    );
+    // TODO: use hashing
+    // const isPasswordCorrect: boolean = await bcrypt.compare(
+    //   user.password,
+    //   loginUserDto.password,
+    // );
+
+    const isPasswordCorrect: boolean = user.password === loginUserDto.password;
+
     if (!isPasswordCorrect) {
       throw new HttpException('Invalid password', HttpStatus.UNAUTHORIZED);
     }

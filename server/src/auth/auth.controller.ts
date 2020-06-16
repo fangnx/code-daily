@@ -7,7 +7,8 @@ import {
 } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { CreateUserDto } from 'src/users/dto/create-user.dto';
-import { RegistrationStatus } from './auth.interface';
+import { RegistrationStatus, LoginStatus } from './auth.interface';
+import { LoginUserDto } from 'src/users/dto/login-user.dto';
 
 @Controller('auth')
 export class AuthController {
@@ -24,5 +25,10 @@ export class AuthController {
       throw new HttpException(res.message, HttpStatus.BAD_REQUEST);
     }
     return res;
+  }
+
+  @Post('login')
+  public async login(@Body() loginUserDto: LoginUserDto): Promise<LoginStatus> {
+    return await this.authService.login(loginUserDto);
   }
 }
