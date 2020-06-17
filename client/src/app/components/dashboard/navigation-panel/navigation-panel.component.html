@@ -1,10 +1,22 @@
 <main>
   <div class="flex-container">
-    <div class="flex-top"></div>
+    <div class="flex-top">
+      <button class="btn btn-icon btn-link" (click)="navigateToDashboard()">
+        <clr-icon shape="bar-code" size="24"></clr-icon>
+      </button>
+    </div>
 
     <div class="flex-bottom">
-      <clr-icon shape="user" size="24"></clr-icon>
-      <clr-icon shape="cog" size="24"></clr-icon>
+      <button
+        class="btn btn-icon btn-link"
+        (click)="navigateToUserManagement()"
+      >
+        <clr-icon shape="user" size="24"></clr-icon>
+      </button>
+
+      <button class="btn btn-icon btn-link">
+        <clr-icon shape="cog" size="24"></clr-icon>
+      </button>
     </div>
   </div>
 </main>

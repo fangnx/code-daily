@@ -12,10 +12,6 @@ export class StackExchangeService {
     // return this.httpClient.get();
   }
 
-  dummy() {
-    return EMPTY;
-  }
-
   getQuestionsByTags(query: QuestionsQuery): Observable<Question[]> {
     let params = new HttpParams();
     params = params.append("tags", query.tags);

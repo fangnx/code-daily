@@ -1,30 +1,35 @@
 <main>
-  <div class="login-wrapper">
-    <form class="login">
+  <div class="card">
+    <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
       <section class="title">
         <h3 class="welcome">Register</h3>
       </section>
-      <div class="login-group">
+
+      <section class="register-group">
         <clr-input-container>
-          <label class="clr-sr-only">Username</label>
-          <input type="text" name="username" clrInput placeholder="Username" />
+          <label class="clr-sr-only">Email</label>
+          <input
+            type="text"
+            formControlName="email"
+            clrInput
+            placeholder="Email"
+          />
         </clr-input-container>
 
         <clr-password-container>
           <label class="clr-sr-only">Password</label>
           <input
             type="password"
-            name="password"
+            formControlName="password"
             clrPassword
             placeholder="Password"
           />
         </clr-password-container>
+      </section>
 
-        <div class="error active">
-          Invalid user name or password
-        </div>
+      <section>
         <button type="submit" class="btn btn-primary">NEXT</button>
-      </div>
+      </section>
     </form>
   </div>
 </main>

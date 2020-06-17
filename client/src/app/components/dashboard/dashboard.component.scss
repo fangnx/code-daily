@@ -1,27 +1,30 @@
 main {
   .flex-container {
     display: flex;
+    flex-direction: row;
 
-    > * {
-      height: 100vh;
-    }
+    ::ng-deep {
+      navigation-panel {
+        flex: 0 0 50px;
+        height: 100vh;
+        width: 50px;
+      }
 
-    user-panel {
-      flex: 0 0 50px;
-      width: 50px;
-    }
+      control-panel {
+        flex: 0 0 275px;
+        height: 100vh;
+        width: 275px;
+      }
 
-    control-panel {
-      flex: 0 0 275px;
-      width: 275px;
-    }
+      content-panel {
+        flex-grow: 1;
+        height: 100vh;
+      }
 
-    content-panel {
-      flex-grow: 1;
-    }
-
-    user-management-panel {
-      flex-grow: 1;
+      user-management-panel {
+        flex-grow: 1;
+        height: 100vh;
+      }
     }
   }
 }

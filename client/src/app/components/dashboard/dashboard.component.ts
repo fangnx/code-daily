@@ -1,7 +1,7 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ChangeDetectionStrategy } from "@angular/core";
 import { StackExchangeService } from "src/app/services/stackExchange.service";
 import { Observable } from "rxjs";
-import { map, tap, publishReplay, refCount } from "rxjs/operators";
+import { map } from "rxjs/operators";
 import { Tag } from "src/app/app.model";
 import { Store } from "@ngrx/store";
 import { AppState } from "src/app/state/app.reducer";
@@ -15,6 +15,7 @@ import {
   selector: "dashboard",
   templateUrl: "./dashboard.component.html",
   styleUrls: ["./dashboard.component.scss"],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DashboardComponent implements OnInit {
   public questions$: Observable<any[]>;

@@ -1,4 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy } from "@angular/core";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "navigation-panel",
@@ -7,7 +8,15 @@ import { Component, OnInit, ChangeDetectionStrategy } from "@angular/core";
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NavigationPanelComponent implements OnInit {
-  constructor() {}
+  constructor(private router: Router) {}
 
   ngOnInit() {}
+
+  public navigateToDashboard() {
+    this.router.navigate(["/dashboard"]);
+  }
+
+  public navigateToUserManagement() {
+    this.router.navigate(["/user"]);
+  }
 }
