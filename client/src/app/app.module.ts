@@ -30,17 +30,6 @@ import { ClarityModule } from "@clr/angular";
 import { MarkdownModule } from "ngx-markdown";
 import { storageMetaReducer } from "./storage.metareducer";
 
-// export function localStorageSyncReducer(
-//   reducer: ActionReducer<any>
-// ): ActionReducer<any> {
-//   return localStorageSync({ keys: [{ app: ["user"] }], rehydrate: false })(
-//     reducer
-//   );
-// }
-
-const metaReducers: Array<MetaReducer<any, any>> = [storageMetaReducer];
-console.log(metaReducers);
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -57,7 +46,10 @@ console.log(metaReducers);
   ],
   imports: [
     ClarityModule,
-    StoreModule.forRoot({ app: appReducer }, { metaReducers }),
+    StoreModule.forRoot(
+      { app: appReducer },
+      { metaReducers: [storageMetaReducer] }
+    ),
     EffectsModule.forRoot([AppEffects]),
     NoopAnimationsModule,
     FormsModule,
