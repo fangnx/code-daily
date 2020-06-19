@@ -32,6 +32,7 @@
     "@webcomponents/custom-elements": "^1.0.0",
     "@webcomponents/webcomponentsjs": "^2.4.3",
     "lit-html": "^1.2.1",
+    "ngrx-store-localstorage": "^9.0.0",
     "ngx-markdown": "^9.1.1",
     "prismjs": "^1.20.0",
     "rxjs": "^6.5.3",

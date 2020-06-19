@@ -1,6 +1,5 @@
 import { Injectable } from "@angular/core";
 import { Actions, ofType, Effect } from "@ngrx/effects";
-import { Store } from "@ngrx/store";
 import * as AppActions from "./app.actions";
 import {
   catchError,
@@ -10,7 +9,6 @@ import {
   withLatestFrom,
 } from "rxjs/operators";
 import { StackExchangeService } from "../services/stackExchange.service";
-import { AppState } from "./app.reducer";
 import { QuestionsQuery, QuestionsSortBy } from "../app.model";
 import { StringifyTag } from "../helpers";
 
@@ -46,12 +44,4 @@ export class AppEffects {
       return [AppActions.fetchQuestions({ tag: action.tag })];
     })
   );
-
-  // @Effect()
-  // removeTag$ = this.actions$.pipe(
-  //   ofType(AppActions.unselectTag),
-  //   switchMap((action) => {
-  //     return [AppActions.fetchQuestions({ tag: action.tag })];
-  //   })
-  // );
 }

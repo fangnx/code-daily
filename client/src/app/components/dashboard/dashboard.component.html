@@ -1,6 +1,6 @@
 <main>
   <div class="flex-container">
-    <navigation-panel></navigation-panel>
+    <navigation-panel [user]="user$ | async"></navigation-panel>
 
     <control-panel
       [tags]="tags$ | async"

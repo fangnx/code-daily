@@ -1,8 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy } from "@angular/core";
-import { FormGroup, FormBuilder, Validators } from "@angular/forms";
+import { FormGroup, FormBuilder } from "@angular/forms";
 import { UserService } from "src/app/services/user.service";
-import { tap } from "rxjs/operators";
-import { Observable } from "rxjs";
+import { map, tap } from "rxjs/operators";
 
 @Component({
   selector: "registration",
@@ -29,6 +28,9 @@ export class RegistrationComponent implements OnInit {
 
   public onSubmit(): void {
     this.isSubmitted = true;
-    this.userService.registerUser(this.registrationForm.value);
+    this.userService
+      .registerUser(this.registrationForm.value)
+      .pipe(map((value) => console.log(value)))
+      .subscribe();
   }
 }

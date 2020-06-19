@@ -1,5 +1,5 @@
 import { createAction, props } from "@ngrx/store";
-import { Tag, QuestionsQuery, Question } from "../app.model";
+import { Tag, Question } from "../app.model";
 
 export const selectTag = createAction(
   "[App] Select Tag",
@@ -20,3 +20,10 @@ export const fetchQuestionsSuccess = createAction(
   "[App] Fetch Questions Success",
   props<{ questions: Question[] }>()
 );
+
+export const loginUser = createAction(
+  "[App] Log In User",
+  props<{ user: any }>()
+);
+
+export const logoutUser = createAction("[App] Log Out User");

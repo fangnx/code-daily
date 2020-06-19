@@ -7,6 +7,7 @@ export interface AppState extends EntityState<Question> {
   tags: Array<string>;
   selectedTags: Set<Tag>;
   questions: Array<Question>;
+  user: any;
 }
 
 export const adapter: EntityAdapter<Question> = createEntityAdapter<Question>({
@@ -17,6 +18,7 @@ export const adapter: EntityAdapter<Question> = createEntityAdapter<Question>({
 export const initialState: AppState = adapter.getInitialState(<AppState>{
   tags: [],
   selectedTags: new Set(),
+  user: null,
 });
 
 export const appReducer = createReducer(
@@ -32,7 +34,14 @@ export const appReducer = createReducer(
     };
   }),
   on(AppActions.fetchQuestionsSuccess, (state, { questions }) => {
-    console.log(questions);
     return { ...state, questions: questions };
-  })
+  }),
+  on(AppActions.loginUser, (state, { user }) => ({
+    ...state,
+    user,
+  })),
+  on(AppActions.logoutUser, (state) => ({
+    ...state,
+    user: null,
+  }))
 );

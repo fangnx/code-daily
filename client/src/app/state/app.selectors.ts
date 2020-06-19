@@ -17,3 +17,8 @@ export const selectQuestions = createSelector(
   selectAppState,
   (state: AppState) => state.questions
 );
+
+export const selectUser = createSelector(
+  selectAppState,
+  (state: AppState) => state.user
+);

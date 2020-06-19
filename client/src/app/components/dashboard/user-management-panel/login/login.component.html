@@ -1,0 +1,35 @@
+<main>
+  <div class="card">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <section class="title">
+        <h3 class="welcome">Login</h3>
+      </section>
+
+      <section class="login-group">
+        <clr-input-container>
+          <label class="clr-sr-only">Email</label>
+          <input
+            type="text"
+            formControlName="email"
+            clrInput
+            placeholder="Email"
+          />
+        </clr-input-container>
+
+        <clr-password-container>
+          <label class="clr-sr-only">Password</label>
+          <input
+            type="password"
+            formControlName="password"
+            clrPassword
+            placeholder="Password"
+          />
+        </clr-password-container>
+      </section>
+
+      <section>
+        <button type="submit" class="btn btn-primary">NEXT</button>
+      </section>
+    </form>
+  </div>
+</main>

@@ -11,7 +11,11 @@
         class="btn btn-icon btn-link"
         (click)="navigateToUserManagement()"
       >
-        <clr-icon shape="user" size="24"></clr-icon>
+        <clr-icon
+          shape="user"
+          [ngClass]="{ 'has-badge--success': hasUserLoggedIn }"
+          size="24"
+        ></clr-icon>
       </button>
 
       <button class="btn btn-icon btn-link">
