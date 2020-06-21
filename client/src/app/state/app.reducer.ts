@@ -1,6 +1,7 @@
 import { createReducer, on } from "@ngrx/store";
 import { EntityState, EntityAdapter, createEntityAdapter } from "@ngrx/entity";
-import { Question, Tag, UserAuth } from "../app.model";
+import { Question, Tag } from "../models/stackExchange.model";
+import { UserAuth, User } from "../models/user.model";
 import * as AppActions from "./app.actions";
 
 export interface AppState extends EntityState<Question> {
@@ -8,6 +9,7 @@ export interface AppState extends EntityState<Question> {
   selectedTags: Set<Tag>;
   questions: Array<Question>;
   userAuth: UserAuth;
+  user: User;
 }
 
 export const adapter: EntityAdapter<Question> = createEntityAdapter<Question>({
@@ -19,6 +21,7 @@ export const initialState: AppState = adapter.getInitialState(<AppState>{
   tags: [],
   selectedTags: new Set(),
   userAuth: null,
+  user: null,
 });
 
 export const appReducer = createReducer(
@@ -43,5 +46,9 @@ export const appReducer = createReducer(
   on(AppActions.logoutUser, (state) => ({
     ...state,
     userAuth: null,
+  })),
+  on(AppActions.fetchCurrentUserSuccess, (state, { user }) => ({
+    ...state,
+    user,
   }))
 );

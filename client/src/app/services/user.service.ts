@@ -6,27 +6,38 @@ import { Store } from "@ngrx/store";
 import { AppState } from "../state/app.reducer";
 import * as AppActions from "src/app/state/app.actions";
 import { selectUser } from "../state/app.selectors";
+import {
+  User,
+  CreateUserDto,
+  LoginUserDto,
+  UserAuth,
+  GetUserQuery,
+} from "../models/user.model";
 
 @Injectable()
 export class UserService {
   constructor(private store: Store<AppState>, private httpClient: HttpClient) {}
 
-  public getAllUsers(): Observable<any[]> {
-    return this.httpClient.get<any[]>("api/users");
+  public getUser(getUserQuery: GetUserQuery): Observable<User> {
+    return this.httpClient.post<User>("api/user", getUserQuery);
   }
 
-  public registerUser(user) {
+  public getAllUsers(): Observable<User[]> {
+    return this.httpClient.get<User[]>("api/users");
+  }
+
+  public registerUser(createUserDto: CreateUserDto) {
     return this.httpClient
-      .post("api/auth/register", user, { observe: "response" })
+      .post("api/auth/register", createUserDto, { observe: "response" })
       .pipe(map((value) => value));
   }
 
-  public loginUser(user) {
-    return this.httpClient.post("api/auth/login", user).pipe(
-      map((user) => {
-        localStorage.setItem("user", JSON.stringify(user));
-        this.store.dispatch(AppActions.loginUser({ user }));
-        return user;
+  public loginUser(loginUserDto: LoginUserDto): Observable<UserAuth> {
+    return this.httpClient.post<UserAuth>("api/auth/login", loginUserDto).pipe(
+      map((userAuth) => {
+        localStorage.setItem("user", JSON.stringify(userAuth));
+        this.store.dispatch(AppActions.loginUser({ userAuth }));
+        return userAuth;
       })
     );
   }

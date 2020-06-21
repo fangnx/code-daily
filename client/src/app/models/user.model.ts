@@ -4,7 +4,12 @@ export interface UserAuth {
   expiresIn: string;
 }
 
-export interface User {}
+export interface User {
+  email: string;
+  isEmailVerified: boolean;
+  isSubscribed: boolean;
+  favoriteTags: Array<string>;
+}
 
 export interface CreateUserDto {
   email: string;
@@ -14,4 +19,8 @@ export interface CreateUserDto {
 export interface LoginUserDto {
   email: string;
   password: string;
+}
+
+export interface GetUserQuery {
+  email: string;
 }

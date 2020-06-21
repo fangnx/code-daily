@@ -19,7 +19,7 @@ export function storageMetaReducer<S, A extends Action = Action>(
     if (onInit) {
       onInit = false;
       const userItem = getSavedItem(userStorageKey);
-      nextState["app"]["user"] = userItem;
+      nextState["app"]["userAuth"] = userItem;
       return nextState;
     }
     return nextState;
