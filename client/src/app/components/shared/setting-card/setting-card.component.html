@@ -1,0 +1,14 @@
+<main>
+  <div class="card clickable" (click)="onCardClicked()">
+    <div class="card-header">
+      <h3>
+        {{ title }}
+      </h3>
+
+      <clr-icon
+        *ngIf="!!clarityIconClass"
+        [attr.shape]="clarityIconClass"
+      ></clr-icon>
+    </div>
+  </div>
+</main>

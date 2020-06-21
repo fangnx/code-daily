@@ -5,12 +5,16 @@ main {
   height: 100%;
   width: 100%;
   overflow-y: scroll;
+  padding: 0 0 40px 0;
 
   .content-header-container {
     margin: 20px 10% 0 10%;
   }
 
   .card-list-container {
-    margin: 20px 10% 0 10%;
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    width: 800px;
   }
 }

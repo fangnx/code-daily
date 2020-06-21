@@ -9,6 +9,7 @@ import {
 } from "@angular/core";
 import { Tag } from "src/app/app.model";
 import { Router } from "@angular/router";
+import { UserService } from "src/app/services/user.service";
 
 @Component({
   selector: "control-panel",
@@ -21,7 +22,7 @@ export class ControlPanelComponent implements OnInit, OnChanges {
   @Input() public selectedTag: Tag;
   @Output() public onTagSelected: EventEmitter<Tag> = new EventEmitter();
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private userService: UserService) {}
 
   ngOnInit() {}
 
@@ -33,6 +34,14 @@ export class ControlPanelComponent implements OnInit, OnChanges {
 
   public isTagSelected(tag: Tag): boolean {
     return this.selectedTag === tag;
+  }
+
+  public onStarClicked(tag: Tag): void {
+    this.userService.addFavoriteTagToUser(tag.name);
+  }
+
+  public getStarIconClass(tag): string {
+    return "";
   }
 
   public getTreeNodeClass(tag: Tag): string {

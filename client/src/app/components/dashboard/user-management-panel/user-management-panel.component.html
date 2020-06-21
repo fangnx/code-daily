@@ -1,9 +1,19 @@
 <main>
   <section>
-    <button class="btn btn-primary" (click)="onRegisterClicked()">
+    <!-- <button class="btn btn-primary" (click)="onRegisterClicked()">
       Register
     </button>
     <button class="btn btn-primary" (click)="onLoginClicked()">Log In</button>
-    <button class="btn btn-primary" (click)="onLogoutClicked()">Log Out</button>
+    <button class="btn btn-primary" (click)="onLogoutClicked()">Log Out</button> -->
+
+    <div class="card-list-container">
+      <setting-card title="Register" clarityIconClass="user"></setting-card>
+      <setting-card title="Log In" clarityIconClass="login"></setting-card>
+      <setting-card title="Log Out" clarityIconClass="logout"></setting-card>
+      <setting-card
+        title="Manage Subscription"
+        clarityIconClass="envelope"
+      ></setting-card>
+    </div>
   </section>
 </main>

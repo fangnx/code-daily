@@ -8,7 +8,6 @@ import { EffectsModule } from "@ngrx/effects";
 import { StoreDevtoolsModule } from "@ngrx/store-devtools";
 import { appReducer } from "./state/app.reducer";
 import { AppEffects } from "./state/app.effects";
-import { localStorageSync } from "ngrx-store-localstorage";
 
 import { QuestionCardComponent } from "./components/shared/question-card/question-card.component";
 import { DashboardComponent } from "./components/dashboard/dashboard.component";
@@ -17,7 +16,7 @@ import { ControlPanelComponent } from "./components/dashboard/control-panel/cont
 import { NavigationPanelComponent } from "./components/dashboard/navigation-panel/navigation-panel.component";
 import { ContentPanelComponent } from "./components/dashboard/content-panel/content-panel.component";
 import { AnswerSectionComponent } from "./components/shared/answer-section/answer-section.component";
-import { QuestionBadgeComponent } from "./components/shared/question-badge/question-badge";
+import { QuestionBadgeComponent } from "./components/shared/question-badge/question-badge.component";
 import { UserManagementPanelComponent } from "./components/dashboard/user-management-panel/user-management-panel.component";
 import { RegistrationComponent } from "./components/dashboard/user-management-panel/registration/registration.component";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
@@ -29,6 +28,8 @@ import { ErrorInterceptor } from "./interceptors/error.interceptor";
 import { ClarityModule } from "@clr/angular";
 import { MarkdownModule } from "ngx-markdown";
 import { storageMetaReducer } from "./storage.metareducer";
+import { QuestionContentComponent } from "./components/shared/question-content/question-content.component";
+import { SettingCardComponent } from "./components/shared/setting-card/setting-card.component";
 
 @NgModule({
   declarations: [
@@ -43,6 +44,8 @@ import { storageMetaReducer } from "./storage.metareducer";
     UserManagementPanelComponent,
     RegistrationComponent,
     LoginComponent,
+    QuestionContentComponent,
+    SettingCardComponent,
   ],
   imports: [
     ClarityModule,

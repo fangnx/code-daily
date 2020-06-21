@@ -8,5 +8,10 @@ main {
 
   section {
     margin: auto;
+
+    .card-list-container {
+      display: flex;
+      flex-direction: column;
+    }
   }
 }

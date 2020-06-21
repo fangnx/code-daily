@@ -18,6 +18,13 @@ main {
         margin-top: 10px;
       }
 
+      a {
+        display: inline-block;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        width: 100%;
+      }
+
       pre {
         white-space: pre-wrap !important;
 

@@ -21,13 +21,20 @@
     </div>
 
     <ng-container *ngIf="isExpanded">
-      <hr />
+      <!-- <hr />
 
       <div class="card-body">
         <ng-container *ngFor="let answer of answers">
           <answer-section [answer]="answer"></answer-section>
           <hr />
         </ng-container>
+      </div> -->
+
+      <div class="card-body">
+        <question-content
+          [contentRawHtml]="rawHtml"
+          [contentRawMarkdown]="rawMarkdown"
+        ></question-content>
       </div>
     </ng-container>
   </div>

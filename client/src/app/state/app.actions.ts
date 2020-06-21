@@ -1,5 +1,5 @@
 import { createAction, props } from "@ngrx/store";
-import { Tag, Question } from "../app.model";
+import { Tag, Question, UserAuth } from "../app.model";
 
 export const selectTag = createAction(
   "[App] Select Tag",
@@ -23,7 +23,17 @@ export const fetchQuestionsSuccess = createAction(
 
 export const loginUser = createAction(
   "[App] Log In User",
-  props<{ user: any }>()
+  props<{ userAuth: UserAuth }>()
 );
 
 export const logoutUser = createAction("[App] Log Out User");
+
+export const addFavoriteTagToUser = createAction(
+  "[App] Add Favorite Tag to User",
+  props<{ tag: string }>()
+);
+
+export const removeFavoriteTagFromUser = createAction(
+  "[App] Remove Favorite Tag from User",
+  props<{ tag: string }>()
+);

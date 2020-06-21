@@ -20,5 +20,5 @@ export const selectQuestions = createSelector(
 
 export const selectUser = createSelector(
   selectAppState,
-  (state: AppState) => state.user
+  (state: AppState) => state.userAuth
 );

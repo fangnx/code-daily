@@ -1,0 +1,30 @@
+@import "../../../styles/colors.scss";
+
+:host {
+  width: 300px;
+
+  main {
+    width: 100%;
+
+    .card {
+      background: $white;
+      box-shadow: 0 2px 4px $lightgrey-1;
+      border-radius: 10px;
+      border-width: 1.5px;
+      border-color: $almostwhite;
+    }
+
+    .card-header {
+      align-items: center;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      padding: 50px 20px 5px 20px;
+
+      h3 {
+        font-size: 18px;
+        font-weight: 400;
+      }
+    }
+  }
+}

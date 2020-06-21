@@ -61,19 +61,3 @@ export interface QuestionsQuery {
   page?: number;
   pagesize: number;
 }
-
-export interface UserAuth {
-  email: string;
-  accessToken: string;
-  expiresIn: string;
-}
-
-export interface CreateUserDto {
-  email: string;
-  password: string;
-}
-
-export interface LoginUserDto {
-  email: string;
-  password: string;
-}

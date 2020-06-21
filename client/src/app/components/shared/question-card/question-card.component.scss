@@ -1,58 +1,53 @@
 @import "../../../styles/colors.scss";
 
-main {
-  width: 100%;
+:host {
+  width: 800px;
 
-  .card {
-    background: $white;
-    box-shadow: 0 2px 4px $lightgrey-1;
-    border-radius: 10px;
-    border-width: 1.5px;
-    border-color: $almostwhite;
+  main {
+    width: 100%;
 
-    .card-header {
-      border: none;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      word-wrap: break-word;
+    .card {
+      background: $white;
+      box-shadow: 0 2px 4px $lightgrey-1;
+      border-radius: 10px;
+      border-width: 1.5px;
+      border-color: $almostwhite;
 
-      // .meta-info {
-      //   display: flex;
-      //   padding: 10px 0 10px 0;
+      .card-header {
+        border: none;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        margin: auto;
+        padding: 10px 0;
+        width: 95%;
+        word-wrap: break-word;
 
-      //   h5 {
-      //     margin-right: 20px;
+        question-badge {
+          padding: 10px 0 10px 0;
+        }
 
-      //     clr-icon {
-      //       margin-right: 2px;
-      //     }
-      //   }
+        .tags {
+          padding: 10px 0 10px 0;
+        }
+      }
+
+      // hr {
+      //   border: 3px solid $primary-color;
+      //   box-sizing: border-box;
+      //   margin: 5px auto 5px auto;
+      //   width: 97.5%;
       // }
 
-      question-badge {
-        padding: 10px 0 10px 0;
-      }
+      .card-body {
+        margin: auto auto 3rem auto;
+        width: 92.5%;
 
-      .tags {
-        padding: 10px 0 10px 0;
-      }
-    }
-
-    hr {
-      border: 3px solid $primary-color;
-      box-sizing: border-box;
-      margin: 5px auto 5px auto;
-      width: 97.5%;
-    }
-
-    .card-body {
-      margin-bottom: 3rem;
-
-      hr {
-        border: 1px solid $primary-color;
-        margin: 10px auto 10px auto;
-        width: 97.5%;
+        // hr {
+        //   border: 1px solid $primary-color;
+        //   margin: 10px auto 10px auto;
+        //   width: 92.5%;
+        // }
       }
     }
   }

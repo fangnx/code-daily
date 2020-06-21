@@ -25,6 +25,8 @@ export class QuestionCardComponent implements OnInit {
 
   public title: string;
   public owner: Owner;
+  public rawHtml: string;
+  public rawMarkdown: string;
   public viewCount: number;
   public answerCount: number;
   public upvoteCount: number;
@@ -36,20 +38,23 @@ export class QuestionCardComponent implements OnInit {
 
   ngOnInit(): void {
     this.isExpanded = false;
+
     this.title = parseHtmlEntities(this.question.title);
     this.owner = this.question.owner;
+    this.rawHtml = this.question.body;
+    this.rawMarkdown = this.question.body_markdown;
+
     this.viewCount = this.question.view_count;
     this.answerCount = this.question.answer_count;
     this.upvoteCount = this.question.up_vote_count;
     this.downvoteCount = this.question.down_vote_count;
-
     this.creationDate = parseUnixTimestamp(this.question.creation_date);
     this.lastEditDate = parseUnixTimestamp(this.question.last_edit_date);
 
-    this.tags = this.question["tags"];
-    this.answers = this.question.answers
-      ? this.question.answers.slice(0, 5)
-      : [];
+    this.tags = this.question.tags;
+    // this.answers = this.question.answers
+    //   ? this.question.answers.slice(0, 5)
+    //   : [];
   }
 
   public onCardClicked(): void {

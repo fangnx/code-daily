@@ -31,7 +31,6 @@ export class DashboardComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    console.log(localStorage.getItem("user"));
     this.store
       .select((state) => selectAppState(state))
       .pipe(tap((v) => console.log(v)))

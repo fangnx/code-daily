@@ -1,0 +1,18 @@
+main {
+  .markdown-wrapper ::ng-deep {
+    pre {
+      white-space: pre-wrap !important;
+
+      code {
+        display: inline-block;
+        overflow-x: auto;
+        white-space: pre-line;
+        width: 100%;
+      }
+    }
+
+    img {
+      width: 100%;
+    }
+  }
+}

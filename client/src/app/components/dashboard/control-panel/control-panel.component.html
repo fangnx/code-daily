@@ -2,6 +2,23 @@
   <div>
     <clr-tree>
       <clr-tree-node [clrExpanded]="true">
+        FAVORITE TAGS
+        <clr-tree-node
+          *ngFor="let tag of []"
+          [ngClass]="getTreeNodeClass(tag)"
+          class="tag-node"
+        >
+          <button
+            class="clr-treenode-link"
+            (click)="onSelectTag(tag)"
+            [ngClass]="getTagClass(tag)"
+          >
+            {{ tag.name | titlecase }}
+          </button>
+        </clr-tree-node>
+      </clr-tree-node>
+
+      <clr-tree-node [clrExpanded]="true">
         POPULAR TAGS
         <clr-tree-node
           *ngFor="let tag of tags"
@@ -15,6 +32,11 @@
           >
             {{ tag.name | titlecase }}
           </button>
+          <clr-icon
+            shape="star"
+            (click)="onStarClicked(tag)"
+            [ngClass]="getStarIconClass(tag)"
+          ></clr-icon>
         </clr-tree-node>
       </clr-tree-node>
     </clr-tree>
