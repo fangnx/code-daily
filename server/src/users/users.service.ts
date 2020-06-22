@@ -8,6 +8,7 @@ import { Payload } from 'src/auth/auth.interface';
 import * as bcrypt from 'bcrypt';
 import { DtoHelper } from 'src/shared/dtoHelper';
 import { UserDto } from './dto/user.dto';
+import { AddFavoriteTagDto } from './dto/add-favorite-tag.dto';
 
 @Injectable()
 export class UsersService {
@@ -53,5 +54,65 @@ export class UsersService {
       .findOne({ email: payload.email })
       .exec();
     return DtoHelper.toUserDto(user);
+  }
+
+  public async addFavoriteTagToUser(
+    addFavoriteTagDto: AddFavoriteTagDto,
+  ): Promise<void> {
+    if (!addFavoriteTagDto.tag) {
+      throw new HttpException(
+        'Parameter `Tag` is null or empty',
+        HttpStatus.BAD_REQUEST,
+      );
+    }
+    const user: User = await this.userModel
+      .findOne({ email: addFavoriteTagDto.email })
+      .exec();
+    if (!user) {
+      throw new HttpException(
+        'Invalid token: user does not exist',
+        HttpStatus.UNAUTHORIZED,
+      );
+    }
+
+    let favoriteTags: Array<string> = user.favoriteTags;
+    if (user.favoriteTags.indexOf(addFavoriteTagDto.tag) >= 0) {
+      console.log(user.favoriteTags);
+      return;
+    }
+    favoriteTags = [...favoriteTags, addFavoriteTagDto.tag];
+    await this.userModel.updateOne(
+      { email: addFavoriteTagDto.email },
+      { favoriteTags },
+    );
+  }
+
+  public async removeFavoriteTagFromUser(
+    removeFavoriteTagDto: AddFavoriteTagDto,
+  ): Promise<void> {
+    if (!removeFavoriteTagDto.tag) {
+      throw new HttpException(
+        'Parameter `Tag` is null or empty',
+        HttpStatus.BAD_REQUEST,
+      );
+    }
+    const user: User = await this.userModel
+      .findOne({ email: removeFavoriteTagDto.email })
+      .exec();
+
+    if (!user) {
+      throw new HttpException(
+        'Invalid token: user does not exist',
+        HttpStatus.UNAUTHORIZED,
+      );
+    }
+
+    const favoriteTags: Array<string> = user.favoriteTags.filter(
+      tag => tag !== removeFavoriteTagDto.tag,
+    );
+    await this.userModel.updateOne(
+      { email: removeFavoriteTagDto.email },
+      { favoriteTags },
+    );
   }
 }

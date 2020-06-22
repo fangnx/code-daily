@@ -1,23 +1,34 @@
-import {
-  Controller,
-  Get,
-  Post,
-  Body,
-  HttpCode,
-  HttpStatus,
-  Res,
-} from '@nestjs/common';
+import { Controller, Get, Post, Body, HttpCode } from '@nestjs/common';
 import { UsersService } from './users.service';
-import { CreateUserDto } from './dto/create-user.dto';
 import { User } from './user.interface';
+import { AddFavoriteTagDto } from './dto/add-favorite-tag.dto';
+import { GetUserDto } from './dto/get-user.dto';
+import { UserDto } from './dto/user.dto';
 
 @Controller('users')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
   @Get()
-  @HttpCode(200)
   getAllUsers(): Promise<Array<User>> {
+    // TODO: should this return User or UserDto?
     return this.usersService.findAllUsers();
+  }
+
+  @Post('/user')
+  getUser(@Body() getUserDto: GetUserDto): Promise<UserDto> {
+    return this.usersService.findUserByEmail(getUserDto.email);
+  }
+
+  @Post('/tags/add')
+  addFavoriteTag(@Body() addFavoriteTagDto: AddFavoriteTagDto): Promise<void> {
+    return this.usersService.addFavoriteTagToUser(addFavoriteTagDto);
+  }
+
+  @Post('/tags/remove')
+  removeFavoriteTag(
+    @Body() removeFavoriteTagDto: AddFavoriteTagDto,
+  ): Promise<void> {
+    return this.usersService.removeFavoriteTagFromUser(removeFavoriteTagDto);
   }
 }
