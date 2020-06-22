@@ -4,6 +4,7 @@
 
     <control-panel
       [tags]="tags$ | async"
+      [userFavoriteTags]="userFavoriteTags$ | async"
       (onTagSelected)="onTagSelected($event)"
     ></control-panel>
 

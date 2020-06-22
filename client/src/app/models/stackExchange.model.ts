@@ -26,8 +26,8 @@ export interface Answer {
 
 export interface Tag {
   name: string;
-  count: number;
-  has_synonyms: boolean;
+  count?: number;
+  has_synonyms?: boolean;
 }
 
 export interface Owner {

@@ -4,7 +4,7 @@ import {
   Input,
   ChangeDetectionStrategy,
 } from "@angular/core";
-import { Owner } from "src/app/app.model";
+import { Owner } from "src/app/models/stackExchange.model";
 
 @Component({
   selector: "question-badge",

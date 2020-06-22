@@ -5,11 +5,11 @@ import {
   ChangeDetectionStrategy,
   OnInit,
 } from "@angular/core";
-import { Question } from "src/app/app.model";
 import { Observable } from "rxjs";
 import { selectQuestions } from "src/app/state/app.selectors";
 import { Store } from "@ngrx/store";
 import { AppState } from "src/app/state/app.reducer";
+import { Question } from "src/app/models/stackExchange.model";
 
 @Component({
   selector: "content-panel",
@@ -18,7 +18,7 @@ import { AppState } from "src/app/state/app.reducer";
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ContentPanelComponent implements OnInit, OnChanges {
-  public questions$: Observable<any[]>;
+  public questions$: Observable<Question[]>;
 
   constructor(private store: Store<AppState>) {}
 

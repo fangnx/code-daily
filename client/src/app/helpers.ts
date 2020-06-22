@@ -1,4 +1,4 @@
-import { Tag } from "./app.model";
+import { Tag } from "./models/stackExchange.model";
 
 export const parseHtmlEntities = (str) => {
   return str.replace(/&#([0-9]{1,3});/gi, (match, numStr) => {

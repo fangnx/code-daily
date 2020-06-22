@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, ViewEncapsulation } from "@angular/core";
-import { Answer } from "src/app/app.model";
 import { parseUnixTimestamp } from "src/app/helpers";
+import { Answer } from "src/app/models/stackExchange.model";
 @Component({
   selector: "answer-section",
   templateUrl: "./answer-section.component.html",

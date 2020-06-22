@@ -18,7 +18,12 @@ export const selectQuestions = createSelector(
   (state: AppState) => state.questions
 );
 
-export const selectUser = createSelector(
+export const selectUserAuth = createSelector(
   selectAppState,
   (state: AppState) => state.userAuth
+);
+
+export const selectUser = createSelector(
+  selectAppState,
+  (state: AppState) => state.user
 );

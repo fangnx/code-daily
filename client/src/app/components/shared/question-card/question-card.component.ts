@@ -8,7 +8,12 @@ import {
   OnInit,
 } from "@angular/core";
 import { parseHtmlEntities, parseUnixTimestamp } from "../../../helpers";
-import { Question, Tag, Answer, Owner } from "src/app/app.model";
+import {
+  Question,
+  Tag,
+  Owner,
+  Answer,
+} from "src/app/models/stackExchange.model";
 
 @Component({
   selector: "question-card",

@@ -5,7 +5,7 @@ import { catchError, map, tap } from "rxjs/operators";
 import { Store } from "@ngrx/store";
 import { AppState } from "../state/app.reducer";
 import * as AppActions from "src/app/state/app.actions";
-import { selectUser } from "../state/app.selectors";
+import { selectUserAuth } from "../state/app.selectors";
 import {
   User,
   CreateUserDto,
@@ -19,7 +19,7 @@ export class UserService {
   constructor(private store: Store<AppState>, private httpClient: HttpClient) {}
 
   public getUser(getUserQuery: GetUserQuery): Observable<User> {
-    return this.httpClient.post<User>("api/user", getUserQuery);
+    return this.httpClient.post<User>("api/users/user", getUserQuery);
   }
 
   public getAllUsers(): Observable<User[]> {
@@ -47,7 +47,7 @@ export class UserService {
     this.store.dispatch(AppActions.logoutUser());
   }
 
-  public async addFavoriteTagToUser(tag: string) {
+  public addFavoriteTagToUser(tag: string, email: string) {
     // const user = await this.store
     //   .select((state) => selectUser(state))
     //   .toPromise();
@@ -58,18 +58,19 @@ export class UserService {
 
     // this.httpClient.post<void>("api/users/tags/add", addFavoriteTagDto).pipe();
 
-    this.store
-      .select((state) => selectUser(state))
-      .pipe(
-        tap((next) => {
-          console.log(next);
-          const addFavoriteTagDto = { email: next.email, tag };
-          this.httpClient
-            .post<void>("api/users/tags/add", addFavoriteTagDto)
-            .subscribe();
-        })
-      )
-      .subscribe();
+    // this.store
+    //   .select((state) => selectUserAuth(state))
+    //   .pipe(
+    //     tap((next) => {
+    //       const addFavoriteTagDto = { email: next.email, tag };
+    //       this.httpClient
+    //         .post<void>("api/users/tags/add", addFavoriteTagDto)
+    //         .subscribe();
+    //     })
+    //   )
+    //   .subscribe();
+    const addFavoriteTagDto = { email, tag };
+    return this.httpClient.post<void>("api/users/tags/add", addFavoriteTagDto);
   }
 
   public removeFavoriteTagFromUser(tag: string) {}

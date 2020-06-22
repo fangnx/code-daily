@@ -6,6 +6,7 @@ import {
   OnChanges,
 } from "@angular/core";
 import { Router } from "@angular/router";
+import { UserAuth } from "src/app/models/user.model";
 
 @Component({
   selector: "navigation-panel",
@@ -14,13 +15,11 @@ import { Router } from "@angular/router";
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NavigationPanelComponent implements OnChanges {
-  @Input() user?: any;
+  @Input() user?: UserAuth;
 
   constructor(private router: Router) {}
 
-  ngOnChanges() {
-    console.log(this.user);
-  }
+  ngOnChanges() {}
 
   public navigateToDashboard() {
     this.router.navigate(["/dashboard"]);
@@ -31,6 +30,6 @@ export class NavigationPanelComponent implements OnChanges {
   }
 
   public get hasUserLoggedIn(): boolean {
-    return this.user && this.user.email;
+    return !!this.user && !!this.user.email;
   }
 }

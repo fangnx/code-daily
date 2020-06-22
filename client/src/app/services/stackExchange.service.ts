@@ -2,15 +2,11 @@ import { Injectable } from "@angular/core";
 import { HttpClient, HttpParams } from "@angular/common/http";
 import { Observable, of, pipe, EMPTY } from "rxjs";
 import { catchError, map } from "rxjs/operators";
-import { QuestionsQuery, Question } from "../app.model";
+import { QuestionsQuery, Question, Tag } from "../models/stackExchange.model";
 
 @Injectable()
 export class StackExchangeService {
   constructor(private httpClient: HttpClient) {}
-
-  getQuestionsByIds(ids: string) {
-    // return this.httpClient.get();
-  }
 
   getQuestionsByTags(query: QuestionsQuery): Observable<Question[]> {
     let params = new HttpParams();
@@ -25,7 +21,7 @@ export class StackExchangeService {
   }
 
   getPopularTags() {
-    return this.httpClient.get<any[]>("api/tags", {
+    return this.httpClient.get<Tag[]>("api/tags", {
       params: {},
     });
   }
