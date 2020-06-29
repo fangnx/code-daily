@@ -65,7 +65,12 @@ export class ControlPanelComponent implements OnChanges {
   }
 
   public onStarClicked(tag: Tag): void {
-    // this.userService.addFavoriteTagToUser(tag.name);
-    this.store.dispatch(AppActions.addFavoriteTagToUser({ tag: tag.name }));
+    if (this.isTagFavoriteByUser(tag)) {
+      this.store.dispatch(
+        AppActions.removeFavoriteTagFromUser({ tag: tag.name })
+      );
+    } else {
+      this.store.dispatch(AppActions.addFavoriteTagToUser({ tag: tag.name }));
+    }
   }
 }

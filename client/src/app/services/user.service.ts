@@ -73,5 +73,11 @@ export class UserService {
     return this.httpClient.post<void>("api/users/tags/add", addFavoriteTagDto);
   }
 
-  public removeFavoriteTagFromUser(tag: string) {}
+  public removeFavoriteTagFromUser(tag: string, email: string) {
+    const removeFavoriteTagDto = { email, tag };
+    return this.httpClient.post<void>(
+      "api/users/tags/remove",
+      removeFavoriteTagDto
+    );
+  }
 }

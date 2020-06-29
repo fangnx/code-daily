@@ -52,6 +52,20 @@ export class AppEffects {
   );
 
   @Effect()
+  RemoveFavoriteTagFromUser = this.actions$.pipe(
+    ofType(AppActions.removeFavoriteTagFromUser),
+    withLatestFrom(this.store.select((state) => selectUserAuth(state))),
+    switchMap(([action, userAuth]) => {
+      const tag: string = action.tag;
+      const email: string = userAuth.email;
+      console.log(tag + " " + email);
+      return this.userService
+        .removeFavoriteTagFromUser(tag, email)
+        .pipe(map(() => AppActions.fetchCurrentUser()));
+    })
+  );
+
+  @Effect()
   fetchCurrentUser$ = this.actions$.pipe(
     ofType(AppActions.fetchCurrentUser),
     withLatestFrom(this.store.select((state) => selectUserAuth(state))),
@@ -67,19 +81,6 @@ export class AppEffects {
         );
     })
   );
-
-  // @Effect()
-  // updateUser = this.actions$.pipe(
-  //   ofType(
-  //     AppActions.addFavoriteTagToUser,
-  //     AppActions.removeFavoriteTagFromUser
-  //   ),
-  //   switchMap((action) => {
-  //     console.log(action);
-
-  //     return [AppActions.fetchCurrentUser()];
-  //   })
-  // );
 
   @Effect()
   updateQuestions$ = this.actions$.pipe(

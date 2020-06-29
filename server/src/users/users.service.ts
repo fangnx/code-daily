@@ -77,7 +77,6 @@ export class UsersService {
 
     let favoriteTags: Array<string> = user.favoriteTags;
     if (user.favoriteTags.indexOf(addFavoriteTagDto.tag) >= 0) {
-      console.log(user.favoriteTags);
       return;
     }
     favoriteTags = [...favoriteTags, addFavoriteTagDto.tag];
