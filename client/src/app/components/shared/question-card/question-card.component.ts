@@ -2,7 +2,6 @@ import {
   Component,
   Input,
   ChangeDetectionStrategy,
-  OnChanges,
   Output,
   EventEmitter,
   OnInit,
@@ -41,6 +40,8 @@ export class QuestionCardComponent implements OnInit {
   public tags: Array<Tag>;
   public answers: Array<Answer>;
 
+  constructor() {}
+
   ngOnInit(): void {
     this.isExpanded = false;
 
@@ -57,12 +58,16 @@ export class QuestionCardComponent implements OnInit {
     this.lastEditDate = parseUnixTimestamp(this.question.last_edit_date);
 
     this.tags = this.question.tags;
-    // this.answers = this.question.answers
-    //   ? this.question.answers.slice(0, 5)
-    //   : [];
   }
 
   public onCardClicked(): void {
-    this.isExpanded = !this.isExpanded;
+    if (!this.isExpanded) {
+      this.isExpanded = true;
+    }
+  }
+
+  public onCloseIconClicked(event): void {
+    event.stopPropagation();
+    this.isExpanded = false;
   }
 }

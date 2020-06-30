@@ -1,5 +1,11 @@
+@import "../../../styles/colors.scss";
+
 main {
   .markdown-wrapper ::ng-deep {
+    p {
+      color: $darkgrey-0;
+    }
+
     pre {
       white-space: pre-wrap !important;
 

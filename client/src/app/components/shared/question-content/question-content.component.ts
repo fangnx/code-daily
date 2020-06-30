@@ -15,7 +15,5 @@ export class QuestionContentComponent implements OnInit {
   @Input() contentRawHtml: string;
   @Input() contentRawMarkdown: string;
 
-  constructor() {}
-
   ngOnInit() {}
 }

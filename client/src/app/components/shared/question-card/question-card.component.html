@@ -1,9 +1,21 @@
 <main>
-  <div class="card clickable" (click)="onCardClicked()">
+  <div
+    class="card"
+    [ngClass]="{ clickable: !isExpanded }"
+    (click)="onCardClicked()"
+  >
     <div class="card-header">
-      <h3>
-        {{ title | titlecase }}
-      </h3>
+      <article>
+        <h3>
+          {{ title | titlecase }}
+        </h3>
+        <clr-icon
+          *ngIf="isExpanded"
+          (click)="onCloseIconClicked($event)"
+          shape="window-close"
+          size="18"
+        ></clr-icon>
+      </article>
 
       <question-badge
         [owner]="owner"
@@ -21,14 +33,7 @@
     </div>
 
     <ng-container *ngIf="isExpanded">
-      <!-- <hr />
-
-      <div class="card-body">
-        <ng-container *ngFor="let answer of answers">
-          <answer-section [answer]="answer"></answer-section>
-          <hr />
-        </ng-container>
-      </div> -->
+      <!-- <hr /> -->
 
       <div class="card-body">
         <question-content

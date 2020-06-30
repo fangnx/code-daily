@@ -14,7 +14,6 @@ import { Question } from "src/app/models/stackExchange.model";
 import {
   fadeInOnEnterAnimation,
   fadeOutOnLeaveAnimation,
-  bounceAnimation,
   bounceOnEnterAnimation,
 } from "angular-animations";
 import { ContentPanelService } from "src/app/services/contentPanel.service";
