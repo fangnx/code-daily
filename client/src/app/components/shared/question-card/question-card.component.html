@@ -35,7 +35,7 @@
     <ng-container *ngIf="isExpanded">
       <!-- <hr /> -->
 
-      <div class="card-body">
+      <div class="card-body" [@fadeInOnEnter]>
         <question-content
           [contentRawHtml]="rawHtml"
           [contentRawMarkdown]="rawMarkdown"

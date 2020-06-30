@@ -13,12 +13,14 @@ import {
   Owner,
   Answer,
 } from "src/app/models/stackExchange.model";
+import { fadeInOnEnterAnimation } from "angular-animations";
 
 @Component({
   selector: "question-card",
   templateUrl: "./question-card.component.html",
   styleUrls: ["./question-card.component.scss"],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  animations: [fadeInOnEnterAnimation()],
 })
 export class QuestionCardComponent implements OnInit {
   @Input() public question: Question;
