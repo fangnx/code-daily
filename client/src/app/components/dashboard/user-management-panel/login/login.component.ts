@@ -26,7 +26,6 @@ export class LoginComponent implements OnInit {
     });
     this.isSubmitted = false;
     this.errorText = "";
-    console.log(localStorage.getItem("user"));
   }
 
   public onSubmit(): void {

@@ -6,7 +6,7 @@ import * as AppActions from "./app.actions";
 
 export interface AppState extends EntityState<Question> {
   tags: Array<string>;
-  selectedTags: Set<Tag>;
+  selectedTag: Tag;
   questions: Array<Question>;
   userAuth: UserAuth;
   user: User;
@@ -19,7 +19,7 @@ export const adapter: EntityAdapter<Question> = createEntityAdapter<Question>({
 
 export const initialState: AppState = adapter.getInitialState(<AppState>{
   tags: [],
-  selectedTags: new Set(),
+  selectedTag: null,
   userAuth: null,
   user: null,
 });
@@ -28,14 +28,14 @@ export const appReducer = createReducer(
   initialState,
   on(AppActions.selectTag, (state, { tag }) => ({
     ...state,
-    selectedTags: state.selectedTags.add(tag),
+    selectedTag: tag,
   })),
-  on(AppActions.unselectTag, (state, { tag }) => {
-    state.selectedTags.delete(tag);
-    return {
-      ...state,
-    };
-  }),
+  // on(AppActions.unselectTag, (state, { tag }) => {
+  //   state.selectedTags.delete(tag);
+  //   return {
+  //     ...state,
+  //   };
+  // }),
   on(AppActions.fetchQuestionsSuccess, (state, { questions }) => {
     return { ...state, questions: questions };
   }),

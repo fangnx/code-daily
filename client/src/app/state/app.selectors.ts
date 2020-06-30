@@ -8,9 +8,9 @@ export const selectTags = createSelector(
   (state: AppState) => state.tags
 );
 
-export const selectSelectedTags = createSelector(
+export const selectSelectedTag = createSelector(
   selectAppState,
-  (state: AppState) => state.selectedTags
+  (state: AppState) => state.selectedTag
 );
 
 export const selectQuestions = createSelector(

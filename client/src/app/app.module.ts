@@ -1,14 +1,25 @@
 import { NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { AppRoutingModule } from "./app-routing.module";
-import { AppComponent } from "./app.component";
+
 import { StoreModule, ActionReducer, MetaReducer } from "@ngrx/store";
 import { EffectsModule } from "@ngrx/effects";
 import { StoreDevtoolsModule } from "@ngrx/store-devtools";
 import { appReducer } from "./state/app.reducer";
 import { AppEffects } from "./state/app.effects";
 
+import { ClarityModule } from "@clr/angular";
+import { MarkdownModule } from "ngx-markdown";
+import { storageMetaReducer } from "./storage.metareducer";
+
+import { UserService } from "./services/user.service";
+import { ErrorInterceptor } from "./interceptors/error.interceptor";
+
+import { AppComponent } from "./app.component";
+import { LoginComponent } from "./components/dashboard/user-management-panel/login/login.component";
 import { QuestionCardComponent } from "./components/shared/question-card/question-card.component";
 import { DashboardComponent } from "./components/dashboard/dashboard.component";
 import { StackExchangeService } from "./services/stackExchange.service";
@@ -19,17 +30,9 @@ import { AnswerSectionComponent } from "./components/shared/answer-section/answe
 import { QuestionBadgeComponent } from "./components/shared/question-badge/question-badge.component";
 import { UserManagementPanelComponent } from "./components/dashboard/user-management-panel/user-management-panel.component";
 import { RegistrationComponent } from "./components/dashboard/user-management-panel/registration/registration.component";
-import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { NoopAnimationsModule } from "@angular/platform-browser/animations";
-import { UserService } from "./services/user.service";
-import { LoginComponent } from "./components/dashboard/user-management-panel/login/login.component";
-import { ErrorInterceptor } from "./interceptors/error.interceptor";
-
-import { ClarityModule } from "@clr/angular";
-import { MarkdownModule } from "ngx-markdown";
-import { storageMetaReducer } from "./storage.metareducer";
 import { QuestionContentComponent } from "./components/shared/question-content/question-content.component";
 import { SettingCardComponent } from "./components/shared/setting-card/setting-card.component";
+import { ContentPanelService } from "./services/contentPanel.service";
 
 @NgModule({
   declarations: [
@@ -54,7 +57,7 @@ import { SettingCardComponent } from "./components/shared/setting-card/setting-c
       { metaReducers: [storageMetaReducer] }
     ),
     EffectsModule.forRoot([AppEffects]),
-    NoopAnimationsModule,
+    BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
     BrowserModule,
@@ -67,6 +70,7 @@ import { SettingCardComponent } from "./components/shared/setting-card/setting-c
   providers: [
     StackExchangeService,
     UserService,
+    ContentPanelService,
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
   ],
   bootstrap: [AppComponent],

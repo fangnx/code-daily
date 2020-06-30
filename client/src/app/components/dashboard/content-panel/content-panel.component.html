@@ -7,6 +7,8 @@
     <question-card
       *ngFor="let question of questions$ | async"
       [question]="question"
+      [@fadeInOnEnter]
+      [@fadeOutOnLeave]
     ></question-card>
   </div>
 </main>

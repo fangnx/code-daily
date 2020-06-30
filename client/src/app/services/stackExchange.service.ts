@@ -8,7 +8,7 @@ import { QuestionsQuery, Question, Tag } from "../models/stackExchange.model";
 export class StackExchangeService {
   constructor(private httpClient: HttpClient) {}
 
-  getQuestionsByTags(query: QuestionsQuery): Observable<Question[]> {
+  public getQuestionsByTags(query: QuestionsQuery): Observable<Question[]> {
     let params = new HttpParams();
     params = params.append("tags", query.tags);
     params = params.append("sort", query.sort);
@@ -20,7 +20,7 @@ export class StackExchangeService {
       .pipe(map((res) => res["items"]));
   }
 
-  getPopularTags() {
+  public getPopularTags() {
     return this.httpClient.get<Tag[]>("api/tags", {
       params: {},
     });

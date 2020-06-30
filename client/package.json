@@ -11,7 +11,7 @@
   },
   "private": true,
   "dependencies": {
-    "@angular/animations": "~8.2.14",
+    "@angular/animations": "^10.0.1",
     "@angular/cdk": "~8.2.3",
     "@angular/common": "~8.2.14",
     "@angular/compiler": "~8.2.14",
@@ -31,6 +31,7 @@
     "@trademe/ng-defer-load": "^8.0.0",
     "@webcomponents/custom-elements": "^1.0.0",
     "@webcomponents/webcomponentsjs": "^2.4.3",
+    "angular-animations": "0.0.10",
     "lit-html": "^1.2.1",
     "ngrx-store-localstorage": "^9.0.0",
     "ngx-markdown": "^9.1.1",
