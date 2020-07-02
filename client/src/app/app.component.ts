@@ -21,7 +21,7 @@ export class AppComponent implements OnInit {
       .pipe(tap((v) => console.log(v)))
       .subscribe();
 
-    this.store.dispatch(AppActions.fetchCurrentUser());
+    this.store.dispatch(AppActions.fetchCurrentUserAuth());
 
     this.store.dispatch(AppActions.selectTag({ tag: { name: "Javascript" } }));
   }

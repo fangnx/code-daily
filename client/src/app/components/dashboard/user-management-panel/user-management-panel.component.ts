@@ -44,7 +44,6 @@ export class UserManagementPanelComponent implements OnInit {
 
   public onLogoutClicked(): void {
     this.userService.logoutUser();
-    this.router.navigate(["/dashboard"]);
   }
 
   public onManageSubscriptionClicked(): void {

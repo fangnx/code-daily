@@ -50,7 +50,7 @@ export class AppEffects {
       const email: string = userAuth.email;
       return this.userService
         .addFavoriteTagToUser(tag, email)
-        .pipe(map(() => AppActions.fetchCurrentUser()));
+        .pipe(map(() => AppActions.fetchCurrentUserAuth()));
     })
   );
 
@@ -64,7 +64,7 @@ export class AppEffects {
       console.log(tag + " " + email);
       return this.userService
         .removeFavoriteTagFromUser(tag, email)
-        .pipe(map(() => AppActions.fetchCurrentUser()));
+        .pipe(map(() => AppActions.fetchCurrentUserAuth()));
     })
   );
 
@@ -73,24 +73,34 @@ export class AppEffects {
     ofType(AppActions.loginUser),
     switchMap(() => {
       this.router.navigate(["/dashboard"]);
-      return EMPTY;
+      return [AppActions.fetchCurrentUserAuth()];
+    })
+  );
+
+  @Effect()
+  logoutUser$ = this.actions$.pipe(
+    ofType(AppActions.logoutUser),
+    switchMap(() => {
+      this.router.navigate(["/dashboard"]);
+      return [AppActions.fetchCurrentUserAuth()];
     })
   );
 
   @Effect()
   fetchCurrentUserAuth$ = this.actions$.pipe(
-    ofType(AppActions.fetchCurrentUser),
+    ofType(AppActions.fetchCurrentUserAuth),
     withLatestFrom(this.store.select((state) => selectUserAuth(state))),
     switchMap(([_, userAuth]) => {
       const query: GetUserQuery = {
         email: userAuth.email,
       };
 
-      return this.userService
-        .getUser(query)
-        .pipe(
-          map((user: User) => AppActions.fetchCurrentUserSuccess({ user }))
-        );
+      return this.userService.getUser(query).pipe(
+        map((user: User) => {
+          console.log(user);
+          return AppActions.fetchCurrentUserAuthSuccess({ user });
+        })
+      );
     })
   );
 
