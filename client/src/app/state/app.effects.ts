@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { Actions, ofType, Effect } from "@ngrx/effects";
 import { Store } from "@ngrx/store";
 import * as AppActions from "./app.actions";
-import { map, switchMap, withLatestFrom, concatMap, tap } from "rxjs/operators";
+import { map, switchMap, withLatestFrom } from "rxjs/operators";
 import { StackExchangeService } from "../services/stackExchange.service";
 import { QuestionsQuery, QuestionsSortBy } from "../models/stackExchange.model";
 import { GetUserQuery, User } from "../models/user.model";
@@ -10,6 +10,8 @@ import { StringifyTag } from "../helpers";
 import { AppState } from "./app.reducer";
 import { selectUserAuth } from "./app.selectors";
 import { UserService } from "../services/user.service";
+import { Router } from "@angular/router";
+import { empty, of, EMPTY } from "rxjs";
 
 @Injectable()
 export class AppEffects {
@@ -17,7 +19,8 @@ export class AppEffects {
     private store: Store<AppState>,
     private actions$: Actions,
     private stackExchangeApiService: StackExchangeService,
-    private userService: UserService
+    private userService: UserService,
+    private router: Router
   ) {}
 
   @Effect()
@@ -66,7 +69,16 @@ export class AppEffects {
   );
 
   @Effect()
-  fetchCurrentUser$ = this.actions$.pipe(
+  loginUser$ = this.actions$.pipe(
+    ofType(AppActions.loginUser),
+    switchMap(() => {
+      this.router.navigate(["/dashboard"]);
+      return EMPTY;
+    })
+  );
+
+  @Effect()
+  fetchCurrentUserAuth$ = this.actions$.pipe(
     ofType(AppActions.fetchCurrentUser),
     withLatestFrom(this.store.select((state) => selectUserAuth(state))),
     switchMap(([_, userAuth]) => {

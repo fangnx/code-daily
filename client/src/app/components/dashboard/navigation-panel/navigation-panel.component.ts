@@ -1,6 +1,5 @@
 import {
   Component,
-  OnInit,
   ChangeDetectionStrategy,
   Input,
   OnChanges,
@@ -15,7 +14,7 @@ import { UserAuth } from "src/app/models/user.model";
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NavigationPanelComponent implements OnChanges {
-  @Input() user?: UserAuth;
+  @Input() public user?: UserAuth;
 
   constructor(private router: Router) {}
 

@@ -1,8 +1,9 @@
 import {
   Component,
-  OnInit,
   ChangeDetectionStrategy,
   Input,
+  Output,
+  EventEmitter,
 } from "@angular/core";
 
 @Component({
@@ -11,15 +12,12 @@ import {
   styleUrls: ["./setting-card.component.scss"],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SettingCardComponent implements OnInit {
+export class SettingCardComponent {
   @Input() public title: string;
   @Input() public clarityIconClass?: string;
+  @Output() public onCardClicked: EventEmitter<void> = new EventEmitter();
 
-  constructor() {}
-
-  ngOnInit() {}
-
-  public onCardClicked(): void {
-    //
+  public onCardClickedHandler(): void {
+    this.onCardClicked.emit();
   }
 }

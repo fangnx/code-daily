@@ -1,7 +1,7 @@
 <main>
   <div>
     <clr-tree>
-      <clr-tree-node [clrExpanded]="true">
+      <clr-tree-node *ngIf="hasUserLoggedIn" [clrExpanded]="true">
         FAVORITE TAGS
         <clr-tree-node
           *ngFor="let tag of []"

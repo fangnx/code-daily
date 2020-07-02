@@ -1,2 +1,44 @@
-main {
+@import "../../../../styles/colors.scss";
+
+:host {
+  margin: auto;
+
+  main {
+    display: flex;
+    width: 400px;
+
+    .card {
+      background: $white;
+      box-shadow: 0 2px 4px $lightgrey-1;
+      border-radius: 10px;
+      border-width: 1.5px;
+      border-color: $almostwhite;
+      margin: 0;
+    }
+
+    form {
+      margin: 20px 40px;
+
+      section {
+        margin: 30px 0;
+      }
+
+      .login-group {
+        ::ng-deep {
+          .clr-control-container {
+            width: 100%;
+
+            .clr-input-group {
+              padding: 0;
+              width: 100%;
+            }
+
+            input {
+              width: 100%;
+            }
+          }
+        }
+      }
+    }
+  }
 }

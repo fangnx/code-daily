@@ -1,19 +1,35 @@
 <main>
   <section>
-    <!-- <button class="btn btn-primary" (click)="onRegisterClicked()">
-      Register
-    </button>
-    <button class="btn btn-primary" (click)="onLoginClicked()">Log In</button>
-    <button class="btn btn-primary" (click)="onLogoutClicked()">Log Out</button> -->
-
     <div class="card-list-container">
-      <setting-card title="Register" clarityIconClass="user"></setting-card>
-      <setting-card title="Log In" clarityIconClass="login"></setting-card>
-      <setting-card title="Log Out" clarityIconClass="logout"></setting-card>
-      <setting-card
-        title="Manage Subscription"
-        clarityIconClass="envelope"
-      ></setting-card>
+      <div
+        *ngIf="hasUserLoggedIn; then loggedInBlock; else notLoggedInBlock"
+      ></div>
     </div>
   </section>
 </main>
+
+<ng-template #loggedInBlock>
+  <setting-card
+    title="Log Out"
+    clarityIconClass="logout"
+    (onCardClicked)="onLogoutClicked()"
+  ></setting-card>
+  <setting-card
+    title="Manage Subscription"
+    clarityIconClass="envelope"
+    (onCardClicked)="onManageSubscriptionClicked()"
+  ></setting-card>
+</ng-template>
+
+<ng-template #notLoggedInBlock>
+  <setting-card
+    title="Register"
+    clarityIconClass="user"
+    (onCardClicked)="onRegisterClicked()"
+  ></setting-card>
+  <setting-card
+    title="Log In"
+    clarityIconClass="login"
+    (onCardClicked)="onLoginClicked()"
+  ></setting-card>
+</ng-template>

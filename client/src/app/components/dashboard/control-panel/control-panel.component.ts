@@ -1,17 +1,16 @@
 import {
   Component,
-  OnChanges,
   Input,
   ChangeDetectionStrategy,
   Output,
   EventEmitter,
 } from "@angular/core";
 import { Router } from "@angular/router";
-import { UserService } from "src/app/services/user.service";
 import { Tag } from "src/app/models/stackExchange.model";
 import { Store } from "@ngrx/store";
 import { AppState } from "src/app/state/app.reducer";
 import * as AppActions from "src/app/state/app.actions";
+import { UserAuth } from "src/app/models/user.model";
 
 @Component({
   selector: "control-panel",
@@ -19,19 +18,14 @@ import * as AppActions from "src/app/state/app.actions";
   styleUrls: ["./control-panel.component.scss"],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ControlPanelComponent implements OnChanges {
+export class ControlPanelComponent {
+  @Input() public user?: UserAuth;
   @Input() public tags: Array<Tag>;
   @Input() public selectedTag: Tag;
   @Input() public userFavoriteTags: Array<string>;
   @Output() public onTagSelected: EventEmitter<Tag> = new EventEmitter();
 
-  constructor(
-    private router: Router,
-    private store: Store<AppState>,
-    private userService: UserService
-  ) {}
-
-  ngOnChanges() {}
+  constructor(private router: Router, private store: Store<AppState>) {}
 
   public getTreeNodeClass(tag: Tag): string {
     return this.isTagSelected(tag) ? "selected" : "";
@@ -72,5 +66,9 @@ export class ControlPanelComponent implements OnChanges {
     } else {
       this.store.dispatch(AppActions.addFavoriteTagToUser({ tag: tag.name }));
     }
+  }
+
+  public get hasUserLoggedIn(): boolean {
+    return !!this.user && !!this.user.email;
   }
 }
