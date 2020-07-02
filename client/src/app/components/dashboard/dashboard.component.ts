@@ -25,7 +25,7 @@ export class DashboardComponent implements OnInit {
   public questions$: Observable<Array<Question>>;
   public tags$: Observable<Array<Tag>>;
   public selectedTag$: Observable<Tag>;
-  public user$: Observable<UserAuth>;
+  public userAuth$: Observable<UserAuth>;
   public userFavoriteTags$: Observable<Array<string>>;
   public isContentPanelReady$: BehaviorSubject<boolean> = new BehaviorSubject(
     false
@@ -53,7 +53,7 @@ export class DashboardComponent implements OnInit {
       )
       .subscribe();
 
-    this.user$ = this.store.select((state) => selectUserAuth(state));
+    this.userAuth$ = this.store.select((state) => selectUserAuth(state));
 
     this.userFavoriteTags$ = this.store
       .select((state) => selectUser(state))

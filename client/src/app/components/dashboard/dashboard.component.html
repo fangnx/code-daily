@@ -1,8 +1,9 @@
 <main>
   <div class="flex-container">
-    <navigation-panel [user]="user$ | async"></navigation-panel>
+    <navigation-panel [user]="userAuth$ | async"></navigation-panel>
 
     <control-panel
+      [user]="userAuth$ | async"
       [tags]="tags$ | async"
       [userFavoriteTags]="userFavoriteTags$ | async"
       (onTagSelected)="onTagSelected($event)"

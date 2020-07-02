@@ -30,12 +30,6 @@ export const appReducer = createReducer(
     ...state,
     selectedTag: tag,
   })),
-  // on(AppActions.unselectTag, (state, { tag }) => {
-  //   state.selectedTags.delete(tag);
-  //   return {
-  //     ...state,
-  //   };
-  // }),
   on(AppActions.fetchQuestionsSuccess, (state, { questions }) => {
     return { ...state, questions: questions };
   }),
@@ -46,6 +40,7 @@ export const appReducer = createReducer(
   on(AppActions.logoutUser, (state) => ({
     ...state,
     userAuth: null,
+    user: null,
   })),
   on(AppActions.fetchCurrentUserAuthSuccess, (state, { user }) => ({
     ...state,

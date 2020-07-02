@@ -48,27 +48,6 @@ export class UserService {
   }
 
   public addFavoriteTagToUser(tag: string, email: string) {
-    // const user = await this.store
-    //   .select((state) => selectUser(state))
-    //   .toPromise();
-
-    // console.log(user);
-
-    // const addFavoriteTagDto = { email: user.email, tag };
-
-    // this.httpClient.post<void>("api/users/tags/add", addFavoriteTagDto).pipe();
-
-    // this.store
-    //   .select((state) => selectUserAuth(state))
-    //   .pipe(
-    //     tap((next) => {
-    //       const addFavoriteTagDto = { email: next.email, tag };
-    //       this.httpClient
-    //         .post<void>("api/users/tags/add", addFavoriteTagDto)
-    //         .subscribe();
-    //     })
-    //   )
-    //   .subscribe();
     const addFavoriteTagDto = { email, tag };
     return this.httpClient.post<void>("api/users/tags/add", addFavoriteTagDto);
   }

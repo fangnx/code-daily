@@ -82,7 +82,7 @@ export class AppEffects {
     ofType(AppActions.logoutUser),
     switchMap(() => {
       this.router.navigate(["/dashboard"]);
-      return [AppActions.fetchCurrentUserAuth()];
+      return EMPTY;
     })
   );
 

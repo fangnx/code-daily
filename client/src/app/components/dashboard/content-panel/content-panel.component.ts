@@ -38,7 +38,6 @@ export class ContentPanelComponent implements OnInit, OnChanges {
     private contentPanelService: ContentPanelService
   ) {
     this.contentPanelService.isContentPanelReady$.subscribe((value) => {
-      console.log(value);
       this.ready = value;
     });
   }

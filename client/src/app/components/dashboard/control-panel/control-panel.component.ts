@@ -59,6 +59,12 @@ export class ControlPanelComponent {
   }
 
   public onStarClicked(tag: Tag): void {
+    console.log(this.user);
+    if (!this.hasUserLoggedIn) {
+      this.router.navigate(["/user/login"]);
+      return;
+    }
+
     if (this.isTagFavoriteByUser(tag)) {
       this.store.dispatch(
         AppActions.removeFavoriteTagFromUser({ tag: tag.name })
