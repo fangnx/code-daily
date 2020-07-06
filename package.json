@@ -1,0 +1,24 @@
+{
+  "name": "code-daily",
+  "version": "0.0.1",
+  "main": "index.js",
+  "scripts": {
+    "install:client": "cd ./client/ && npm install",
+    "install:server": "cd ./server/ && npm install",
+    "install": "npm run install:server && npm run install:client",
+    "start:client": "cd ./client/ && npm start",
+    "start:server": "cd ./server/ && npm start",
+    "build:client": "cd ./client/ && npm run build",
+    "dev": "concurrently --kill-others-on-fail \"npm run start:server\" \"npm run start:client\"",
+    "start": "npm run dev",
+    "prod": "concurrently --kill-others-on-fail \"npm run start:server\" \"npm run build:client\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fangnx/stackoverflow-daily.git"
+  },
+  "homepage": "https://github.com/fangnx/stackoverflow-daily#readme",
+  "dependencies": {
+    "concurrently": "^5.2.0"
+  }
+}
