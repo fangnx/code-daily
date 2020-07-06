@@ -11,7 +11,7 @@ import { AppState } from "./app.reducer";
 import { selectUserAuth } from "./app.selectors";
 import { UserService } from "../services/user.service";
 import { Router } from "@angular/router";
-import { empty, of, EMPTY } from "rxjs";
+import { EMPTY } from "rxjs";
 
 @Injectable()
 export class AppEffects {
@@ -22,6 +22,7 @@ export class AppEffects {
     private userService: UserService,
     private router: Router
   ) {}
+  ws;
 
   @Effect()
   fetchQuestions$ = this.actions$.pipe(
@@ -61,7 +62,6 @@ export class AppEffects {
     switchMap(([action, userAuth]) => {
       const tag: string = action.tag;
       const email: string = userAuth.email;
-      console.log(tag + " " + email);
       return this.userService
         .removeFavoriteTagFromUser(tag, email)
         .pipe(map(() => AppActions.fetchCurrentUserAuth()));
@@ -91,13 +91,16 @@ export class AppEffects {
     ofType(AppActions.fetchCurrentUserAuth),
     withLatestFrom(this.store.select((state) => selectUserAuth(state))),
     switchMap(([_, userAuth]) => {
+      if (!userAuth || !userAuth.email) {
+        return EMPTY;
+      }
+
       const query: GetUserQuery = {
         email: userAuth.email,
       };
 
       return this.userService.getUser(query).pipe(
         map((user: User) => {
-          console.log(user);
           return AppActions.fetchCurrentUserAuthSuccess({ user });
         })
       );

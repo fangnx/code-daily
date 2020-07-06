@@ -37,7 +37,7 @@ export class UsersService {
     // TODO: use hashing
     // const isPasswordCorrect: boolean = await bcrypt.compare(
     //   user.password,
-    //   loginUserDto.password,
+    //   loginUserDto.passwo
     // );
 
     const isPasswordCorrect: boolean = user.password === loginUserDto.password;
