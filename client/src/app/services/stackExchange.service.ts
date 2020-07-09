@@ -14,7 +14,7 @@ export class StackExchangeService {
     params = params.append("sort", query.sort);
     params = params.append("pagesize", query.pagesize.toString());
     return this.httpClient
-      .get<Question[]>("api/questions", {
+      .get<Question[]>("http://localhost:8200/questions", {
         params,
       })
       .pipe(map((res) => res["items"]));

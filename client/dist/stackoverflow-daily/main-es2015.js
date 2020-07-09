@@ -1768,7 +1768,7 @@ let StackExchangeService = class StackExchangeService {
         params = params.append("sort", query.sort);
         params = params.append("pagesize", query.pagesize.toString());
         return this.httpClient
-            .get("api/questions", {
+            .get("http://localhost:8200/questions", {
             params,
         })
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])((res) => res["items"]));
@@ -1819,18 +1819,22 @@ let UserService = class UserService {
         this.httpClient = httpClient;
     }
     getUser(getUserQuery) {
-        return this.httpClient.post("api/users/user", getUserQuery);
+        return this.httpClient.post("http://localhost:8200/users/user", getUserQuery);
     }
     getAllUsers() {
-        return this.httpClient.get("api/users");
+        return this.httpClient.get("http://localhost:8200/users");
     }
     registerUser(createUserDto) {
         return this.httpClient
-            .post("api/auth/register", createUserDto, { observe: "response" })
+            .post("http://localhost:8200/auth/register", createUserDto, {
+            observe: "response",
+        })
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])((value) => value));
     }
     loginUser(loginUserDto) {
-        return this.httpClient.post("api/auth/login", loginUserDto).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])((userAuth) => {
+        return this.httpClient
+            .post("http://localhost:8200/auth/login", loginUserDto)
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])((userAuth) => {
             localStorage.setItem("user", JSON.stringify(userAuth));
             this.store.dispatch(src_app_state_app_actions__WEBPACK_IMPORTED_MODULE_5__["loginUser"]({ userAuth }));
             return userAuth;
@@ -1842,11 +1846,11 @@ let UserService = class UserService {
     }
     addFavoriteTagToUser(tag, email) {
         const addFavoriteTagDto = { email, tag };
-        return this.httpClient.post("api/users/tags/add", addFavoriteTagDto);
+        return this.httpClient.post("http://localhost:8200/users/tags/add", addFavoriteTagDto);
     }
     removeFavoriteTagFromUser(tag, email) {
         const removeFavoriteTagDto = { email, tag };
-        return this.httpClient.post("api/users/tags/remove", removeFavoriteTagDto);
+        return this.httpClient.post("http://localhost:8200/users/tags/remove", removeFavoriteTagDto);
     }
 };
 UserService.ctorParameters = () => [
