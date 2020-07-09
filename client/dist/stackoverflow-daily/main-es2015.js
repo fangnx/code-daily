@@ -1774,7 +1774,7 @@ let StackExchangeService = class StackExchangeService {
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])((res) => res["items"]));
     }
     getPopularTags() {
-        return this.httpClient.get("api/tags", {
+        return this.httpClient.get("http://localhost:8200/tags", {
             params: {},
         });
     }

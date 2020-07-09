@@ -3146,7 +3146,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "getPopularTags",
         value: function getPopularTags() {
-          return this.httpClient.get("api/tags", {
+          return this.httpClient.get("http://localhost:8200/tags", {
             params: {}
           });
         }
