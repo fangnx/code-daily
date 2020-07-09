@@ -21,7 +21,7 @@ export class StackExchangeService {
   }
 
   public getPopularTags() {
-    return this.httpClient.get<Tag[]>("api/tags", {
+    return this.httpClient.get<Tag[]>("http://localhost:8200/tags", {
       params: {},
     });
   }
