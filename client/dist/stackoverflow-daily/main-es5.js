@@ -3137,7 +3137,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           params = params.append("tags", query.tags);
           params = params.append("sort", query.sort);
           params = params.append("pagesize", query.pagesize.toString());
-          return this.httpClient.get("http://172.31.18.89:8200/questions", {
+          return this.httpClient.get("api/questions", {
             params: params
           }).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (res) {
             return res["items"];
@@ -3146,7 +3146,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "getPopularTags",
         value: function getPopularTags() {
-          return this.httpClient.get("http://172.31.18.89:8200/tags", {
+          return this.httpClient.get("api/tags", {
             params: {}
           });
         }
@@ -3232,17 +3232,17 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(UserService, [{
         key: "getUser",
         value: function getUser(getUserQuery) {
-          return this.httpClient.post("http://172.31.18.89:8200/users/user", getUserQuery);
+          return this.httpClient.post("api/users/user", getUserQuery);
         }
       }, {
         key: "getAllUsers",
         value: function getAllUsers() {
-          return this.httpClient.get("http://172.31.18.89:8200/users");
+          return this.httpClient.get("api/users");
         }
       }, {
         key: "registerUser",
         value: function registerUser(createUserDto) {
-          return this.httpClient.post("http://172.31.18.89:8200/auth/register", createUserDto, {
+          return this.httpClient.post("api/auth/register", createUserDto, {
             observe: "response"
           }).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (value) {
             return value;
@@ -3253,7 +3253,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         value: function loginUser(loginUserDto) {
           var _this5 = this;
 
-          return this.httpClient.post("http://172.31.18.89:8200/auth/login", loginUserDto).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (userAuth) {
+          return this.httpClient.post("api/auth/login", loginUserDto).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (userAuth) {
             localStorage.setItem("user", JSON.stringify(userAuth));
 
             _this5.store.dispatch(src_app_state_app_actions__WEBPACK_IMPORTED_MODULE_5__["loginUser"]({
@@ -3276,7 +3276,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             email: email,
             tag: tag
           };
-          return this.httpClient.post("http://172.31.18.89:8200/users/tags/add", addFavoriteTagDto);
+          return this.httpClient.post("api/users/tags/add", addFavoriteTagDto);
         }
       }, {
         key: "removeFavoriteTagFromUser",
@@ -3285,7 +3285,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             email: email,
             tag: tag
           };
-          return this.httpClient.post("http://172.31.18.89:8200/users/tags/remove", removeFavoriteTagDto);
+          return this.httpClient.post("api/users/tags/remove", removeFavoriteTagDto);
         }
       }]);
 
