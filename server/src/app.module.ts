@@ -9,7 +9,7 @@ import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
-    MongooseModule.forRoot('mongodb://localhost/soserver'),
+    MongooseModule.forRoot('mongodb://172.31.18.89/soserver'),
     HttpModule,
     QuestionsModule,
     TagsModule,

@@ -20,18 +20,18 @@ export class UserService {
 
   public getUser(getUserQuery: GetUserQuery): Observable<User> {
     return this.httpClient.post<User>(
-      "http://localhost:8200/users/user",
+      "http://172.31.18.89:8200/users/user",
       getUserQuery
     );
   }
 
   public getAllUsers(): Observable<User[]> {
-    return this.httpClient.get<User[]>("http://localhost:8200/users");
+    return this.httpClient.get<User[]>("http://172.31.18.89:8200/users");
   }
 
   public registerUser(createUserDto: CreateUserDto) {
     return this.httpClient
-      .post("http://localhost:8200/auth/register", createUserDto, {
+      .post("http://172.31.18.89:8200/auth/register", createUserDto, {
         observe: "response",
       })
       .pipe(map((value) => value));
@@ -39,7 +39,7 @@ export class UserService {
 
   public loginUser(loginUserDto: LoginUserDto): Observable<UserAuth> {
     return this.httpClient
-      .post<UserAuth>("http://localhost:8200/auth/login", loginUserDto)
+      .post<UserAuth>("http://172.31.18.89:8200/auth/login", loginUserDto)
       .pipe(
         map((userAuth) => {
           localStorage.setItem("user", JSON.stringify(userAuth));
@@ -57,7 +57,7 @@ export class UserService {
   public addFavoriteTagToUser(tag: string, email: string) {
     const addFavoriteTagDto = { email, tag };
     return this.httpClient.post<void>(
-      "http://localhost:8200/users/tags/add",
+      "http://172.31.18.89:8200/users/tags/add",
       addFavoriteTagDto
     );
   }
@@ -65,7 +65,7 @@ export class UserService {
   public removeFavoriteTagFromUser(tag: string, email: string) {
     const removeFavoriteTagDto = { email, tag };
     return this.httpClient.post<void>(
-      "http://localhost:8200/users/tags/remove",
+      "http://172.31.18.89:8200/users/tags/remove",
       removeFavoriteTagDto
     );
   }
