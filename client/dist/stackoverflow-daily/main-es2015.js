@@ -524,6 +524,7 @@ let AppComponent = class AppComponent {
         this.store = store;
     }
     ngOnInit() {
+        console.log("Angular app running!");
         // TODO: remove this.
         this.store
             .select((state) => Object(_state_app_selectors__WEBPACK_IMPORTED_MODULE_4__["selectAppState"])(state))

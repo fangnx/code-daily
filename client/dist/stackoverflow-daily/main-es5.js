@@ -1077,7 +1077,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(AppComponent, [{
         key: "ngOnInit",
         value: function ngOnInit() {
-          // TODO: remove this.
+          console.log("Angular app running!"); // TODO: remove this.
+
           this.store.select(function (state) {
             return Object(_state_app_selectors__WEBPACK_IMPORTED_MODULE_4__["selectAppState"])(state);
           }).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["tap"])(function (v) {

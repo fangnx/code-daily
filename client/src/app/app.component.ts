@@ -15,6 +15,7 @@ export class AppComponent implements OnInit {
   constructor(private store: Store<AppState>) {}
 
   ngOnInit() {
+    console.log("Angular app running!");
     // TODO: remove this.
     this.store
       .select((state) => selectAppState(state))
