@@ -19,23 +19,23 @@ export class UserService {
   constructor(private store: Store<AppState>, private httpClient: HttpClient) {}
 
   public getUser(getUserQuery: GetUserQuery): Observable<User> {
-    return this.httpClient.post<User>("api/users/user", getUserQuery);
+    return this.httpClient.post<User>("/api/users/user", getUserQuery);
   }
 
   public getAllUsers(): Observable<User[]> {
-    return this.httpClient.get<User[]>("api/users");
+    return this.httpClient.get<User[]>("/api/users");
   }
 
   public registerUser(createUserDto: CreateUserDto) {
     return this.httpClient
-      .post("api/auth/register", createUserDto, {
+      .post("/api/auth/register", createUserDto, {
         observe: "response",
       })
       .pipe(map((value) => value));
   }
 
   public loginUser(loginUserDto: LoginUserDto): Observable<UserAuth> {
-    return this.httpClient.post<UserAuth>("api/auth/login", loginUserDto).pipe(
+    return this.httpClient.post<UserAuth>("/api/auth/login", loginUserDto).pipe(
       map((userAuth) => {
         localStorage.setItem("user", JSON.stringify(userAuth));
         this.store.dispatch(AppActions.loginUser({ userAuth }));
@@ -51,13 +51,13 @@ export class UserService {
 
   public addFavoriteTagToUser(tag: string, email: string) {
     const addFavoriteTagDto = { email, tag };
-    return this.httpClient.post<void>("api/users/tags/add", addFavoriteTagDto);
+    return this.httpClient.post<void>("/api/users/tags/add", addFavoriteTagDto);
   }
 
   public removeFavoriteTagFromUser(tag: string, email: string) {
     const removeFavoriteTagDto = { email, tag };
     return this.httpClient.post<void>(
-      "api/users/tags/remove",
+      "/api/users/tags/remove",
       removeFavoriteTagDto
     );
   }
