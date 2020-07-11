@@ -1769,13 +1769,13 @@ let StackExchangeService = class StackExchangeService {
         params = params.append("sort", query.sort);
         params = params.append("pagesize", query.pagesize.toString());
         return this.httpClient
-            .get("http://3.22.221.190/api/questions", {
+            .get("/api/questions", {
             params,
         })
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])((res) => res["items"]));
     }
     getPopularTags() {
-        return this.httpClient.get("http://3.22.221.190/api/ags", {
+        return this.httpClient.get("/api/tags", {
             params: {},
         });
     }
@@ -1820,22 +1820,20 @@ let UserService = class UserService {
         this.httpClient = httpClient;
     }
     getUser(getUserQuery) {
-        return this.httpClient.post("http://3.22.221.190/api/users/user", getUserQuery);
+        return this.httpClient.post("/api/users/user", getUserQuery);
     }
     getAllUsers() {
-        return this.httpClient.get("http://3.22.221.190/api/users");
+        return this.httpClient.get("/api/users");
     }
     registerUser(createUserDto) {
         return this.httpClient
-            .post("http://3.22.221.190/api/auth/register", createUserDto, {
+            .post("/api/auth/register", createUserDto, {
             observe: "response",
         })
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])((value) => value));
     }
     loginUser(loginUserDto) {
-        return this.httpClient
-            .post("http://3.22.221.190/api/auth/login", loginUserDto)
-            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])((userAuth) => {
+        return this.httpClient.post("/api/auth/login", loginUserDto).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])((userAuth) => {
             localStorage.setItem("user", JSON.stringify(userAuth));
             this.store.dispatch(src_app_state_app_actions__WEBPACK_IMPORTED_MODULE_5__["loginUser"]({ userAuth }));
             return userAuth;
@@ -1847,11 +1845,11 @@ let UserService = class UserService {
     }
     addFavoriteTagToUser(tag, email) {
         const addFavoriteTagDto = { email, tag };
-        return this.httpClient.post("http://3.22.221.190/api/users/tags/add", addFavoriteTagDto);
+        return this.httpClient.post("/api/users/tags/add", addFavoriteTagDto);
     }
     removeFavoriteTagFromUser(tag, email) {
         const removeFavoriteTagDto = { email, tag };
-        return this.httpClient.post("http://3.22.221.190/api/users/tags/remove", removeFavoriteTagDto);
+        return this.httpClient.post("/api/users/tags/remove", removeFavoriteTagDto);
     }
 };
 UserService.ctorParameters = () => [
@@ -2217,4 +2215,4 @@ module.exports = __webpack_require__(/*! /Users/fnx/GitRepos/fnx-stackoverflow-d
 /***/ })
 
 },[[0,"runtime","vendor"]]]);
-//# sourceMappingURL=main-es2015.d8cef65ab076a63f19d8.js.map
+//# sourceMappingURL=main-es2015.b1adbbd275439e9df479.js.map
