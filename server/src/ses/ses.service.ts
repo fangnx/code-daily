@@ -18,18 +18,18 @@ export class SesService {
     const params: SES.Types.SendEmailRequest = {
       Source: 'fangnaxin@gmail.com',
       Destination: {
-        ToAddresses: ['xinjinhe722@gmail.com'],
+        ToAddresses: ['fangnaxin@gmail.com'],
       },
       Message: {
         Body: {
           Html: {
             Charset: 'UTF-8',
-            Data: 'Hello <strong>3jane</strong>',
+            Data: 'Hello <strong>!</strong>',
           },
         },
         Subject: {
           Charset: 'UTF-8',
-          Data: 'Try try',
+          Data: 'AWS SES Try',
         },
       },
     };
