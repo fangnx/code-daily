@@ -6,8 +6,11 @@ import {
   Query,
 } from '@nestjs/common';
 import { QuestionsService } from './questions.service';
-import { OrderBy, QuestionsSortBy } from '../shared/stackExchangeModels';
-import { BaseQuery } from 'src/app.controller';
+import {
+  OrderBy,
+  QuestionsSortBy,
+  BaseQuery,
+} from '../shared/stackExchangeModels';
 
 export class QuestionsQuery extends BaseQuery {
   order: OrderBy = OrderBy.Desc;

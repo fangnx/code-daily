@@ -14,3 +14,8 @@ export enum OrderBy {
   Desc = 'desc',
   Asc = 'asc',
 }
+
+export class BaseQuery {
+  page: number;
+  pagesize: number;
+}

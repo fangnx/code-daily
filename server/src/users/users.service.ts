@@ -5,7 +5,6 @@ import { User } from './user.interface';
 import { CreateUserDto } from './dto/create-user.dto';
 import { LoginUserDto } from './dto/login-user.dto';
 import { Payload } from 'src/auth/auth.interface';
-import * as bcrypt from 'bcrypt';
 import { DtoHelper } from 'src/shared/dtoHelper';
 import { UserDto } from './dto/user.dto';
 import { AddFavoriteTagDto } from './dto/add-favorite-tag.dto';
