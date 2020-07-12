@@ -1,11 +1,10 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
-import { catchError, map, tap } from "rxjs/operators";
+import { map } from "rxjs/operators";
 import { Store } from "@ngrx/store";
 import { AppState } from "../state/app.reducer";
 import * as AppActions from "src/app/state/app.actions";
-import { selectUserAuth } from "../state/app.selectors";
 import {
   User,
   CreateUserDto,
@@ -59,6 +58,19 @@ export class UserService {
     return this.httpClient.post<void>(
       "/api/users/tags/remove",
       removeFavoriteTagDto
+    );
+  }
+
+  public subscribeToTag(tag: string, email: string) {
+    const suscribeToTagDto = { email, tag };
+    return this.httpClient.post<void>("/api/users/subscribe", suscribeToTagDto);
+  }
+
+  public unsubscribeToTag(tag: string, email: string) {
+    const unsubscribeToTagDto = { email, tag };
+    return this.httpClient.post<void>(
+      "/api/users/subscribe",
+      unsubscribeToTagDto
     );
   }
 }

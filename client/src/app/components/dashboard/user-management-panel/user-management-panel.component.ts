@@ -47,6 +47,6 @@ export class UserManagementPanelComponent implements OnInit {
   }
 
   public onManageSubscriptionClicked(): void {
-    this.router.navigate(["/manage"]);
+    this.router.navigate(["/subscription"]);
   }
 }

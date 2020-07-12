@@ -22,7 +22,6 @@ export class AppEffects {
     private userService: UserService,
     private router: Router
   ) {}
-  ws;
 
   @Effect()
   fetchQuestions$ = this.actions$.pipe(
@@ -65,6 +64,17 @@ export class AppEffects {
       return this.userService
         .removeFavoriteTagFromUser(tag, email)
         .pipe(map(() => AppActions.fetchCurrentUserAuth()));
+    })
+  );
+
+  @Effect()
+  SubscribeToTag = this.actions$.pipe(
+    ofType(AppActions.subscribeToTag),
+    withLatestFrom(this.store.select((state) => selectUserAuth(state))),
+    switchMap(([action, userAuth]) => {
+      const tag: string = action.tag;
+      const email: string = userAuth.email;
+      return this.userService.subscribeToTag(tag, email);
     })
   );
 

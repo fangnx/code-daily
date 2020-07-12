@@ -47,3 +47,13 @@ export const removeFavoriteTagFromUser = createAction(
   "[App] Remove Favorite Tag from User",
   props<{ tag: string }>()
 );
+
+export const subscribeToTag = createAction(
+  "[App] Subscribe to Tag",
+  props<{ tag: string }>()
+);
+
+export const unsubscribeToTag = createAction(
+  "[App] Unsubscribe to Tag",
+  props<{ tag: string }>()
+);

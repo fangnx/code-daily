@@ -2,8 +2,6 @@ import { Component, OnInit, ChangeDetectionStrategy } from "@angular/core";
 import { Store } from "@ngrx/store";
 import { AppState } from "./state/app.reducer";
 import * as AppActions from "src/app/state/app.actions";
-import { selectAppState } from "./state/app.selectors";
-import { tap } from "rxjs/operators";
 
 @Component({
   selector: "app-root",
@@ -15,12 +13,11 @@ export class AppComponent implements OnInit {
   constructor(private store: Store<AppState>) {}
 
   ngOnInit() {
-    console.log("Angular app running!");
     // TODO: remove this.
-    this.store
-      .select((state) => selectAppState(state))
-      .pipe(tap((v) => console.log(v)))
-      .subscribe();
+    // this.store
+    //   .select((state) => selectAppState(state))
+    //   .pipe(tap((v) => console.log(v)))
+    //   .subscribe();
 
     this.store.dispatch(AppActions.fetchCurrentUserAuth());
 

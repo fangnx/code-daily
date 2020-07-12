@@ -37,6 +37,12 @@
             (click)="onStarClicked(tag)"
             [ngClass]="getStarIconClass(tag)"
           ></clr-icon>
+
+          <clr-icon
+            shape="email"
+            (click)="onEmailClicked(tag)"
+            [ngClass]="getEmailIconClass(tag)"
+          ></clr-icon>
         </clr-tree-node>
       </clr-tree-node>
     </clr-tree>

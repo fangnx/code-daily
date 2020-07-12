@@ -4,6 +4,7 @@ import { UserManagementPanelComponent } from "./components/dashboard/user-manage
 import { ContentPanelComponent } from "./components/dashboard/content-panel/content-panel.component";
 import { RegistrationComponent } from "./components/dashboard/user-management-panel/registration/registration.component";
 import { LoginComponent } from "./components/dashboard/user-management-panel/login/login.component";
+import { SubscriptionManagementComponent } from "./components/dashboard/user-management-panel/subscription-management/subscription-management.component";
 
 const routes: Routes = [
   { path: "", redirectTo: "/dashboard", pathMatch: "full" },
@@ -11,6 +12,7 @@ const routes: Routes = [
   { path: "user", component: UserManagementPanelComponent },
   { path: "user/register", component: RegistrationComponent },
   { path: "user/login", component: LoginComponent },
+  { path: "subscription", component: SubscriptionManagementComponent },
 ];
 
 @NgModule({

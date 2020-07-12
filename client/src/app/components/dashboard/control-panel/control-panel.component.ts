@@ -23,6 +23,7 @@ export class ControlPanelComponent {
   @Input() public tags: Array<Tag>;
   @Input() public selectedTag: Tag;
   @Input() public userFavoriteTags: Array<string>;
+  @Input() public userSubscribedTags: Array<string>;
   @Output() public onTagSelected: EventEmitter<Tag> = new EventEmitter();
 
   constructor(private router: Router, private store: Store<AppState>) {}
@@ -39,6 +40,10 @@ export class ControlPanelComponent {
     return this.isTagFavoriteByUser(tag) ? "is-solid" : "";
   }
 
+  public getEmailIconClass(tag: Tag): string {
+    return this.isTagSubscribedByUser(tag) ? "is-solid" : "";
+  }
+
   private isTagSelected(tag: Tag): boolean {
     return this.selectedTag && this.selectedTag.name === tag.name;
   }
@@ -46,6 +51,12 @@ export class ControlPanelComponent {
   private isTagFavoriteByUser(tag: Tag): boolean {
     return (
       this.userFavoriteTags && this.userFavoriteTags.indexOf(tag.name) >= 0
+    );
+  }
+
+  private isTagSubscribedByUser(tag: Tag): boolean {
+    return (
+      this.userSubscribedTags && this.userSubscribedTags.indexOf(tag.name) >= 0
     );
   }
 
@@ -59,7 +70,6 @@ export class ControlPanelComponent {
   }
 
   public onStarClicked(tag: Tag): void {
-    console.log(this.user);
     if (!this.hasUserLoggedIn) {
       this.router.navigate(["/user/login"]);
       return;
@@ -71,6 +81,17 @@ export class ControlPanelComponent {
       );
     } else {
       this.store.dispatch(AppActions.addFavoriteTagToUser({ tag: tag.name }));
+    }
+  }
+
+  public onEmailClicked(tag: Tag): void {
+    if (!this.hasUserLoggedIn) {
+      this.router.navigate(["/user/login"]);
+      return;
+    }
+
+    if (this.isTagSubscribedByUser(tag)) {
+    } else {
     }
   }
 

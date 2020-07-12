@@ -33,6 +33,7 @@ import { RegistrationComponent } from "./components/dashboard/user-management-pa
 import { QuestionContentComponent } from "./components/shared/question-content/question-content.component";
 import { SettingCardComponent } from "./components/shared/setting-card/setting-card.component";
 import { ContentPanelService } from "./services/contentPanel.service";
+import { SubscriptionManagementComponent } from './components/dashboard/user-management-panel/subscription-management/subscription-management.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { ContentPanelService } from "./services/contentPanel.service";
     LoginComponent,
     QuestionContentComponent,
     SettingCardComponent,
+    SubscriptionManagementComponent,
   ],
   imports: [
     ClarityModule,
