@@ -166,7 +166,7 @@ export class UsersService {
       );
     }
 
-    const subscribedTags: Array<string> = user.favoriteTags.filter(
+    const subscribedTags: Array<string> = user.subscribedTags.filter(
       tag => tag !== unsubscribeToTagDto.tag,
     );
     await this.userModel.updateOne(

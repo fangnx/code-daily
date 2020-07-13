@@ -12,6 +12,9 @@ export class User extends Document {
   @Prop({ default: [] })
   favoriteTags: Array<string>;
 
+  @Prop({ default: [] })
+  subscribedTags: Array<string>;
+
   @Prop({ default: false })
   isSubscribed: boolean;
 }
