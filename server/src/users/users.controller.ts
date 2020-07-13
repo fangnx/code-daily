@@ -4,6 +4,7 @@ import { User } from './user.interface';
 import { AddFavoriteTagDto } from './dto/add-favorite-tag.dto';
 import { GetUserDto } from './dto/get-user.dto';
 import { UserDto } from './dto/user.dto';
+import { SubscribeToTagDto } from './dto/subscribe-to-tag.dto';
 
 @Controller('users')
 export class UsersController {
@@ -30,5 +31,17 @@ export class UsersController {
     @Body() removeFavoriteTagDto: AddFavoriteTagDto,
   ): Promise<void> {
     return this.usersService.removeFavoriteTagFromUser(removeFavoriteTagDto);
+  }
+
+  @Post('/tags/subscribe')
+  subscribeToTag(@Body() subscribeToTagDto: SubscribeToTagDto): Promise<void> {
+    return this.usersService.subsribeToTagForUser(subscribeToTagDto);
+  }
+
+  @Post('/tags/unsubscribe')
+  unsubscribeToTag(
+    @Body() unsubscribeToTagDto: SubscribeToTagDto,
+  ): Promise<void> {
+    return this.usersService.unsubscribeToTagForUser(unsubscribeToTagDto);
   }
 }

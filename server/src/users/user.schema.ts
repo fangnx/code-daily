@@ -9,9 +9,6 @@ export class User extends Document {
   @Prop({ required: true })
   password: string;
 
-  @Prop({ default: false })
-  isEmailVerified: boolean;
-
   @Prop({ default: [] })
   favoriteTags: Array<string>;
 

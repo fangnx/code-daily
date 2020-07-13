@@ -8,6 +8,7 @@ import { Payload } from 'src/auth/auth.interface';
 import { DtoHelper } from 'src/shared/dtoHelper';
 import { UserDto } from './dto/user.dto';
 import { AddFavoriteTagDto } from './dto/add-favorite-tag.dto';
+import { SubscribeToTagDto } from './dto/subscribe-to-tag.dto';
 
 @Injectable()
 export class UsersService {
@@ -111,6 +112,66 @@ export class UsersService {
     await this.userModel.updateOne(
       { email: removeFavoriteTagDto.email },
       { favoriteTags },
+    );
+  }
+
+  public async subsribeToTagForUser(
+    subscribeToTagDto: SubscribeToTagDto,
+  ): Promise<void> {
+    if (!subscribeToTagDto.tag) {
+      throw new HttpException(
+        'Parameter `Tag` is null or empty',
+        HttpStatus.BAD_REQUEST,
+      );
+    }
+
+    const user: User = await this.userModel
+      .findOne({ email: subscribeToTagDto.email })
+      .exec();
+
+    if (!user) {
+      throw new HttpException(
+        'Invalid token: user does not exist',
+        HttpStatus.UNAUTHORIZED,
+      );
+    }
+
+    let subscribedTags: Array<string> = user.subscribedTags;
+    if (user.favoriteTags.indexOf(subscribeToTagDto.tag) >= 0) {
+      return;
+    }
+    subscribedTags = [...subscribedTags, subscribeToTagDto.tag];
+    await this.userModel.updateOne(
+      { email: subscribeToTagDto.email },
+      { subscribedTags },
+    );
+  }
+
+  public async unsubscribeToTagForUser(unsubscribeToTagDto: SubscribeToTagDto) {
+    if (!unsubscribeToTagDto.tag) {
+      throw new HttpException(
+        'Parameter `Tag` is null or empty',
+        HttpStatus.BAD_REQUEST,
+      );
+    }
+
+    const user: User = await this.userModel
+      .findOne({ email: unsubscribeToTagDto.email })
+      .exec();
+
+    if (!user) {
+      throw new HttpException(
+        'Invalid token: user does not exist',
+        HttpStatus.UNAUTHORIZED,
+      );
+    }
+
+    const subscribedTags: Array<string> = user.favoriteTags.filter(
+      tag => tag !== unsubscribeToTagDto.tag,
+    );
+    await this.userModel.updateOne(
+      { email: unsubscribeToTagDto.email },
+      { subscribedTags },
     );
   }
 }

@@ -6,10 +6,10 @@ import { SendEmailDto } from './dto/send-email-dto';
 export class SesController {
   constructor(private readonly sesService: SesService) {}
 
-  @Post('send')
-  public async sendEmailToUser(
-    @Body() sendEmailDto: SendEmailDto;
-  ) {
-    return;
-  }
+  // @Post('send')
+  // public async sendEmailToUser(
+  //   @Body() sendEmailDto: SendEmailDto;
+  // ) {
+  //   return;
+  // }
 }

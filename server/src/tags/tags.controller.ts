@@ -6,8 +6,7 @@ import {
   Param,
 } from '@nestjs/common';
 import { TagsService } from './tags.service';
-import { OrderBy, TagsSortBy } from 'src/shared/stackExchangeModels';
-import { BaseQuery } from 'src/app.controller';
+import { OrderBy, TagsSortBy, BaseQuery } from 'src/shared/stackExchangeModels';
 
 export class TagsQuery extends BaseQuery {
   order: OrderBy = OrderBy.Desc;
