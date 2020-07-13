@@ -50,7 +50,7 @@ export class AppEffects {
       const email: string = userAuth.email;
       return this.userService
         .addFavoriteTagToUser(tag, email)
-        .pipe(map(() => AppActions.fetchCurrentUserAuth()));
+        .pipe(map(() => AppActions.fetchCurrentUser()));
     })
   );
 
@@ -63,7 +63,7 @@ export class AppEffects {
       const email: string = userAuth.email;
       return this.userService
         .removeFavoriteTagFromUser(tag, email)
-        .pipe(map(() => AppActions.fetchCurrentUserAuth()));
+        .pipe(map(() => AppActions.fetchCurrentUser()));
     })
   );
 
@@ -74,7 +74,22 @@ export class AppEffects {
     switchMap(([action, userAuth]) => {
       const tag: string = action.tag;
       const email: string = userAuth.email;
-      return this.userService.subscribeToTag(tag, email);
+      return this.userService
+        .subscribeToTag(tag, email)
+        .pipe(map(() => AppActions.fetchCurrentUser()));
+    })
+  );
+
+  @Effect()
+  UnsubscribeToTag = this.actions$.pipe(
+    ofType(AppActions.unsubscribeToTag),
+    withLatestFrom(this.store.select((state) => selectUserAuth(state))),
+    switchMap(([action, userAuth]) => {
+      const tag: string = action.tag;
+      const email: string = userAuth.email;
+      return this.userService
+        .unsubscribeToTag(tag, email)
+        .pipe(map(() => AppActions.fetchCurrentUser()));
     })
   );
 
@@ -83,7 +98,7 @@ export class AppEffects {
     ofType(AppActions.loginUser),
     switchMap(() => {
       this.router.navigate(["/dashboard"]);
-      return [AppActions.fetchCurrentUserAuth()];
+      return [AppActions.fetchCurrentUser()];
     })
   );
 
@@ -98,7 +113,7 @@ export class AppEffects {
 
   @Effect()
   fetchCurrentUserAuth$ = this.actions$.pipe(
-    ofType(AppActions.fetchCurrentUserAuth),
+    ofType(AppActions.fetchCurrentUser),
     withLatestFrom(this.store.select((state) => selectUserAuth(state))),
     switchMap(([_, userAuth]) => {
       if (!userAuth || !userAuth.email) {
@@ -111,7 +126,7 @@ export class AppEffects {
 
       return this.userService.getUser(query).pipe(
         map((user: User) => {
-          return AppActions.fetchCurrentUserAuthSuccess({ user });
+          return AppActions.fetchCurrentUserSuccess({ user });
         })
       );
     })

@@ -9,6 +9,7 @@ export interface User {
   isEmailVerified: boolean;
   isSubscribed: boolean;
   favoriteTags: Array<string>;
+  subscribedTags: Array<string>;
 }
 
 export interface CreateUserDto {

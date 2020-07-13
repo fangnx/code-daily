@@ -63,13 +63,16 @@ export class UserService {
 
   public subscribeToTag(tag: string, email: string) {
     const suscribeToTagDto = { email, tag };
-    return this.httpClient.post<void>("/api/users/subscribe", suscribeToTagDto);
+    return this.httpClient.post<void>(
+      "/api/users/tags/subscribe",
+      suscribeToTagDto
+    );
   }
 
   public unsubscribeToTag(tag: string, email: string) {
     const unsubscribeToTagDto = { email, tag };
     return this.httpClient.post<void>(
-      "/api/users/subscribe",
+      "/api/users/tags/unsubscribe",
       unsubscribeToTagDto
     );
   }

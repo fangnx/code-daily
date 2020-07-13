@@ -91,7 +91,9 @@ export class ControlPanelComponent {
     }
 
     if (this.isTagSubscribedByUser(tag)) {
+      this.store.dispatch(AppActions.unsubscribeToTag({ tag: tag.name }));
     } else {
+      this.store.dispatch(AppActions.subscribeToTag({ tag: tag.name }));
     }
   }
 

@@ -29,12 +29,10 @@ export const loginUser = createAction(
 
 export const logoutUser = createAction("[App] Log Out User");
 
-export const fetchCurrentUserAuth = createAction(
-  "[App] Fetch Current User Auth"
-);
+export const fetchCurrentUser = createAction("[App] Fetch Current User");
 
-export const fetchCurrentUserAuthSuccess = createAction(
-  "[App] Fetch Current User Auth Success",
+export const fetchCurrentUserSuccess = createAction(
+  "[App] Fetch Current User Success",
   props<{ user: User }>()
 );
 

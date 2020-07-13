@@ -27,6 +27,7 @@ export class DashboardComponent implements OnInit {
   public selectedTag$: Observable<Tag>;
   public userAuth$: Observable<UserAuth>;
   public userFavoriteTags$: Observable<Array<string>>;
+  public userSubscribedTags$: Observable<Array<string>>;
   public isContentPanelReady$: BehaviorSubject<boolean> = new BehaviorSubject(
     false
   );
@@ -63,6 +64,17 @@ export class DashboardComponent implements OnInit {
             return [];
           }
           return user.favoriteTags;
+        })
+      );
+
+    this.userSubscribedTags$ = this.store
+      .select((state) => selectUser(state))
+      .pipe(
+        map((user) => {
+          if (!user) {
+            return [];
+          }
+          return user.subscribedTags;
         })
       );
   }
