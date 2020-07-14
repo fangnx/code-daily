@@ -33,7 +33,8 @@ import { RegistrationComponent } from "./components/dashboard/user-management-pa
 import { QuestionContentComponent } from "./components/shared/question-content/question-content.component";
 import { SettingCardComponent } from "./components/shared/setting-card/setting-card.component";
 import { ContentPanelService } from "./services/contentPanel.service";
-import { SubscriptionManagementComponent } from './components/dashboard/user-management-panel/subscription-management/subscription-management.component';
+import { SubscriptionManagementComponent } from "./components/dashboard/user-management-panel/subscription-management/subscription-management.component";
+import { ContentHeaderComponent } from "./components/dashboard/content-panel/content-header/content-header.component";
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { SubscriptionManagementComponent } from './components/dashboard/user-man
     ControlPanelComponent,
     NavigationPanelComponent,
     ContentPanelComponent,
+    ContentHeaderComponent,
     AnswerSectionComponent,
     QuestionBadgeComponent,
     UserManagementPanelComponent,

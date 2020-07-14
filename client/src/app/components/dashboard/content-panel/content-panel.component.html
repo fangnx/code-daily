@@ -1,7 +1,11 @@
 <main>
-  <!-- <div class="content-header-container">
-    <content-header></content-header>
-  </div> -->
+  <div class="content-header-container">
+    <content-header
+      [tag]="currentTag$ | async"
+      [userFavoriteTags]="userFavoriteTags$ | async"
+      [userSubscribedTags]="userSubscribedTags$ | async"
+    ></content-header>
+  </div>
 
   <div class="card-list-container">
     <question-card

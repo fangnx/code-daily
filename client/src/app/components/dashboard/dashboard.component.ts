@@ -24,7 +24,6 @@ import { ContentPanelService } from "src/app/services/contentPanel.service";
 export class DashboardComponent implements OnInit {
   public questions$: Observable<Array<Question>>;
   public tags$: Observable<Array<Tag>>;
-  public selectedTag$: Observable<Tag>;
   public userAuth$: Observable<UserAuth>;
   public userFavoriteTags$: Observable<Array<string>>;
   public userSubscribedTags$: Observable<Array<string>>;
