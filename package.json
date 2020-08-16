@@ -8,10 +8,11 @@
     "install": "npm run install:server && npm run install:client",
     "start:client": "cd ./client/ && npm start",
     "start:server": "cd ./server/ && npm start",
+    "start:server-prod": "cd ./server && npm run prod",
     "build:client": "cd ./client/ && npm run build",
     "dev": "concurrently --kill-others-on-fail \"npm run start:server\" \"npm run start:client\"",
     "start": "npm run dev",
-    "prod": "pm2 start npm --name 'nest-server' -- run start:server"
+    "prod": "npm run start:server-prod"
   },
   "repository": {
     "type": "git",
