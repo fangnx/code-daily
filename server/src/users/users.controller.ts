@@ -11,35 +11,39 @@ export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
   @Get()
-  getAllUsers(): Promise<Array<User>> {
+  public getAllUsers(): Promise<Array<User>> {
     // TODO: should this return User or UserDto?
     return this.usersService.findAllUsers();
   }
 
   @Post('/user')
-  getUser(@Body() getUserDto: GetUserDto): Promise<UserDto> {
+  public getUser(@Body() getUserDto: GetUserDto): Promise<UserDto> {
     return this.usersService.findUserByEmail(getUserDto.email);
   }
 
   @Post('/tags/add')
-  addFavoriteTag(@Body() addFavoriteTagDto: AddFavoriteTagDto): Promise<void> {
+  public addFavoriteTag(
+    @Body() addFavoriteTagDto: AddFavoriteTagDto,
+  ): Promise<void> {
     return this.usersService.addFavoriteTagToUser(addFavoriteTagDto);
   }
 
   @Post('/tags/remove')
-  removeFavoriteTag(
+  public removeFavoriteTag(
     @Body() removeFavoriteTagDto: AddFavoriteTagDto,
   ): Promise<void> {
     return this.usersService.removeFavoriteTagFromUser(removeFavoriteTagDto);
   }
 
   @Post('/tags/subscribe')
-  subscribeToTag(@Body() subscribeToTagDto: SubscribeToTagDto): Promise<void> {
-    return this.usersService.subsribeToTagForUser(subscribeToTagDto);
+  public subscribeToTag(
+    @Body() subscribeToTagDto: SubscribeToTagDto,
+  ): Promise<void> {
+    return this.usersService.subscribeToTagForUser(subscribeToTagDto);
   }
 
   @Post('/tags/unsubscribe')
-  unsubscribeToTag(
+  public unsubscribeToTag(
     @Body() unsubscribeToTagDto: SubscribeToTagDto,
   ): Promise<void> {
     return this.usersService.unsubscribeToTagForUser(unsubscribeToTagDto);

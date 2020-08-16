@@ -47,6 +47,8 @@ export class QuestionsService {
           pagesize: questionsQuery.pagesize,
           order: questionsQuery.order,
           sort: questionsQuery.sort,
+          fromDate,
+          toDate,
           site: 'stackoverflow',
           key: StackExchangeAppKey,
           filter: QuestionsApiQueryFilter,

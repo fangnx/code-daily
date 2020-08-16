@@ -115,7 +115,7 @@ export class UsersService {
     );
   }
 
-  public async subsribeToTagForUser(
+  public async subscribeToTagForUser(
     subscribeToTagDto: SubscribeToTagDto,
   ): Promise<void> {
     if (!subscribeToTagDto.tag) {
