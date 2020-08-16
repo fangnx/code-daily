@@ -16,6 +16,7 @@ import { MarkdownModule } from "ngx-markdown";
 import { storageMetaReducer } from "./storage.metareducer";
 
 import { UserService } from "./services/user.service";
+import { PocketService } from "./services/pocket.service";
 import { ErrorInterceptor } from "./interceptors/error.interceptor";
 
 import { AppComponent } from "./app.component";
@@ -75,6 +76,7 @@ import { ContentHeaderComponent } from "./components/dashboard/content-panel/con
     StackExchangeService,
     UserService,
     ContentPanelService,
+    PocketService,
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
   ],
   bootstrap: [AppComponent],

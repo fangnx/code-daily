@@ -14,10 +14,17 @@
     clarityIconClass="logout"
     (onCardClicked)="onLogoutClicked()"
   ></setting-card>
+
   <setting-card
     title="Manage Subscription"
     clarityIconClass="envelope"
     (onCardClicked)="onManageSubscriptionClicked()"
+  ></setting-card>
+
+  <setting-card
+    title="Connect to Pocket"
+    clarityIconClass="bookmark"
+    (onCardClicked)="onConnectToPocketClicked()"
   ></setting-card>
 </ng-template>
 
@@ -27,6 +34,7 @@
     clarityIconClass="user"
     (onCardClicked)="onRegisterClicked()"
   ></setting-card>
+
   <setting-card
     title="Log In"
     clarityIconClass="login"

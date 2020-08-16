@@ -9,7 +9,10 @@ import { SubscriptionManagementComponent } from "./components/dashboard/user-man
 const routes: Routes = [
   { path: "", redirectTo: "/dashboard", pathMatch: "full" },
   { path: "dashboard", component: ContentPanelComponent },
-  { path: "user", component: UserManagementPanelComponent },
+  {
+    path: "user/:pocket_request_token",
+    component: UserManagementPanelComponent,
+  },
   { path: "user/register", component: RegistrationComponent },
   { path: "user/login", component: LoginComponent },
   { path: "subscription", component: SubscriptionManagementComponent },

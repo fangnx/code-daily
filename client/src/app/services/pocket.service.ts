@@ -3,9 +3,10 @@ import { HttpClient, HttpParams } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { catchError, map } from "rxjs/operators";
 import { QuestionsQuery, Question, Tag } from "../models/stackExchange.model";
+import { PocketRequestToken, PocketAccessToken } from "../models/pocket.model";
 
 @Injectable()
-export class StackExchangeService {
+export class PocketService {
   constructor(private httpClient: HttpClient) {}
 
   public getQuestionsByTags(query: QuestionsQuery): Observable<Question[]> {
@@ -24,5 +25,20 @@ export class StackExchangeService {
     return this.httpClient.get<Tag[]>("/api/tags", {
       params: {},
     });
+  }
+
+  public getRequestToken(): Promise<PocketRequestToken> {
+    return this.httpClient
+      .get<PocketRequestToken>("api/pocket/request_token")
+      .toPromise();
+  }
+
+  public authorize(requestToken: string): Promise<PocketAccessToken> {
+    let params = new HttpParams();
+    params = params.append("request_token", requestToken);
+
+    return this.httpClient
+      .get<PocketAccessToken>("api/pocket/authorize", { params })
+      .toPromise();
   }
 }

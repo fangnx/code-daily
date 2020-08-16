@@ -21,6 +21,6 @@ export class AppComponent implements OnInit {
 
     this.store.dispatch(AppActions.fetchCurrentUser());
 
-    this.store.dispatch(AppActions.selectTag({ tag: { name: "Javascript" } }));
+    this.store.dispatch(AppActions.selectTag({ tag: { name: "javascript" } }));
   }
 }
