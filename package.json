@@ -11,7 +11,7 @@
     "build:client": "cd ./client/ && npm run build",
     "dev": "concurrently --kill-others-on-fail \"npm run start:server\" \"npm run start:client\"",
     "start": "npm run dev",
-    "prod": "concurrently --kill-others-on-fail \"npm run start:server\" \"npm run build:client\""
+    "prod": "pm2 start npm --name 'nest-server' -- run start:server"
   },
   "repository": {
     "type": "git",
