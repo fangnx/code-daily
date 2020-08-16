@@ -33,8 +33,12 @@ export class PocketService {
       .toPromise();
   }
 
-  public authorize(requestToken: string): Promise<PocketAccessToken> {
+  public authorize(
+    userEmail: string,
+    requestToken: string
+  ): Promise<PocketAccessToken> {
     let params = new HttpParams();
+    params = params.append("email", userEmail);
     params = params.append("request_token", requestToken);
 
     return this.httpClient

@@ -174,4 +174,24 @@ export class UsersService {
       { subscribedTags },
     );
   }
+
+  public async addPocketTokenToUser(
+    email: string,
+    accessToken: string,
+    pocketUserName: string,
+  ) {
+    const user: User = await this.userModel.findOne({ email }).exec();
+
+    if (!user) {
+      throw new HttpException(
+        'Invalid token: user does not exist',
+        HttpStatus.UNAUTHORIZED,
+      );
+    }
+
+    await this.userModel.updateOne(
+      { email },
+      { pocketAccessToken: accessToken, pocketUserName: pocketUserName },
+    );
+  }
 }

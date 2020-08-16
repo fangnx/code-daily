@@ -15,6 +15,12 @@ export class User extends Document {
   @Prop({ default: [] })
   subscribedTags: Array<string>;
 
+  @Prop({ default: null })
+  pocketUserName: string;
+
+  @Prop({ default: null })
+  pocketAccessToken: string;
+
   @Prop({ default: false })
   isSubscribed: boolean;
 }

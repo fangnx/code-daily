@@ -1,16 +1,18 @@
-import { Component, OnInit, ChangeDetectionStrategy } from "@angular/core";
+import {
+  Component,
+  OnInit,
+  ChangeDetectionStrategy,
+  OnDestroy,
+} from "@angular/core";
 import { Router, ActivatedRoute } from "@angular/router";
 import { UserService } from "src/app/services/user.service";
 import { Store } from "@ngrx/store";
 import { AppState } from "src/app/state/app.reducer";
 import { selectUserAuth } from "src/app/state/app.selectors";
-import { tap, switchMap } from "rxjs/operators";
+import { tap, map } from "rxjs/operators";
 import { PocketService } from "src/app/services/pocket.service";
-import {
-  PocketRequestToken,
-  PocketAccessToken,
-} from "src/app/models/pocket.model";
-import { EMPTY } from "rxjs";
+import { PocketRequestToken } from "src/app/models/pocket.model";
+import { combineLatest, Subscription } from "rxjs";
 
 @Component({
   selector: "user-management-panel",
@@ -18,8 +20,10 @@ import { EMPTY } from "rxjs";
   styleUrls: ["./user-management-panel.component.scss"],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class UserManagementPanelComponent implements OnInit {
+export class UserManagementPanelComponent implements OnInit, OnDestroy {
   public hasUserLoggedIn: boolean = false;
+  private userAuthSubscription: Subscription;
+  private pocketConnectionSubscription: Subscription;
 
   constructor(
     private router: Router,
@@ -30,7 +34,7 @@ export class UserManagementPanelComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.store
+    this.userAuthSubscription = this.store
       .select((state) => selectUserAuth(state))
       .pipe(
         tap((userAuth) => {
@@ -41,14 +45,28 @@ export class UserManagementPanelComponent implements OnInit {
       )
       .subscribe();
 
-    this.route.paramMap
+    this.pocketConnectionSubscription = combineLatest(
+      this.route.paramMap,
+      this.store.select((state) => selectUserAuth(state))
+    )
       .pipe(
-        switchMap((params) => {
-          console.log(params.get("pocket_request_token"));
-          return EMPTY;
+        map(([params, userAuth]) => {
+          const requestToken: string = params.get("pocket_request_token");
+          if (requestToken) {
+            this.pocketService.authorize(userAuth.email, requestToken);
+          }
         })
       )
       .subscribe();
+  }
+
+  ngOnDestroy() {
+    if (this.userAuthSubscription) {
+      this.userAuthSubscription.unsubscribe();
+    }
+    if (this.pocketConnectionSubscription) {
+      this.pocketConnectionSubscription.unsubscribe();
+    }
   }
 
   public onRegisterClicked(): void {
@@ -69,13 +87,9 @@ export class UserManagementPanelComponent implements OnInit {
     url.searchParams.append("request_token", requestToken.code);
     url.searchParams.append(
       "redirect_uri",
-      `http://codedaily.info/${requestToken.code}`
+      `http://codedaily.info/user/pocket/${requestToken.code}`
     );
     window.location.href = url.toString();
-
-    const accessToken: PocketAccessToken = await this.pocketService.getAccessToken(
-      requestToken.code
-    );
   }
 
   public onLogoutClicked(): void {

@@ -2,10 +2,17 @@ import { Injectable, HttpService } from '@nestjs/common';
 import { pocketApiBaseUrl } from 'src/constants';
 import { of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
+import { UsersService } from 'src/users/users.service';
+import { request } from 'http';
+import { PocketAccessToken, PocketRequestToken } from './pocket.interface';
+import { access } from 'fs';
 
 @Injectable()
 export class PocketService {
-  constructor(private readonly httpService: HttpService) {}
+  constructor(
+    private readonly httpService: HttpService,
+    private readonly usersService: UsersService,
+  ) {}
 
   private get httpHeaders() {
     return {
@@ -14,7 +21,7 @@ export class PocketService {
     };
   }
 
-  public obtainRequestToken() {
+  public obtainRequestToken(): Promise<PocketRequestToken> {
     const url = `${pocketApiBaseUrl}/v3/oauth/request`;
     const dto = {
       consumer_key: process.env.POCKET_CONSUMER_KEY,
@@ -32,7 +39,7 @@ export class PocketService {
       .toPromise();
   }
 
-  public obtainAccessToken(requestToken: string) {
+  private obtainAccessToken(requestToken: string): Promise<PocketAccessToken> {
     const url = `${pocketApiBaseUrl}/v3/oauth/authorize`;
     const dto = {
       consumer_key: process.env.POCKET_CONSUMER_KEY,
@@ -48,5 +55,23 @@ export class PocketService {
         catchError(err => of({ err })),
       )
       .toPromise();
+  }
+
+  public async connectUserWithPocket(
+    userEmail: string,
+    requestToken: string,
+  ): Promise<void> {
+    const accessToken: PocketAccessToken = await this.obtainAccessToken(
+      requestToken,
+    );
+
+    if (!accessToken || !accessToken.access_token) {
+      return;
+    }
+    return this.usersService.addPocketTokenToUser(
+      userEmail,
+      accessToken.access_token,
+      accessToken.username,
+    );
   }
 }

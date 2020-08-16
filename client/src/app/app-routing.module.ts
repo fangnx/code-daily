@@ -10,11 +10,12 @@ const routes: Routes = [
   { path: "", redirectTo: "/dashboard", pathMatch: "full" },
   { path: "dashboard", component: ContentPanelComponent },
   {
-    path: "user/:pocket_request_token",
+    path: "user/pocket/:pocket_request_token",
     component: UserManagementPanelComponent,
   },
   { path: "user/register", component: RegistrationComponent },
   { path: "user/login", component: LoginComponent },
+  { path: "user", component: UserManagementPanelComponent },
   { path: "subscription", component: SubscriptionManagementComponent },
 ];
 

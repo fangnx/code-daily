@@ -11,7 +11,10 @@ export class PocketController {
   }
 
   @Get('authorize')
-  public authorize(@Query('request_token') requestToken: string) {
-    return this.pocketService.obtainAccessToken(requestToken);
+  public authorize(
+    @Query('email') email: string,
+    @Query('request_token') requestToken: string,
+  ) {
+    return this.pocketService.connectUserWithPocket(email, requestToken);
   }
 }
