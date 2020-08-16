@@ -5,6 +5,7 @@ import { TagsModule } from './tags/tags.module';
 import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
 import { SesModule } from './ses/ses.module';
+import { PocketModule } from './pocket/pocket.module';
 
 @Module({
   imports: [
@@ -15,6 +16,7 @@ import { SesModule } from './ses/ses.module';
     UsersModule,
     AuthModule,
     SesModule,
+    PocketModule,
   ],
 })
 export class AppModule {}
