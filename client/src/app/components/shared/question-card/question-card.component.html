@@ -25,16 +25,26 @@
       >
       </question-badge>
 
-      <div class="tags">
-        <button *ngFor="let tag of tags" class="btn btn-sm">
-          {{ tag }}
-        </button>
+      <div class="info-buttons">
+        <article>
+          <button *ngFor="let tag of tags" class="btn btn-sm">
+            {{ tag }}
+          </button>
+        </article>
+
+        <article>
+          <button
+            class="btn btn-sm btn-success-outline"
+            (click)="onPocketClicked()"
+          >
+            <clr-icon shape="bookmark" size="18"></clr-icon>
+            Read Later
+          </button>
+        </article>
       </div>
     </div>
 
     <ng-container *ngIf="isExpanded">
-      <!-- <hr /> -->
-
       <div class="card-body" [@fadeInOnEnter]>
         <question-content
           [contentRawHtml]="rawHtml"

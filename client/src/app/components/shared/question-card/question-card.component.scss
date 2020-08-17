@@ -23,7 +23,7 @@
         width: 95%;
         word-wrap: break-word;
 
-        article {
+        > article {
           display: flex;
           flex-direction: row;
           justify-content: space-between;
@@ -41,8 +41,19 @@
           padding: 10px 0 10px 0;
         }
 
-        .tags {
+        .info-buttons {
+          display: flex;
           padding: 10px 0 10px 0;
+
+          > article {
+            &:nth-child(1) {
+              pointer-events: none;
+            }
+
+            &:nth-child(2) {
+              margin-left: auto;
+            }
+          }
         }
       }
 

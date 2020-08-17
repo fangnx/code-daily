@@ -72,4 +72,8 @@ export class QuestionCardComponent implements OnInit {
     event.stopPropagation();
     this.isExpanded = false;
   }
+
+  public onPocketClicked(event): void {
+    event.stopPropagation();
+  }
 }
