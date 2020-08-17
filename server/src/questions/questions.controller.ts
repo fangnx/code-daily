@@ -31,6 +31,15 @@ export class QuestionsController {
     }
   }
 
+  @Get('random')
+  async getRandomQuestionsByTags(@Query() questionsQuery: QuestionsQuery) {
+    try {
+      return this.questionsService.getRandomQuestionsByTags(questionsQuery);
+    } catch (error) {
+      throw new InternalServerErrorException(error);
+    }
+  }
+
   @Get('/:ids')
   async getQuestionsByIds(
     @Param('ids') ids: string,

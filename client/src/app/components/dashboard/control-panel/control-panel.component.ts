@@ -4,6 +4,8 @@ import {
   ChangeDetectionStrategy,
   Output,
   EventEmitter,
+  OnInit,
+  OnChanges,
 } from "@angular/core";
 import { Router } from "@angular/router";
 import { Tag } from "src/app/models/stackExchange.model";
@@ -11,6 +13,7 @@ import { Store } from "@ngrx/store";
 import { AppState } from "src/app/state/app.reducer";
 import * as AppActions from "src/app/state/app.actions";
 import { UserAuth } from "src/app/models/user.model";
+import { importExpr } from "@angular/compiler/src/output/output_ast";
 
 @Component({
   selector: "control-panel",
@@ -25,6 +28,9 @@ export class ControlPanelComponent {
   @Input() public userFavoriteTags: Array<string>;
   @Input() public userSubscribedTags: Array<string>;
   @Output() public onTagSelected: EventEmitter<Tag> = new EventEmitter();
+
+  // TODO: refactor this.
+  public favoriteTags: Array<Tag>;
 
   constructor(private router: Router, private store: Store<AppState>) {}
 
@@ -97,7 +103,7 @@ export class ControlPanelComponent {
     }
   }
 
-  public get hasUserLoggedIn(): boolean {
+  private get hasUserLoggedIn(): boolean {
     return !!this.user && !!this.user.email;
   }
 }

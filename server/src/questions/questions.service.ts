@@ -15,6 +15,33 @@ export class QuestionsService {
   async getQuestionsByTags(questionsQuery: QuestionsQuery) {
     const url: string = `${stackExchangeBaseUrl}/questions`;
     const { fromDate, toDate } = TimeRangeHelper.lastWeekTimeRange();
+
+    return this.httpService
+      .get(url, {
+        params: {
+          page: questionsQuery.page,
+          pagesize: questionsQuery.pagesize,
+          order: questionsQuery.order,
+          sort: questionsQuery.sort,
+          tagged: questionsQuery.tags,
+          fromDate,
+          toDate,
+          site: 'stackoverflow',
+          key: StackExchangeAppKey,
+          filter: QuestionsApiQueryFilter,
+        },
+      })
+      .pipe(
+        map(res => res.data),
+        catchError(err => of({ err })),
+      )
+      .toPromise();
+  }
+
+  async getRandomQuestionsByTags(questionsQuery: QuestionsQuery) {
+    const url: string = `${stackExchangeBaseUrl}/questions`;
+    const { fromDate, toDate } = TimeRangeHelper.randomWeekTimeRange();
+
     return this.httpService
       .get(url, {
         params: {
@@ -40,6 +67,7 @@ export class QuestionsService {
   async getQuestionsByIds(ids: string, questionsQuery: QuestionsQuery) {
     const url: string = `${stackExchangeBaseUrl}/questions/${ids}`;
     const { fromDate, toDate } = TimeRangeHelper.lastDayTimeRange();
+
     return this.httpService
       .get(url, {
         params: {
@@ -67,7 +95,7 @@ export class QuestionsService {
     sort = QuestionsSortBy.Activity,
   ) {
     const url: string = `${stackExchangeBaseUrl}/questions/${ids}/answers`;
-    const { fromDate, toDate } = TimeRangeHelper.lastDayTimeRange();
+
     return this.httpService
       .get(url, {
         params: {

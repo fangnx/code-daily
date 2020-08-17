@@ -1,6 +1,7 @@
 <main>
   <div class="content-header-container">
     <content-header
+      [userAuth]="userAuth$ | async"
       [tag]="currentTag$ | async"
       [userFavoriteTags]="userFavoriteTags$ | async"
       [userSubscribedTags]="userSubscribedTags$ | async"

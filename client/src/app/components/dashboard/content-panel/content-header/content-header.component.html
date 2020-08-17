@@ -1,7 +1,7 @@
 <main>
   <header class="header-3">
     <div class="branding">
-      <h2>{{ title | titlecase }}</h2>
+      <h2>{{ title | uppercase }}</h2>
     </div>
 
     <div class="header-actions">
@@ -12,15 +12,15 @@
           [ngClass]="getStarIconClass()"
         ></clr-icon>
       </a>
-      <a href="javascript://" class="nav-link nav-icon">
+      <!-- <a href="javascript://" class="nav-link nav-icon">
         <clr-icon
           shape="envelope"
           (click)="onEmailClicked()"
           [ngClass]="getEmailIconClass()"
         ></clr-icon>
-      </a>
+      </a> -->
       <a href="javascript://" class="nav-link nav-icon">
-        <clr-icon shape="refresh"></clr-icon>
+        <clr-icon shape="refresh" (click)="onRefreshClicked()"></clr-icon>
       </a>
     </div>
   </header>

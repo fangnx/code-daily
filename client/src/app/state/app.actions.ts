@@ -14,7 +14,7 @@ export const unselectTag = createAction(
 
 export const fetchQuestions = createAction(
   "[App] Fetch Questions",
-  props<{ tag: Tag }>()
+  props<{ tag: Tag; fetchRandom?: boolean }>()
 );
 
 export const fetchQuestionsSuccess = createAction(

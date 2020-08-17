@@ -33,6 +33,14 @@ export class AppEffects {
         pagesize: 10,
       };
 
+      if (action.fetchRandom) {
+        return this.stackExchangeApiService
+          .getRandomQuestionsByTags(query)
+          .pipe(
+            map((questions) => AppActions.fetchQuestionsSuccess({ questions }))
+          );
+      }
+
       return this.stackExchangeApiService
         .getQuestionsByTags(query)
         .pipe(

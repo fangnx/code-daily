@@ -28,4 +28,18 @@ export class TimeRangeHelper {
         .unix(),
     };
   }
+
+  public static randomWeekTimeRange() {
+    const start = moment.utc('2015-01-01');
+    const end = moment()
+      .utc()
+      .startOf('day');
+    const delta = end.diff(start, 'days');
+
+    const randomDate = start.add(Math.floor(Math.random() * delta), 'days');
+    return {
+      fromDate: randomDate.unix(),
+      toDate: randomDate.add(7, 'days').unix(),
+    };
+  }
 }

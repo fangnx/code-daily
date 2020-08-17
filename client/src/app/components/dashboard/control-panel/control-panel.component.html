@@ -1,10 +1,10 @@
 <main>
   <div>
     <clr-tree>
-      <clr-tree-node *ngIf="hasUserLoggedIn" [clrExpanded]="true">
+      <!-- <clr-tree-node *ngIf="hasUserLoggedIn" [clrExpanded]="true">
         FAVORITE TAGS
         <clr-tree-node
-          *ngFor="let tag of []"
+          *ngFor="let tag of favoriteTags"
           [ngClass]="getTreeNodeClass(tag)"
           class="tag-node"
         >
@@ -13,10 +13,10 @@
             (click)="onSelectTag(tag)"
             [ngClass]="getTagClass(tag)"
           >
-            {{ tag.name | titlecase }}
+            {{ tag.name | uppercase }}
           </button>
         </clr-tree-node>
-      </clr-tree-node>
+      </clr-tree-node> -->
 
       <clr-tree-node [clrExpanded]="true">
         POPULAR TAGS
@@ -30,7 +30,7 @@
             (click)="onSelectTag(tag)"
             [ngClass]="getTagClass(tag)"
           >
-            {{ tag.name | titlecase }}
+            {{ tag.name | uppercase }}
           </button>
           <clr-icon
             shape="star"

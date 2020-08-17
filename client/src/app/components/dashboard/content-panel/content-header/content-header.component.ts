@@ -8,6 +8,10 @@ import {
 } from "@angular/core";
 import { UserAuth } from "src/app/models/user.model";
 import { Tag } from "src/app/models/stackExchange.model";
+import { Router } from "@angular/router";
+import { Store } from "@ngrx/store";
+import { AppState } from "src/app/state/app.reducer";
+import * as AppActions from "src/app/state/app.actions";
 
 @Component({
   selector: "content-header",
@@ -16,16 +20,14 @@ import { Tag } from "src/app/models/stackExchange.model";
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ContentHeaderComponent implements OnInit {
-  @Input() public user?: UserAuth;
+  @Input() public userAuth?: UserAuth;
   @Input() public tag: Tag;
   @Input() public userFavoriteTags: Array<string>;
   @Input() public userSubscribedTags: Array<string>;
 
-  constructor() {}
+  constructor(private router: Router, private store: Store<AppState>) {}
 
-  ngOnInit() {
-    console.log(this.userFavoriteTags);
-  }
+  ngOnInit() {}
 
   public get title(): string {
     return this.tag.name;
@@ -51,7 +53,30 @@ export class ContentHeaderComponent implements OnInit {
     return this.isTagSubscribedByUser(this.tag) ? "is-solid" : "";
   }
 
-  public onStarClicked() {}
+  public onStarClicked() {
+    if (!this.hasUserLoggedIn) {
+      this.router.navigate(["/user/login"]);
+      return;
+    }
 
-  public onEmailClicked() {}
+    if (this.isTagFavoriteByUser(this.tag)) {
+      this.store.dispatch(
+        AppActions.removeFavoriteTagFromUser({ tag: this.tag.name })
+      );
+    } else {
+      this.store.dispatch(
+        AppActions.addFavoriteTagToUser({ tag: this.tag.name })
+      );
+    }
+  }
+
+  public onRefreshClicked() {
+    this.store.dispatch(
+      AppActions.fetchQuestions({ tag: this.tag, fetchRandom: true })
+    );
+  }
+
+  private get hasUserLoggedIn(): boolean {
+    return !!this.userAuth && !!this.userAuth.email;
+  }
 }

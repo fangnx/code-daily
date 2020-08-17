@@ -10,6 +10,8 @@ export interface User {
   isSubscribed: boolean;
   favoriteTags: Array<string>;
   subscribedTags: Array<string>;
+  pocketAccessToken: string;
+  pocketUserName: string;
 }
 
 export interface CreateUserDto {
