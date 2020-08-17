@@ -3,7 +3,9 @@ import {
   OnInit,
   ChangeDetectionStrategy,
   OnDestroy,
+  Inject,
 } from "@angular/core";
+import { DOCUMENT } from "@angular/common";
 import { Router, ActivatedRoute } from "@angular/router";
 import { UserService } from "src/app/services/user.service";
 import { Store } from "@ngrx/store";
@@ -30,7 +32,8 @@ export class UserManagementPanelComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private store: Store<AppState>,
     private userService: UserService,
-    private pocketService: PocketService
+    private pocketService: PocketService,
+    @Inject(DOCUMENT) private document: Document
   ) {}
 
   ngOnInit() {
@@ -83,13 +86,14 @@ export class UserManagementPanelComponent implements OnInit, OnDestroy {
       return;
     }
 
-    let url = new URL("https://getpocket.com/auth/authorize");
+    let url = new URL("http://getpocket.com/auth/authorize");
     url.searchParams.append("request_token", requestToken.code);
     url.searchParams.append(
       "redirect_uri",
       `http://codedaily.info/user/pocket/${requestToken.code}`
     );
-    window.location.href = url.toString();
+    alert(url.toString());
+    this.document.location.href = url.toString();
   }
 
   public onLogoutClicked(): void {

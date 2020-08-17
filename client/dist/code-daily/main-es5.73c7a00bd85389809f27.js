@@ -2545,48 +2545,54 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony import */
 
 
-    var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+    var _angular_common__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+    /*! @angular/common */
+    "./node_modules/@angular/common/fesm2015/common.js");
+    /* harmony import */
+
+
+    var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
     /*! @angular/router */
     "./node_modules/@angular/router/fesm2015/router.js");
     /* harmony import */
 
 
-    var src_app_services_user_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+    var src_app_services_user_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
     /*! src/app/services/user.service */
     "./src/app/services/user.service.ts");
     /* harmony import */
 
 
-    var _ngrx_store__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+    var _ngrx_store__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
     /*! @ngrx/store */
     "./node_modules/@ngrx/store/fesm2015/store.js");
     /* harmony import */
 
 
-    var src_app_state_app_selectors__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
+    var src_app_state_app_selectors__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
     /*! src/app/state/app.selectors */
     "./src/app/state/app.selectors.ts");
     /* harmony import */
 
 
-    var rxjs_operators__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
+    var rxjs_operators__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
     /*! rxjs/operators */
     "./node_modules/rxjs/_esm2015/operators/index.js");
     /* harmony import */
 
 
-    var src_app_services_pocket_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
+    var src_app_services_pocket_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(
     /*! src/app/services/pocket.service */
     "./src/app/services/pocket.service.ts");
     /* harmony import */
 
 
-    var rxjs__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(
+    var rxjs__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(
     /*! rxjs */
     "./node_modules/rxjs/_esm2015/index.js");
 
     var UserManagementPanelComponent = /*#__PURE__*/function () {
-      function UserManagementPanelComponent(router, route, store, userService, pocketService) {
+      function UserManagementPanelComponent(router, route, store, userService, pocketService, document) {
         _classCallCheck(this, UserManagementPanelComponent);
 
         this.router = router;
@@ -2594,6 +2600,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         this.store = store;
         this.userService = userService;
         this.pocketService = pocketService;
+        this.document = document;
         this.hasUserLoggedIn = false;
       }
 
@@ -2603,15 +2610,15 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           var _this4 = this;
 
           this.userAuthSubscription = this.store.select(function (state) {
-            return Object(src_app_state_app_selectors__WEBPACK_IMPORTED_MODULE_5__["selectUserAuth"])(state);
-          }).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["tap"])(function (userAuth) {
+            return Object(src_app_state_app_selectors__WEBPACK_IMPORTED_MODULE_6__["selectUserAuth"])(state);
+          }).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["tap"])(function (userAuth) {
             if (userAuth && userAuth.email) {
               _this4.hasUserLoggedIn = true;
             }
           })).subscribe();
-          this.pocketConnectionSubscription = Object(rxjs__WEBPACK_IMPORTED_MODULE_8__["combineLatest"])(this.route.paramMap, this.store.select(function (state) {
-            return Object(src_app_state_app_selectors__WEBPACK_IMPORTED_MODULE_5__["selectUserAuth"])(state);
-          })).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["map"])(function (_ref) {
+          this.pocketConnectionSubscription = Object(rxjs__WEBPACK_IMPORTED_MODULE_9__["combineLatest"])(this.route.paramMap, this.store.select(function (state) {
+            return Object(src_app_state_app_selectors__WEBPACK_IMPORTED_MODULE_6__["selectUserAuth"])(state);
+          })).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["map"])(function (_ref) {
             var _ref2 = _slicedToArray(_ref, 2),
                 params = _ref2[0],
                 userAuth = _ref2[1];
@@ -2667,12 +2674,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                     return _context.abrupt("return");
 
                   case 5:
-                    url = new URL("https://getpocket.com/auth/authorize");
+                    url = new URL("http://getpocket.com/auth/authorize");
                     url.searchParams.append("request_token", requestToken.code);
                     url.searchParams.append("redirect_uri", "http://codedaily.info/user/pocket/".concat(requestToken.code));
-                    window.location.href = url.toString();
+                    alert(url.toString());
+                    this.document.location.href = url.toString();
 
-                  case 9:
+                  case 10:
                   case "end":
                     return _context.stop();
                 }
@@ -2697,15 +2705,21 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
     UserManagementPanelComponent.ctorParameters = function () {
       return [{
-        type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]
+        type: _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"]
       }, {
-        type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"]
+        type: _angular_router__WEBPACK_IMPORTED_MODULE_3__["ActivatedRoute"]
       }, {
-        type: _ngrx_store__WEBPACK_IMPORTED_MODULE_4__["Store"]
+        type: _ngrx_store__WEBPACK_IMPORTED_MODULE_5__["Store"]
       }, {
-        type: src_app_services_user_service__WEBPACK_IMPORTED_MODULE_3__["UserService"]
+        type: src_app_services_user_service__WEBPACK_IMPORTED_MODULE_4__["UserService"]
       }, {
-        type: src_app_services_pocket_service__WEBPACK_IMPORTED_MODULE_7__["PocketService"]
+        type: src_app_services_pocket_service__WEBPACK_IMPORTED_MODULE_8__["PocketService"]
+      }, {
+        type: Document,
+        decorators: [{
+          type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["Inject"],
+          args: [_angular_common__WEBPACK_IMPORTED_MODULE_2__["DOCUMENT"]]
+        }]
       }];
     };
 
@@ -2718,7 +2732,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
       /*! ./user-management-panel.component.scss */
       "./src/app/components/dashboard/user-management-panel/user-management-panel.component.scss"))["default"]]
-    }), tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"], _ngrx_store__WEBPACK_IMPORTED_MODULE_4__["Store"], src_app_services_user_service__WEBPACK_IMPORTED_MODULE_3__["UserService"], src_app_services_pocket_service__WEBPACK_IMPORTED_MODULE_7__["PocketService"]])], UserManagementPanelComponent);
+    }), tslib__WEBPACK_IMPORTED_MODULE_0__["__param"](5, Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Inject"])(_angular_common__WEBPACK_IMPORTED_MODULE_2__["DOCUMENT"])), tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"], _angular_router__WEBPACK_IMPORTED_MODULE_3__["ActivatedRoute"], _ngrx_store__WEBPACK_IMPORTED_MODULE_5__["Store"], src_app_services_user_service__WEBPACK_IMPORTED_MODULE_4__["UserService"], src_app_services_pocket_service__WEBPACK_IMPORTED_MODULE_8__["PocketService"], Document])], UserManagementPanelComponent);
     /***/
   },
 
@@ -4509,4 +4523,4 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /***/
   }
 }, [[0, "runtime", "vendor"]]]);
-//# sourceMappingURL=main-es5.53fe90ac3ac21dc76c91.js.map
+//# sourceMappingURL=main-es5.73c7a00bd85389809f27.js.map

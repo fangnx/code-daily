@@ -1409,13 +1409,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UserManagementPanelComponent", function() { return UserManagementPanelComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
-/* harmony import */ var src_app_services_user_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/services/user.service */ "./src/app/services/user.service.ts");
-/* harmony import */ var _ngrx_store__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ngrx/store */ "./node_modules/@ngrx/store/fesm2015/store.js");
-/* harmony import */ var src_app_state_app_selectors__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/app/state/app.selectors */ "./src/app/state/app.selectors.ts");
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm2015/operators/index.js");
-/* harmony import */ var src_app_services_pocket_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! src/app/services/pocket.service */ "./src/app/services/pocket.service.ts");
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm2015/index.js");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm2015/common.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
+/* harmony import */ var src_app_services_user_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/services/user.service */ "./src/app/services/user.service.ts");
+/* harmony import */ var _ngrx_store__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ngrx/store */ "./node_modules/@ngrx/store/fesm2015/store.js");
+/* harmony import */ var src_app_state_app_selectors__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! src/app/state/app.selectors */ "./src/app/state/app.selectors.ts");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm2015/operators/index.js");
+/* harmony import */ var src_app_services_pocket_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! src/app/services/pocket.service */ "./src/app/services/pocket.service.ts");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm2015/index.js");
+
 
 
 
@@ -1426,25 +1428,26 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let UserManagementPanelComponent = class UserManagementPanelComponent {
-    constructor(router, route, store, userService, pocketService) {
+    constructor(router, route, store, userService, pocketService, document) {
         this.router = router;
         this.route = route;
         this.store = store;
         this.userService = userService;
         this.pocketService = pocketService;
+        this.document = document;
         this.hasUserLoggedIn = false;
     }
     ngOnInit() {
         this.userAuthSubscription = this.store
-            .select((state) => Object(src_app_state_app_selectors__WEBPACK_IMPORTED_MODULE_5__["selectUserAuth"])(state))
-            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["tap"])((userAuth) => {
+            .select((state) => Object(src_app_state_app_selectors__WEBPACK_IMPORTED_MODULE_6__["selectUserAuth"])(state))
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["tap"])((userAuth) => {
             if (userAuth && userAuth.email) {
                 this.hasUserLoggedIn = true;
             }
         }))
             .subscribe();
-        this.pocketConnectionSubscription = Object(rxjs__WEBPACK_IMPORTED_MODULE_8__["combineLatest"])(this.route.paramMap, this.store.select((state) => Object(src_app_state_app_selectors__WEBPACK_IMPORTED_MODULE_5__["selectUserAuth"])(state)))
-            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["map"])(([params, userAuth]) => {
+        this.pocketConnectionSubscription = Object(rxjs__WEBPACK_IMPORTED_MODULE_9__["combineLatest"])(this.route.paramMap, this.store.select((state) => Object(src_app_state_app_selectors__WEBPACK_IMPORTED_MODULE_6__["selectUserAuth"])(state)))
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["map"])(([params, userAuth]) => {
             const requestToken = params.get("pocket_request_token");
             if (requestToken) {
                 this.pocketService.authorize(userAuth.email, requestToken);
@@ -1472,10 +1475,11 @@ let UserManagementPanelComponent = class UserManagementPanelComponent {
             if (!requestToken || !requestToken.code) {
                 return;
             }
-            let url = new URL("https://getpocket.com/auth/authorize");
+            let url = new URL("http://getpocket.com/auth/authorize");
             url.searchParams.append("request_token", requestToken.code);
             url.searchParams.append("redirect_uri", `http://codedaily.info/user/pocket/${requestToken.code}`);
-            window.location.href = url.toString();
+            alert(url.toString());
+            this.document.location.href = url.toString();
         });
     }
     onLogoutClicked() {
@@ -1486,11 +1490,12 @@ let UserManagementPanelComponent = class UserManagementPanelComponent {
     }
 };
 UserManagementPanelComponent.ctorParameters = () => [
-    { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"] },
-    { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"] },
-    { type: _ngrx_store__WEBPACK_IMPORTED_MODULE_4__["Store"] },
-    { type: src_app_services_user_service__WEBPACK_IMPORTED_MODULE_3__["UserService"] },
-    { type: src_app_services_pocket_service__WEBPACK_IMPORTED_MODULE_7__["PocketService"] }
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"] },
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_3__["ActivatedRoute"] },
+    { type: _ngrx_store__WEBPACK_IMPORTED_MODULE_5__["Store"] },
+    { type: src_app_services_user_service__WEBPACK_IMPORTED_MODULE_4__["UserService"] },
+    { type: src_app_services_pocket_service__WEBPACK_IMPORTED_MODULE_8__["PocketService"] },
+    { type: Document, decorators: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["Inject"], args: [_angular_common__WEBPACK_IMPORTED_MODULE_2__["DOCUMENT"],] }] }
 ];
 UserManagementPanelComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -1499,11 +1504,13 @@ UserManagementPanelComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"](
         changeDetection: _angular_core__WEBPACK_IMPORTED_MODULE_1__["ChangeDetectionStrategy"].OnPush,
         styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! ./user-management-panel.component.scss */ "./src/app/components/dashboard/user-management-panel/user-management-panel.component.scss")).default]
     }),
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"],
-        _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"],
-        _ngrx_store__WEBPACK_IMPORTED_MODULE_4__["Store"],
-        src_app_services_user_service__WEBPACK_IMPORTED_MODULE_3__["UserService"],
-        src_app_services_pocket_service__WEBPACK_IMPORTED_MODULE_7__["PocketService"]])
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__param"](5, Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Inject"])(_angular_common__WEBPACK_IMPORTED_MODULE_2__["DOCUMENT"])),
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"],
+        _angular_router__WEBPACK_IMPORTED_MODULE_3__["ActivatedRoute"],
+        _ngrx_store__WEBPACK_IMPORTED_MODULE_5__["Store"],
+        src_app_services_user_service__WEBPACK_IMPORTED_MODULE_4__["UserService"],
+        src_app_services_pocket_service__WEBPACK_IMPORTED_MODULE_8__["PocketService"],
+        Document])
 ], UserManagementPanelComponent);
 
 
@@ -2560,4 +2567,4 @@ module.exports = __webpack_require__(/*! /Users/fnx/GitRepos/fnx-stackoverflow-d
 /***/ })
 
 },[[0,"runtime","vendor"]]]);
-//# sourceMappingURL=main-es2015.53fe90ac3ac21dc76c91.js.map
+//# sourceMappingURL=main-es2015.73c7a00bd85389809f27.js.map
