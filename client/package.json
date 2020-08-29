@@ -4,6 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
+    "start:docker": "ng serve --host 0.0.0.0",
     "build": "ng build --output-hashing=all",
     "test": "ng test",
     "lint": "ng lint",

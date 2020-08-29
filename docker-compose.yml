@@ -18,3 +18,9 @@ services:
       - db
     links:
       - db
+
+  client:
+    build: client
+    container_name: code-daily-client
+    ports:
+      - '4200:4200'
