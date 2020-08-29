@@ -1,0 +1,20 @@
+version: '2'
+
+services:
+  db:
+    image: mongo
+    container_name: code-daily-db
+    ports:
+      - '27017:27017'
+
+  server:
+    build: server
+    container_name: code-daily-server
+    ports:
+      - '8200:8200'
+    environment:
+      - DB_URI=mongodb://code-daily-db
+    depends_on:
+      - db
+    links:
+      - db

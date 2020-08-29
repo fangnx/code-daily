@@ -9,7 +9,7 @@ import { PocketModule } from './pocket/pocket.module';
 
 @Module({
   imports: [
-    MongooseModule.forRoot('mongodb://localhost/soserver'),
+    MongooseModule.forRoot(process.env.DB_URI),
     HttpModule,
     QuestionsModule,
     TagsModule,
