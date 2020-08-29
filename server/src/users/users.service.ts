@@ -4,11 +4,11 @@ import { Model } from 'mongoose';
 import { User } from './user.interface';
 import { CreateUserDto } from './dto/create-user.dto';
 import { LoginUserDto } from './dto/login-user.dto';
-import { Payload } from 'src/auth/auth.interface';
-import { DtoHelper } from 'src/shared/dtoHelper';
+import { DtoHelper } from './dto/dto.helper';
 import { UserDto } from './dto/user.dto';
 import { AddFavoriteTagDto } from './dto/add-favorite-tag.dto';
 import { SubscribeToTagDto } from './dto/subscribe-to-tag.dto';
+import { Payload } from '../auth/auth.interface';
 
 @Injectable()
 export class UsersService {

@@ -6,6 +6,7 @@ import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
 import { SesModule } from './ses/ses.module';
 import { PocketModule } from './pocket/pocket.module';
+import { AppController } from './app.controller';
 
 @Module({
   imports: [
@@ -18,5 +19,6 @@ import { PocketModule } from './pocket/pocket.module';
     SesModule,
     PocketModule,
   ],
+  controllers: [AppController],
 })
 export class AppModule {}

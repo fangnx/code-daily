@@ -1,11 +1,9 @@
 import { Injectable, HttpService } from '@nestjs/common';
-import { pocketApiBaseUrl } from 'src/constants';
 import { of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
-import { UsersService } from 'src/users/users.service';
-import { request } from 'http';
 import { PocketAccessToken, PocketRequestToken } from './pocket.interface';
-import { access } from 'fs';
+import { UsersService } from '../users/users.service';
+import { pocketApiBaseUrl } from '../constants';
 
 @Injectable()
 export class PocketService {

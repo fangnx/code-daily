@@ -1,9 +1,9 @@
 import { HttpService, Injectable } from '@nestjs/common';
-import { stackExchangeBaseUrl } from 'src/constants';
+import { of } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 import { TagsQuery } from './tags.controller';
-import { of } from 'rxjs';
 import { StackExchangeAppKey } from '../secrets';
+import { stackExchangeBaseUrl } from '../constants';
 
 @Injectable()
 export class TagsService {

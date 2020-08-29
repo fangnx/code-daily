@@ -1,5 +1,6 @@
-import { User } from '../users/user.schema';
-import { UserDto } from 'src/users/dto/user.dto';
+import { Injectable } from '@nestjs/common';
+import { User } from '../user.interface';
+import { UserDto } from './user.dto';
 
 export class DtoHelper {
   public static toUserDto(userData: User) {

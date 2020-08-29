@@ -1,7 +1,7 @@
 import { Module, HttpModule } from '@nestjs/common';
 import { PocketController } from './pocket.controller';
 import { PocketService } from './pocket.service';
-import { UsersModule } from 'src/users/users.module';
+import { UsersModule } from '../users/users.module';
 
 @Module({
   imports: [HttpModule, UsersModule],
