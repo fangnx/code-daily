@@ -1,27 +1,11 @@
 <main>
-  <header class="header-3">
-    <div class="branding">
+  <div>
+    <article>
       <h2>{{ title | uppercase }}</h2>
-    </div>
+    </article>
 
-    <div class="header-actions">
-      <a href="javascript://" class="nav-link nav-icon">
-        <clr-icon
-          shape="star"
-          (click)="onStarClicked()"
-          [ngClass]="getStarIconClass()"
-        ></clr-icon>
-      </a>
-      <!-- <a href="javascript://" class="nav-link nav-icon">
-        <clr-icon
-          shape="envelope"
-          (click)="onEmailClicked()"
-          [ngClass]="getEmailIconClass()"
-        ></clr-icon>
-      </a> -->
-      <a href="javascript://" class="nav-link nav-icon">
-        <clr-icon shape="refresh" (click)="onRefreshClicked()"></clr-icon>
-      </a>
-    </div>
-  </header>
+    <article>
+      <fa-icon [icon]="faRedo" (click)="onRefreshClicked()"></fa-icon>
+    </article>
+  </div>
 </main>

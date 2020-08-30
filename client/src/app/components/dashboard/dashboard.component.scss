@@ -1,5 +1,8 @@
+@import "../../styles/colors.scss";
+
 main {
   .flex-container {
+    background: $bg-color;
     display: flex;
     flex-direction: row;
 

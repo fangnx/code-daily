@@ -14,7 +14,11 @@ import {
   Answer,
 } from "src/app/models/stackExchange.model";
 import { fadeInOnEnterAnimation } from "angular-animations";
-
+import { faWindowClose } from "@fortawesome/free-solid-svg-icons";
+import {
+  faGetPocket,
+  faStackOverflow,
+} from "@fortawesome/free-brands-svg-icons";
 @Component({
   selector: "question-card",
   templateUrl: "./question-card.component.html",
@@ -39,10 +43,13 @@ export class QuestionCardComponent implements OnInit {
   public downvoteCount: number;
   public creationDate: string;
   public lastEditDate: string;
+  public link: string;
   public tags: Array<Tag>;
   public answers: Array<Answer>;
 
-  constructor() {}
+  public faWindowClose = faWindowClose;
+  public faGetPocket = faGetPocket;
+  public faStackOverflow = faStackOverflow;
 
   ngOnInit(): void {
     this.isExpanded = false;
@@ -58,6 +65,7 @@ export class QuestionCardComponent implements OnInit {
     this.downvoteCount = this.question.down_vote_count;
     this.creationDate = parseUnixTimestamp(this.question.creation_date);
     this.lastEditDate = parseUnixTimestamp(this.question.last_edit_date);
+    this.link = this.question.link;
 
     this.tags = this.question.tags;
   }
@@ -73,7 +81,12 @@ export class QuestionCardComponent implements OnInit {
     this.isExpanded = false;
   }
 
-  public onPocketClicked(event): void {
+  public onStackOverflowIconClicked(event): void {
+    event.stopPropagation();
+    window.open(this.link, "_blank");
+  }
+
+  public onGetPocketIconClicked(event): void {
     event.stopPropagation();
   }
 }

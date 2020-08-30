@@ -5,15 +5,18 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { AppRoutingModule } from "./app-routing.module";
 
+// State management.
 import { StoreModule } from "@ngrx/store";
 import { EffectsModule } from "@ngrx/effects";
 import { StoreDevtoolsModule } from "@ngrx/store-devtools";
 import { appReducer } from "./state/app.reducer";
 import { AppEffects } from "./state/app.effects";
-
-import { ClarityModule } from "@clr/angular";
-import { MarkdownModule } from "ngx-markdown";
 import { storageMetaReducer } from "./storage.metareducer";
+
+// UI libraries.
+import { ClarityModule } from "@clr/angular";
+import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
+import { MarkdownModule } from "ngx-markdown";
 
 import { UserService } from "./services/user.service";
 import { PocketService } from "./services/pocket.service";
@@ -36,6 +39,7 @@ import { SettingCardComponent } from "./components/shared/setting-card/setting-c
 import { ContentPanelService } from "./services/contentPanel.service";
 import { SubscriptionManagementComponent } from "./components/dashboard/user-management-panel/subscription-management/subscription-management.component";
 import { ContentHeaderComponent } from "./components/dashboard/content-panel/content-header/content-header.component";
+import { SimpleTagComponent } from "./components/shared/simple-tag/simple-tag.component";
 
 @NgModule({
   declarations: [
@@ -54,9 +58,11 @@ import { ContentHeaderComponent } from "./components/dashboard/content-panel/con
     QuestionContentComponent,
     SettingCardComponent,
     SubscriptionManagementComponent,
+    SimpleTagComponent,
   ],
   imports: [
     ClarityModule,
+    FontAwesomeModule,
     StoreModule.forRoot(
       { app: appReducer },
       { metaReducers: [storageMetaReducer] }

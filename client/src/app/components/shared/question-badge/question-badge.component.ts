@@ -5,6 +5,16 @@ import {
   ChangeDetectionStrategy,
 } from "@angular/core";
 import { Owner } from "src/app/models/stackExchange.model";
+import {
+  faEye,
+  faCommentDots,
+  faPenSquare,
+} from "@fortawesome/free-solid-svg-icons";
+import {
+  faStackOverflow,
+  faGetPocket,
+} from "@fortawesome/free-brands-svg-icons";
+import { parseHtmlEntities } from "../../../helpers";
 
 @Component({
   selector: "question-badge",
@@ -21,8 +31,14 @@ export class QuestionBadgeComponent implements OnInit {
   public ownerName: string;
   public ownerProfileImageUrl: string;
 
+  public faEye = faEye;
+  public faCommentDots = faCommentDots;
+  public faPenSquare = faPenSquare;
+  public faStackOverflow = faStackOverflow;
+  public faGetPocket = faGetPocket;
+
   ngOnInit() {
-    this.ownerName = this.owner.display_name;
+    this.ownerName = parseHtmlEntities(this.owner.display_name);
     this.ownerProfileImageUrl = this.owner.profile_image;
   }
 }

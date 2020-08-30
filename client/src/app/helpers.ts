@@ -1,7 +1,7 @@
 import { Tag } from "./models/stackExchange.model";
 import * as he from "he";
 
-export const parseHtmlEntities = (str) => {
+export const parseHtmlEntities = (str: string): string => {
   return he.decode(str);
 };
 

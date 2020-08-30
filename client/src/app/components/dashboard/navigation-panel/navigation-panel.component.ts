@@ -6,6 +6,11 @@ import {
 } from "@angular/core";
 import { Router } from "@angular/router";
 import { UserAuth } from "src/app/models/user.model";
+import {
+  faUserNinja,
+  faFileCode,
+  faCloud,
+} from "@fortawesome/free-solid-svg-icons";
 
 @Component({
   selector: "navigation-panel",
@@ -15,6 +20,10 @@ import { UserAuth } from "src/app/models/user.model";
 })
 export class NavigationPanelComponent implements OnChanges {
   @Input() public user?: UserAuth;
+
+  public faUserNinja = faUserNinja;
+  public faFileCode = faFileCode;
+  public faCloud = faCloud;
 
   constructor(private router: Router) {}
 

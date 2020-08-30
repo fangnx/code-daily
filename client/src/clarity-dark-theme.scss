@@ -1,0 +1,20 @@
+@import "./app/styles/colors.scss";
+
+// TODO: Refactor those.
+:root {
+  --clr-card-clickable-border-color: #5c6bc0;
+
+  --clr-btn-default-color: #5c6bc0;
+  --clr-btn-default-border-color: #5c6bc0;
+  --clr-btn-primary-bg-color: #5c6bc0;
+  --clr-btn-primary-border-color: #5c6bc0;
+  --clr-btn-default-color: #5c6bc0;
+  --clr-btn-default-border-color: #5c6bc0;
+  --clr-btn-success-outline-color: #5c6bc0;
+  --clr-btn-success-outline-border-color: #5c6bc0;
+
+  --clr-btn-appearance-standard-font-size: 12px;
+  --clr-btn-border-width: 10px;
+  --clr-btn-border-radius: 4px;
+  --clr-btn-appearance-standard-font-weight: 600;
+}

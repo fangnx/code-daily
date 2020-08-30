@@ -12,6 +12,7 @@ import { Router } from "@angular/router";
 import { Store } from "@ngrx/store";
 import { AppState } from "src/app/state/app.reducer";
 import * as AppActions from "src/app/state/app.actions";
+import { faRedo } from "@fortawesome/free-solid-svg-icons";
 
 @Component({
   selector: "content-header",
@@ -19,15 +20,15 @@ import * as AppActions from "src/app/state/app.actions";
   styleUrls: ["./content-header.component.scss"],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ContentHeaderComponent implements OnInit {
+export class ContentHeaderComponent {
   @Input() public userAuth?: UserAuth;
   @Input() public tag: Tag;
   @Input() public userFavoriteTags: Array<string>;
   @Input() public userSubscribedTags: Array<string>;
 
-  constructor(private router: Router, private store: Store<AppState>) {}
+  public faRedo = faRedo;
 
-  ngOnInit() {}
+  constructor(private router: Router, private store: Store<AppState>) {}
 
   public get title(): string {
     return this.tag.name;

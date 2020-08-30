@@ -8,10 +8,11 @@
 
     .card {
       background: $white;
-      box-shadow: 0 2px 4px $lightgrey-1;
-      border-radius: 10px;
+      box-shadow: 0 4px 0 0 $almostwhite;
+      border-radius: 3px;
       border-width: 1.5px;
-      border-color: $almostwhite;
+      border-color: $white;
+      opacity: 0.75;
     }
 
     .card-header {
@@ -22,8 +23,12 @@
       padding: 50px 20px 5px 20px;
 
       h3 {
-        font-size: 18px;
+        font-size: 16px;
         font-weight: 400;
+      }
+
+      clr-icon {
+        color: $grey;
       }
     }
   }

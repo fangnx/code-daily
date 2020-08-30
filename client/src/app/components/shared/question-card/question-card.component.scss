@@ -6,12 +6,19 @@
   main {
     width: 100%;
 
+    ::ng-deep {
+      .card.clickable:hover {
+        box-shadow: 0 4px 0 0 $indigo;
+      }
+    }
+
     .card {
       background: $white;
-      box-shadow: 0 2px 4px $lightgrey-1;
-      border-radius: 10px;
+      box-shadow: 0 4px 0 0 $almostwhite;
+      border-radius: 3px;
       border-width: 1.5px;
-      border-color: $almostwhite;
+      border-color: $white;
+      opacity: 0.75;
 
       .card-header {
         border: none;
@@ -28,17 +35,23 @@
           flex-direction: row;
           justify-content: space-between;
 
-          clr-icon {
+          fa-icon {
+            color: $grey;
             cursor: pointer;
+            font-size: 21px;
             flex-shrink: 0;
             margin: 8px 0 8px 28px;
             height: 28px !important;
             line-height: 28px;
+
+            &:hover {
+              color: $indigo;
+            }
           }
         }
 
         question-badge {
-          padding: 10px 0 10px 0;
+          padding: 15px 0 15px 0;
         }
 
         .info-buttons {
@@ -47,18 +60,34 @@
 
           > article {
             &:nth-child(1) {
-              pointer-events: none;
+              display: flex;
+              gap: 10px;
             }
 
             &:nth-child(2) {
               margin-left: auto;
+
+              > fa-icon {
+                color: $grey;
+                cursor: pointer;
+                font-size: 24px;
+                margin-left: 15px;
+              }
+
+              .stackoverflow-icon:hover {
+                color: $stackoverflow-brand-color;
+              }
+
+              .getpocket-icon:hover {
+                color: $get-pocket-brand-color;
+              }
             }
           }
         }
       }
 
       hr {
-        border: 1px solid $darkgrey-0;
+        border: 2px solid $darkgrey-2;
         box-sizing: border-box;
         margin: 5px auto 5px auto;
         width: 97.5%;

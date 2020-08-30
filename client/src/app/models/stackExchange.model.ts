@@ -7,6 +7,7 @@ export interface Question {
   creation_date: number;
   down_vote_count: number;
   last_edit_date: number;
+  link: string;
   owner: Owner;
   tags: Array<Tag>;
   title: string;
@@ -32,6 +33,7 @@ export interface Tag {
 
 export interface Owner {
   display_name: string;
+  link: string;
   profile_image: string;
   reputation: number;
 }

@@ -9,12 +9,12 @@
         <h3>
           {{ title | titlecase }}
         </h3>
-        <clr-icon
+
+        <fa-icon
           *ngIf="isExpanded"
           (click)="onCloseIconClicked($event)"
-          shape="window-close"
-          size="18"
-        ></clr-icon>
+          [icon]="faWindowClose"
+        ></fa-icon>
       </article>
 
       <question-badge
@@ -27,24 +27,23 @@
 
       <div class="info-buttons">
         <article>
-          <button *ngFor="let tag of tags" class="btn btn-sm">
-            {{ tag }}
-          </button>
+          <simple-tag *ngFor="let tag of tags" [text]="tag"></simple-tag>
         </article>
 
         <article>
-          <button
-            class="btn btn-sm btn-success-outline"
-            (click)="onPocketClicked()"
-          >
-            <clr-icon shape="bookmark" size="18"></clr-icon>
-            Read Later
-          </button>
+          <fa-icon
+            [icon]="faStackOverflow"
+            class="stackoverflow-icon"
+            (click)="onStackOverflowIconClicked($event)"
+          ></fa-icon>
+          <fa-icon [icon]="faGetPocket" class="getpocket-icon"></fa-icon>
         </article>
       </div>
     </div>
 
     <ng-container *ngIf="isExpanded">
+      <!-- <hr class="header-bottom-line" /> -->
+
       <div class="card-body" [@fadeInOnEnter]>
         <question-content
           [contentRawHtml]="rawHtml"

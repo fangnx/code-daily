@@ -1,4 +1,5 @@
 @import "../../../styles/colors.scss";
+@import "../../../styles/fonts.scss";
 
 main > div {
   display: flex;
@@ -18,16 +19,22 @@ main > div {
 
     &:first-child {
       h4 {
+        color: $black-lighter;
+        font-family: $codefont;
+        font-size: 14px;
+        font-weight: 600;
         margin: 0 30px 0 10px;
       }
     }
 
     &:nth-child(2) {
       h4 {
+        font-family: $codefont;
         margin: 0 10px 0 10px;
       }
-      clr-icon {
-        margin-right: 5px;
+
+      fa-icon {
+        margin-right: 2px;
       }
     }
   }

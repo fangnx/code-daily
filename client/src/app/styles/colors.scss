@@ -1,15 +1,23 @@
 $darkgrey-0: rgb(15, 15, 15);
 $darkgrey-1: rgb(30, 30, 30);
 $darkgrey-2: rgb(45, 45, 45);
-$darkgrey-3: rgb(90, 90, 90);
-$grey: rgb(120, 120, 120);
+$darkgrey-3: rgb(90, 89, 91);
+$grey: rgb(160, 159, 161);
 
 $white: rgb(255, 255, 255);
 $almostwhite: rgb(253, 253, 253);
-$lightgrey-0: rgb(240, 240, 240);
-$lightgrey-1: rgb(225, 225, 225);
-$lightgrey-2: rgb(210, 210, 210);
-$lightgrey-3: rgb(195, 195, 195);
+$lightgrey-0: rgb(241, 240, 242);
+$lightgrey-1: rgb(226, 225, 227);
+$lightgrey-2: rgb(211, 210, 212);
+$lightgrey-3: rgb(196, 195, 197);
+
+$black-lighter: rgb(38, 37, 39);
+$black: rgb(41, 40, 42);
+$black-darker: rgb(44, 43, 45);
+
+$indigo-lighter: #9fa8da;
+$indigo: #5c6bc0;
+$indigo-darker: #4150a8;
 
 $darknavy: #162447;
 $pink: #e43f5a;
@@ -17,10 +25,14 @@ $lightnavy: #242629;
 $navyblack: #1b1b2f;
 $olive: #5c7a1e;
 
-$primary-color: $olive;
-$secondary-color: $olive;
+$stackoverflow-brand-color: #f48024;
+$get-pocket-brand-color: #ef4056;
 
-$user-panel-bg-color: #f6f7f8;
-$control-panel-bg-color: $almostwhite;
-$content-panel-bg-color: #f6f7f8;
-$user-management-bg-color: $almostwhite;
+$primary-color: $indigo;
+$secondary-color: $indigo-lighter;
+
+$bg-color: $black-lighter;
+$user-panel-bg-color: $black-lighter;
+$control-panel-bg-color: $black;
+$content-panel-bg-color: $black-lighter;
+$user-management-bg-color: $black-lighter;

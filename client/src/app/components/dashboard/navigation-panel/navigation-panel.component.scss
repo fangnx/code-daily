@@ -1,4 +1,5 @@
 @import "../../../styles/colors.scss";
+@import "../../../styles/fonts.scss";
 
 main {
   background: $user-panel-bg-color;
@@ -19,12 +20,15 @@ main {
       flex-direction: column;
     }
 
-    .flex-bottom {
-      margin-top: auto;
+    .flex-mid {
+      font-family: $codefont;
+      writing-mode: vertical-lr;
     }
 
-    clr-icon {
-      color: $darkgrey-3;
+    fa-icon {
+      color: $grey;
+      cursor: pointer;
+      font-size: 21px;
       margin: 5px 0 5px 0;
     }
   }

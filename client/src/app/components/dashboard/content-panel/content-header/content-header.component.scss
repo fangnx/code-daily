@@ -1,8 +1,35 @@
+@import "../../../../styles/colors.scss";
+@import "../../../../styles/fonts.scss";
+
 main {
   height: 60px;
   width: 800px;
 
-  h2 {
-    line-height: 60px;
+  div {
+    align-items: center;
+    background: linear-gradient(to right, $indigo-darker, $indigo);
+    display: flex;
+
+    article {
+      &:first-child {
+        margin-left: 15px;
+
+        h2 {
+          font-family: $codefont;
+          line-height: 60px;
+        }
+      }
+
+      &:nth-child(2) {
+        color: $lightgrey-0;
+        margin-left: auto;
+        margin-right: 15px;
+
+        fa-icon {
+          font-size: 16px;
+          margin: 0 2px 0 2px;
+        }
+      }
+    }
   }
 }

@@ -26,9 +26,6 @@ export class ControlPanelComponent {
   @Input() public userSubscribedTags: Array<string>;
   @Output() public onTagSelected: EventEmitter<Tag> = new EventEmitter();
 
-  // TODO: refactor this.
-  public favoriteTags: Array<Tag>;
-
   constructor(private router: Router, private store: Store<AppState>) {}
 
   public getTreeNodeClass(tag: Tag): string {
