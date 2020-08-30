@@ -8,5 +8,8 @@ before_install:
 script:
   - npm run test
 
+services:
+  - mongodb
+
 cache:
   npm: false
