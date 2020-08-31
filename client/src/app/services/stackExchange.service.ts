@@ -34,8 +34,12 @@ export class StackExchangeService {
       .pipe(map((res) => res["items"]));
   }
 
-  public getPopularTags() {
-    return this.httpClient.get<Tag[]>("/api/tags", {
+  public getDefaultTags(): Observable<string[]> {
+    return this.httpClient.get<string[]>("/api/tags");
+  }
+
+  public getPopularTags(): Observable<Tag[]> {
+    return this.httpClient.get<Tag[]>("/api/tags/popular", {
       params: {},
     });
   }

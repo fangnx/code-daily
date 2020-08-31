@@ -14,7 +14,7 @@ import {
   Answer,
 } from "src/app/models/stackExchange.model";
 import { fadeInOnEnterAnimation } from "angular-animations";
-import { faWindowClose } from "@fortawesome/free-solid-svg-icons";
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import {
   faGetPocket,
   faStackOverflow,
@@ -47,9 +47,9 @@ export class QuestionCardComponent implements OnInit {
   public tags: Array<Tag>;
   public answers: Array<Answer>;
 
-  public faWindowClose = faWindowClose;
-  public faGetPocket = faGetPocket;
-  public faStackOverflow = faStackOverflow;
+  public closeIcon = faTimes;
+  public pocketIcon = faGetPocket;
+  public stackoverflowIcon = faStackOverflow;
 
   ngOnInit(): void {
     this.isExpanded = false;

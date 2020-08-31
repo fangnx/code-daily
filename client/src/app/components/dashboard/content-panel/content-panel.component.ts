@@ -6,9 +6,9 @@ import {
   selectUser,
   selectUserAuth,
 } from "src/app/state/app.selectors";
-import { Store, select } from "@ngrx/store";
+import { Store } from "@ngrx/store";
 import { AppState } from "src/app/state/app.reducer";
-import { Question, Tag } from "src/app/models/stackExchange.model";
+import { Question } from "src/app/models/stackExchange.model";
 import {
   fadeInOnEnterAnimation,
   fadeOutOnLeaveAnimation,
@@ -33,7 +33,7 @@ export class ContentPanelComponent implements OnInit {
   // TODO: write service to inject params directly from Dashboard component.
   public userAuth$: Observable<UserAuth>;
   public questions$: Observable<Question[]>;
-  public currentTag$: Observable<Tag>;
+  public currentTag$: Observable<string>;
   public userFavoriteTags$: Observable<Array<string>>;
   public userSubscribedTags$: Observable<Array<string>>;
   public ready: boolean = false;

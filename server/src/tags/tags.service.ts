@@ -4,12 +4,51 @@ import { map, catchError } from 'rxjs/operators';
 import { TagsQuery } from './tags.controller';
 import { StackExchangeAppKey } from '../secrets';
 import { stackExchangeBaseUrl } from '../constants';
+import { Tag } from '../shared/stackExchangeModels';
 
 @Injectable()
 export class TagsService {
   constructor(private readonly httpService: HttpService) {}
 
-  async getTags(tagsQuery: TagsQuery) {
+  public getDefaultTagNames(): string[] {
+    return [
+      'java',
+      'python',
+      'javascript',
+      'android',
+      'ios',
+      'c',
+      'c#',
+      'c++',
+      'sql',
+      'mongodb',
+      'r',
+      'tensorflow',
+      'spring',
+      'node.js',
+      'express',
+      'typescript',
+      'reactjs',
+      'angular',
+      'vue.js',
+      'go',
+      'php',
+      'larabel',
+      'ruby',
+      'ruby-on-rails',
+      'django',
+      'swift',
+      'objective-c',
+      'regex',
+      'git',
+      'unix',
+      'shell',
+      'bash',
+      'database',
+    ];
+  }
+
+  public async getPopularTags(tagsQuery: TagsQuery): Promise<Tag[]> {
     const url: string = `${stackExchangeBaseUrl}/tags`;
     return this.httpService
       .get(url, {
@@ -29,7 +68,10 @@ export class TagsService {
       .toPromise();
   }
 
-  async getRelatedTags(tags: string[], tagsQuery: TagsQuery) {
+  public async getRelatedTags(
+    tags: string[],
+    tagsQuery: TagsQuery,
+  ): Promise<Tag[]> {
     const url: string = `${stackExchangeBaseUrl}/${tags}/related`;
     return this.httpService
       .get(url, {

@@ -6,7 +6,7 @@ import * as AppActions from "./app.actions";
 
 export interface AppState extends EntityState<Question> {
   tags: Array<string>;
-  selectedTag: Tag;
+  selectedTag: string;
   questions: Array<Question>;
   userAuth: UserAuth;
   user: User;

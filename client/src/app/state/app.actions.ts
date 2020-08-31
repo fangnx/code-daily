@@ -1,20 +1,20 @@
 import { createAction, props } from "@ngrx/store";
-import { Tag, Question } from "../models/stackExchange.model";
+import { Question } from "../models/stackExchange.model";
 import { UserAuth, User } from "../models/user.model";
 
 export const selectTag = createAction(
   "[App] Select Tag",
-  props<{ tag: Tag }>()
+  props<{ tag: string }>()
 );
 
 export const unselectTag = createAction(
   "[App] Unselect Tag",
-  props<{ tag: Tag }>()
+  props<{ tag: string }>()
 );
 
 export const fetchQuestions = createAction(
   "[App] Fetch Questions",
-  props<{ tag: Tag; fetchRandom?: boolean }>()
+  props<{ tag: string; fetchRandom?: boolean }>()
 );
 
 export const fetchQuestionsSuccess = createAction(

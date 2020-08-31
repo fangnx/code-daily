@@ -27,14 +27,17 @@ main {
         margin: 4px 0 4px 0;
 
         &.selected {
-          // border-left-color: $primary-color;
           font-weight: 600;
         }
 
         button {
           &.active {
-            background: transparent;
+            background: none;
             color: $primary-color;
+          }
+
+          &:hover {
+            background: none;
           }
         }
       }

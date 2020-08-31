@@ -13,7 +13,7 @@
         <fa-icon
           *ngIf="isExpanded"
           (click)="onCloseIconClicked($event)"
-          [icon]="faWindowClose"
+          [icon]="closeIcon"
         ></fa-icon>
       </article>
 
@@ -32,11 +32,11 @@
 
         <article>
           <fa-icon
-            [icon]="faStackOverflow"
+            [icon]="stackoverflowIcon"
             class="stackoverflow-icon"
             (click)="onStackOverflowIconClicked($event)"
           ></fa-icon>
-          <fa-icon [icon]="faGetPocket" class="getpocket-icon"></fa-icon>
+          <fa-icon [icon]="pocketIcon" class="getpocket-icon"></fa-icon>
         </article>
       </div>
     </div>

@@ -41,4 +41,10 @@ export class QuestionBadgeComponent implements OnInit {
     this.ownerName = parseHtmlEntities(this.owner.display_name);
     this.ownerProfileImageUrl = this.owner.profile_image;
   }
+
+  public get profileImageUrl() {
+    return !this.ownerProfileImageUrl
+      ? "../../../../assets/default-user.png"
+      : this.ownerProfileImageUrl;
+  }
 }

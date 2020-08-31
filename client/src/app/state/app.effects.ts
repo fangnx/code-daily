@@ -28,7 +28,7 @@ export class AppEffects {
     ofType(AppActions.fetchQuestions),
     switchMap((action) => {
       const query: QuestionsQuery = {
-        tags: StringifyTag(action.tag),
+        tags: action.tag,
         sort: QuestionsSortBy.Votes,
         pagesize: 10,
       };

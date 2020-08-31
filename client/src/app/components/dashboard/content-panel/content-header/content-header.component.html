@@ -5,7 +5,30 @@
     </article>
 
     <article>
-      <fa-icon [icon]="faRedo" (click)="onRefreshClicked()"></fa-icon>
+      <div #dropdown class="dropdown bottom-right" [ngClass]="dropdownClass">
+        <fa-icon
+          [icon]="dropdownIcon"
+          (click)="onDropdownIconClicked()"
+        ></fa-icon>
+
+        <div class="dropdown-menu">
+          <div
+            class="dropdown-item"
+            (click)="onDropdownOptionClicked()"
+            [ngClass]="dropdownOptionClass('default')"
+          >
+            🔥Trending questions of this week
+          </div>
+
+          <div
+            class="dropdown-item"
+            (click)="onDropdownOptionClicked('random')"
+            [ngClass]="dropdownOptionClass('random')"
+          >
+            Random trending questions
+          </div>
+        </div>
+      </div>
     </article>
   </div>
 </main>

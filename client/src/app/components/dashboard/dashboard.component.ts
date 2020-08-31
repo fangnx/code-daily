@@ -23,7 +23,7 @@ import { ContentPanelService } from "src/app/services/contentPanel.service";
 })
 export class DashboardComponent implements OnInit {
   public questions$: Observable<Array<Question>>;
-  public tags$: Observable<Array<Tag>>;
+  public tags$: Observable<string[]>;
   public userAuth$: Observable<UserAuth>;
   public userFavoriteTags$: Observable<Array<string>>;
   public userSubscribedTags$: Observable<Array<string>>;
@@ -40,9 +40,7 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
     this.questions$ = this.store.select((state) => selectQuestions(state));
 
-    this.tags$ = this.stackExchangeService
-      .getPopularTags()
-      .pipe(map((res) => res["items"]));
+    this.tags$ = this.stackExchangeService.getDefaultTags();
 
     this.store
       .select((state) => selectSelectedTag(state))
@@ -78,12 +76,12 @@ export class DashboardComponent implements OnInit {
       );
   }
 
-  public onTagSelected(tag: Tag): void {
+  public onTagSelected(tag: string): void {
     this.contentPanelService.setReadyState(false);
     this.store.dispatch(AppActions.selectTag({ tag }));
   }
 
-  public onTagUnselected(tag: Tag): void {
+  public onTagUnselected(tag: string): void {
     this.store.dispatch(AppActions.unselectTag({ tag }));
   }
 }

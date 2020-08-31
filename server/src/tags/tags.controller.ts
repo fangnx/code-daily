@@ -6,7 +6,12 @@ import {
   Param,
 } from '@nestjs/common';
 import { TagsService } from './tags.service';
-import { BaseQuery, OrderBy, TagsSortBy } from '../shared/stackExchangeModels';
+import {
+  BaseQuery,
+  OrderBy,
+  TagsSortBy,
+  Tag,
+} from '../shared/stackExchangeModels';
 
 export class TagsQuery extends BaseQuery {
   order: OrderBy = OrderBy.Desc;
@@ -17,20 +22,25 @@ export class TagsQuery extends BaseQuery {
 export class TagsController {
   constructor(private readonly tagsService: TagsService) {}
 
-  @Get('')
-  async getTags(@Query() tagsQuery: TagsQuery) {
+  @Get()
+  public getDefaultTagNames(): string[] {
+    return this.tagsService.getDefaultTagNames();
+  }
+
+  @Get('popular')
+  public async getPopularTags(@Query() tagsQuery: TagsQuery): Promise<Tag[]> {
     try {
-      return this.tagsService.getTags(tagsQuery);
+      return this.tagsService.getPopularTags(tagsQuery);
     } catch (error) {
       throw new InternalServerErrorException(error);
     }
   }
 
   @Get('/:tags/related')
-  async getRelatedTags(
+  public async getRelatedTags(
     @Param('tags') tags: string[],
     @Query() tagsQuery: TagsQuery,
-  ) {
+  ): Promise<Tag[]> {
     try {
       return this.tagsService.getRelatedTags(tags, tagsQuery);
     } catch (error) {

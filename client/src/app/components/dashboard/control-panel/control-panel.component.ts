@@ -20,47 +20,43 @@ import { UserAuth } from "src/app/models/user.model";
 })
 export class ControlPanelComponent {
   @Input() public user?: UserAuth;
-  @Input() public tags: Array<Tag>;
-  @Input() public selectedTag: Tag;
+  @Input() public tags: Array<string>;
+  @Input() public selectedTag: string;
   @Input() public userFavoriteTags: Array<string>;
   @Input() public userSubscribedTags: Array<string>;
-  @Output() public onTagSelected: EventEmitter<Tag> = new EventEmitter();
+  @Output() public onTagSelected: EventEmitter<string> = new EventEmitter();
 
   constructor(private router: Router, private store: Store<AppState>) {}
 
-  public getTreeNodeClass(tag: Tag): string {
+  public getTreeNodeClass(tag: string): string {
     return this.isTagSelected(tag) ? "selected" : "";
   }
 
-  public getTagClass(tag: Tag): string {
+  public getTagClass(tag: string): string {
     return this.isTagSelected(tag) ? "active" : "";
   }
 
-  public getStarIconClass(tag: Tag): string {
+  public getStarIconClass(tag: string): string {
     return this.isTagFavoriteByUser(tag) ? "is-solid" : "";
   }
 
-  public getEmailIconClass(tag: Tag): string {
+  public getEmailIconClass(tag: string): string {
     return this.isTagSubscribedByUser(tag) ? "is-solid" : "";
   }
 
-  private isTagSelected(tag: Tag): boolean {
-    return this.selectedTag && this.selectedTag.name === tag.name;
+  private isTagSelected(tag: string): boolean {
+    return this.selectedTag === tag;
   }
 
-  private isTagFavoriteByUser(tag: Tag): boolean {
-    return (
-      this.userFavoriteTags && this.userFavoriteTags.indexOf(tag.name) >= 0
-    );
+  private isTagFavoriteByUser(tag: string): boolean {
+    return this.userFavoriteTags && this.userFavoriteTags.indexOf(tag) >= 0;
   }
 
-  private isTagSubscribedByUser(tag: Tag): boolean {
-    return (
-      this.userSubscribedTags && this.userSubscribedTags.indexOf(tag.name) >= 0
-    );
+  private isTagSubscribedByUser(tag: string): boolean {
+    return this.userSubscribedTags && this.userSubscribedTags.indexOf(tag) >= 0;
   }
 
-  public onSelectTag(tag: Tag): void {
+  public onSelectTag(tag: string): void {
     // TODO: find a better way to redirect.
     this.router.navigate(["/dashboard"]);
     if (this.selectedTag != tag) {
@@ -69,31 +65,29 @@ export class ControlPanelComponent {
     }
   }
 
-  public onStarClicked(tag: Tag): void {
+  public onStarClicked(tag: string): void {
     if (!this.hasUserLoggedIn) {
       this.router.navigate(["/user/login"]);
       return;
     }
 
     if (this.isTagFavoriteByUser(tag)) {
-      this.store.dispatch(
-        AppActions.removeFavoriteTagFromUser({ tag: tag.name })
-      );
+      this.store.dispatch(AppActions.removeFavoriteTagFromUser({ tag }));
     } else {
-      this.store.dispatch(AppActions.addFavoriteTagToUser({ tag: tag.name }));
+      this.store.dispatch(AppActions.addFavoriteTagToUser({ tag }));
     }
   }
 
-  public onEmailClicked(tag: Tag): void {
+  public onEmailClicked(tag: string): void {
     if (!this.hasUserLoggedIn) {
       this.router.navigate(["/user/login"]);
       return;
     }
 
     if (this.isTagSubscribedByUser(tag)) {
-      this.store.dispatch(AppActions.unsubscribeToTag({ tag: tag.name }));
+      this.store.dispatch(AppActions.unsubscribeToTag({ tag: tag }));
     } else {
-      this.store.dispatch(AppActions.subscribeToTag({ tag: tag.name }));
+      this.store.dispatch(AppActions.subscribeToTag({ tag: tag }));
     }
   }
 

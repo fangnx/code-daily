@@ -5,7 +5,7 @@ main {
   height: 60px;
   width: 800px;
 
-  div {
+  > div {
     align-items: center;
     background: linear-gradient(to right, $indigo-darker, $indigo);
     display: flex;
@@ -25,9 +25,30 @@ main {
         margin-left: auto;
         margin-right: 15px;
 
-        fa-icon {
-          font-size: 16px;
-          margin: 0 2px 0 2px;
+        .dropdown {
+          > fa-icon {
+            font-size: 21px;
+            cursor: pointer;
+          }
+          .dropdown-menu {
+            background: $lightgrey-2;
+            border-radius: 3px;
+            border-color: $lightgrey-2;
+
+            .dropdown-item {
+              color: $darkgrey-2;
+              font-weight: 500;
+
+              &:hover {
+                background: none;
+                color: $indigo;
+              }
+
+              &.selected {
+                color: $indigo;
+              }
+            }
+          }
         }
       }
     }
