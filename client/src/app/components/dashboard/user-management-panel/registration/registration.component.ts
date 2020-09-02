@@ -30,7 +30,7 @@ export class RegistrationComponent implements OnInit {
     this.isSubmitted = true;
     this.userService
       .registerUser(this.registrationForm.value)
-      .pipe(map((value) => console.log(value)))
+      .pipe()
       .subscribe();
   }
 }

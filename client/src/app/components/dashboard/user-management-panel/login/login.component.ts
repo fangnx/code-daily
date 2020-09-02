@@ -1,7 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy } from "@angular/core";
 import { FormGroup, FormBuilder } from "@angular/forms";
 import { UserService } from "src/app/services/user.service";
-import { map, catchError } from "rxjs/operators";
+import { map } from "rxjs/operators";
 
 @Component({
   selector: "login",
@@ -35,9 +35,7 @@ export class LoginComponent implements OnInit {
       .loginUser(this.loginForm.value)
       .pipe(map((value) => value))
       .subscribe(
-        (value) => {
-          console.log(value);
-        },
+        (value) => {},
         (error) => {
           this.errorText = error;
         }

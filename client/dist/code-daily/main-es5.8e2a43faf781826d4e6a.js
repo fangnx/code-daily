@@ -1625,7 +1625,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "dropdownClass",
         get: function get() {
-          console.log(this.isMenuExpanded);
           return this.isMenuExpanded ? "open" : "";
         }
       }]);
@@ -1774,8 +1773,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           this.userFavoriteTags$ = this.store.select(function (state) {
             return Object(src_app_state_app_selectors__WEBPACK_IMPORTED_MODULE_2__["selectUser"])(state);
           }).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["map"])(function (user) {
-            console.log(user);
-
             if (!user) {
               return [];
             }
@@ -2414,9 +2411,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           this.errorText = "";
           this.userService.loginUser(this.loginForm.value).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (value) {
             return value;
-          })).subscribe(function (value) {
-            console.log(value);
-          }, function (error) {
+          })).subscribe(function (value) {}, function (error) {
             _this3.errorText = error;
           });
         }
@@ -2509,12 +2504,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     var src_app_services_user_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
     /*! src/app/services/user.service */
     "./src/app/services/user.service.ts");
-    /* harmony import */
-
-
-    var rxjs_operators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
-    /*! rxjs/operators */
-    "./node_modules/rxjs/_esm2015/operators/index.js");
 
     var RegistrationComponent = /*#__PURE__*/function () {
       function RegistrationComponent(formBuilder, userService) {
@@ -2537,9 +2526,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         key: "onSubmit",
         value: function onSubmit() {
           this.isSubmitted = true;
-          this.userService.registerUser(this.registrationForm.value).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (value) {
-            return console.log(value);
-          })).subscribe();
+          this.userService.registerUser(this.registrationForm.value).pipe().subscribe();
         }
       }]);
 
@@ -4867,4 +4854,4 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /***/
   }
 }, [[0, "runtime", "vendor"]]]);
-//# sourceMappingURL=main-es5.cf2d56edbe2627bc1254.js.map
+//# sourceMappingURL=main-es5.8e2a43faf781826d4e6a.js.map

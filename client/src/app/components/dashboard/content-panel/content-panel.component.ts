@@ -56,7 +56,6 @@ export class ContentPanelComponent implements OnInit {
       .select((state) => selectUser(state))
       .pipe(
         map((user) => {
-          console.log(user);
           if (!user) {
             return [];
           }

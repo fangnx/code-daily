@@ -829,7 +829,6 @@ let ContentHeaderComponent = class ContentHeaderComponent {
         return !!this.userAuth && !!this.userAuth.email;
     }
     get dropdownClass() {
-        console.log(this.isMenuExpanded);
         return this.isMenuExpanded ? "open" : "";
     }
     dropdownOptionClass(option) {
@@ -933,7 +932,6 @@ let ContentPanelComponent = class ContentPanelComponent {
         this.userFavoriteTags$ = this.store
             .select((state) => Object(src_app_state_app_selectors__WEBPACK_IMPORTED_MODULE_2__["selectUser"])(state))
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["map"])((user) => {
-            console.log(user);
             if (!user) {
                 return [];
             }
@@ -1337,9 +1335,7 @@ let LoginComponent = class LoginComponent {
         this.userService
             .loginUser(this.loginForm.value)
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])((value) => value))
-            .subscribe((value) => {
-            console.log(value);
-        }, (error) => {
+            .subscribe((value) => { }, (error) => {
             this.errorText = error;
         });
     }
@@ -1390,8 +1386,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm2015/forms.js");
 /* harmony import */ var src_app_services_user_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/services/user.service */ "./src/app/services/user.service.ts");
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm2015/operators/index.js");
-
 
 
 
@@ -1412,7 +1406,7 @@ let RegistrationComponent = class RegistrationComponent {
         this.isSubmitted = true;
         this.userService
             .registerUser(this.registrationForm.value)
-            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])((value) => console.log(value)))
+            .pipe()
             .subscribe();
     }
 };
@@ -2778,4 +2772,4 @@ module.exports = __webpack_require__(/*! /Users/fnx/GitRepos/fnx-code-daily/clie
 /***/ })
 
 },[[0,"runtime","vendor"]]]);
-//# sourceMappingURL=main-es2015.cf2d56edbe2627bc1254.js.map
+//# sourceMappingURL=main-es2015.8e2a43faf781826d4e6a.js.map

@@ -121,7 +121,6 @@ export class ContentHeaderComponent implements OnInit, OnDestroy {
   }
 
   public get dropdownClass(): string {
-    console.log(this.isMenuExpanded);
     return this.isMenuExpanded ? "open" : "";
   }
 
