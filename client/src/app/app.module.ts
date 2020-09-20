@@ -1,4 +1,4 @@
-import { NgModule } from "@angular/core";
+import { NgModule, APP_INITIALIZER } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
@@ -6,10 +6,11 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { AppRoutingModule } from "./app-routing.module";
 
 // State management.
-import { StoreModule } from "@ngrx/store";
+import { StoreModule, Store } from "@ngrx/store";
 import { EffectsModule } from "@ngrx/effects";
 import { StoreDevtoolsModule } from "@ngrx/store-devtools";
-import { appReducer } from "./state/app.reducer";
+import { appReducer, AppState } from "./state/app.reducer";
+import * as AppActions from "src/app/state/app.actions";
 import { AppEffects } from "./state/app.effects";
 import { storageMetaReducer } from "./storage.metareducer";
 
@@ -17,7 +18,7 @@ import { storageMetaReducer } from "./storage.metareducer";
 import { ClarityModule } from "@clr/angular";
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 import { MarkdownModule } from "ngx-markdown";
-import { TooltipModule } from "ng2-tooltip-directive";
+import { TooltipModule, TooltipOptions } from "ng2-tooltip-directive";
 
 import { UserService } from "./services/user.service";
 import { PocketService } from "./services/pocket.service";
@@ -41,6 +42,7 @@ import { ContentPanelService } from "./services/contentPanel.service";
 import { SubscriptionManagementComponent } from "./components/dashboard/user-management-panel/subscription-management/subscription-management.component";
 import { ContentHeaderComponent } from "./components/dashboard/content-panel/content-header/content-header.component";
 import { SimpleTagComponent } from "./components/shared/simple-tag/simple-tag.component";
+import { tooltipOptions } from "./custom-tooltip";
 
 @NgModule({
   declarations: [
@@ -77,10 +79,21 @@ import { SimpleTagComponent } from "./components/shared/simple-tag/simple-tag.co
     HttpClientModule,
     StoreDevtoolsModule,
     MarkdownModule.forRoot(),
-    TooltipModule,
+    TooltipModule.forRoot(tooltipOptions),
   ],
   entryComponents: [AnswerSectionComponent],
   providers: [
+    {
+      provide: APP_INITIALIZER,
+      useFactory: (store: Store<AppState>) => {
+        return () => {
+          store.dispatch(AppActions.fetchCurrentUser());
+          store.dispatch(AppActions.selectTag({ tag: "java" }));
+        };
+      },
+      multi: true,
+      deps: [Store],
+    },
     StackExchangeService,
     UserService,
     ContentPanelService,

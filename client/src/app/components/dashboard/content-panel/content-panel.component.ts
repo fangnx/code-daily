@@ -18,7 +18,6 @@ import {
 } from "angular-animations";
 import { ContentPanelService } from "src/app/services/contentPanel.service";
 import { UserAuth } from "src/app/models/user.model";
-import { PocketService } from "../../../services/pocket.service";
 
 @Component({
   selector: "content-panel",
@@ -27,7 +26,7 @@ import { PocketService } from "../../../services/pocket.service";
   changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [
     fadeInOnEnterAnimation(),
-    fadeOutOnLeaveAnimation(),
+    fadeOutOnLeaveAnimation({ delay: 25 }),
     bounceOnEnterAnimation(),
   ],
 })
@@ -42,8 +41,7 @@ export class ContentPanelComponent implements OnInit {
 
   constructor(
     private store: Store<AppState>,
-    private contentPanelService: ContentPanelService,
-    private pocketService: PocketService
+    private contentPanelService: ContentPanelService
   ) {
     this.contentPanelService.isContentPanelReady$.subscribe((value) => {
       this.ready = value;

@@ -29,10 +29,9 @@ export class PocketService {
 
     let url = new URL("http://getpocket.com/auth/authorize");
     url.searchParams.append("request_token", requestToken.code);
-    // TODO
     url.searchParams.append(
       "redirect_uri",
-      `http://localhost:4200/user/pocket/${requestToken.code}`
+      `${window.location.origin}/user/pocket/${requestToken.code}`
     );
     this.document.location.href = url.toString();
   }

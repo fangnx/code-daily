@@ -57,4 +57,13 @@ body {
   :focus {
     outline: none;
   }
+
+  .tooltip {
+    // TODO: remove !important.
+    background: $black-lighter !important;
+    color: $lightgrey-0 !important;
+    font-family: $mainfont;
+    font-size: 12px;
+    opacity: 0.9;
+  }
 }

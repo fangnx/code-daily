@@ -33,7 +33,7 @@ export class TagsService {
       'vue.js',
       'go',
       'php',
-      'larabel',
+      'laravel',
       'ruby',
       'ruby-on-rails',
       'django',

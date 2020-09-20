@@ -21,8 +21,8 @@ import { combineLatest, Subscription } from "rxjs";
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UserManagementPanelComponent implements OnInit, OnDestroy {
-  public hasUserLoggedIn: boolean = false;
-  public hasUserConnectedWithPocket: boolean = false;
+  public hasUserLoggedIn: boolean;
+  public hasUserConnectedWithPocket: boolean;
   private userAuthSubscription: Subscription;
   private pocketConnectionSubscription: Subscription;
 
@@ -34,7 +34,7 @@ export class UserManagementPanelComponent implements OnInit, OnDestroy {
     private pocketService: PocketService
   ) {}
 
-  ngOnInit() {
+  async ngOnInit(): Promise<void> {
     this.userAuthSubscription = this.store
       .select((state) => selectUserAuth(state))
       .pipe(
@@ -54,17 +54,19 @@ export class UserManagementPanelComponent implements OnInit, OnDestroy {
       this.store.select((state) => selectUserAuth(state))
     )
       .pipe(
-        map(([params, userAuth]) => {
+        tap(async ([params, userAuth]) => {
           const requestToken: string = params.get("pocket_request_token");
+          // TODO: move the logic to ngrx effects.
           if (requestToken) {
-            this.pocketService.authorize(userAuth.email, requestToken);
+            await this.pocketService.authorize(userAuth.email, requestToken);
+            localStorage.setItem("userAuth", JSON.stringify(userAuth));
           }
         })
       )
       .subscribe();
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     if (this.userAuthSubscription) {
       this.userAuthSubscription.unsubscribe();
     }

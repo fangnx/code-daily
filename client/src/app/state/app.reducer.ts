@@ -1,6 +1,6 @@
 import { createReducer, on } from "@ngrx/store";
 import { EntityState, EntityAdapter, createEntityAdapter } from "@ngrx/entity";
-import { Question, Tag } from "../models/stackExchange.model";
+import { Question } from "../models/stackExchange.model";
 import { UserAuth, User } from "../models/user.model";
 import * as AppActions from "./app.actions";
 
@@ -29,6 +29,7 @@ export const appReducer = createReducer(
   on(AppActions.selectTag, (state, { tag }) => ({
     ...state,
     selectedTag: tag,
+    questions: [],
   })),
   on(AppActions.fetchQuestionsSuccess, (state, { questions }) => {
     return { ...state, questions: questions };

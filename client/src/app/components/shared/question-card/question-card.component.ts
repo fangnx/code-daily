@@ -19,7 +19,8 @@ import {
   faGetPocket,
   faStackOverflow,
 } from "@fortawesome/free-brands-svg-icons";
-// import { PocketService } from "../../../services/pocket.service";
+import { UserAuth } from "../../../models/user.model";
+
 @Component({
   selector: "question-card",
   templateUrl: "./question-card.component.html",
@@ -30,6 +31,7 @@ import {
 export class QuestionCardComponent implements OnInit {
   @Input() public question: Question;
   @Input() public selectedTagNames: Set<string> = new Set();
+  @Input() public userAuth: UserAuth;
   @Output() public onAddToPocket: EventEmitter<any> = new EventEmitter();
 
   public isExpanded: boolean;
@@ -50,7 +52,7 @@ export class QuestionCardComponent implements OnInit {
 
   public closeIcon = faTimes;
   public pocketIcon = faGetPocket;
-  public stackoverflowIcon = faStackOverflow;
+  public stackOverflowIcon = faStackOverflow;
 
   constructor() {}
 

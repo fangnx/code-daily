@@ -44,7 +44,7 @@ export class UserService {
   }
 
   public logoutUser(): void {
-    localStorage.removeItem("user");
+    localStorage.removeItem("userAuth");
     this.store.dispatch(AppActions.logoutUser());
   }
 

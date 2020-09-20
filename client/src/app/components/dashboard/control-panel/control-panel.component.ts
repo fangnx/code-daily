@@ -6,7 +6,6 @@ import {
   EventEmitter,
 } from "@angular/core";
 import { Router } from "@angular/router";
-import { Tag } from "src/app/models/stackExchange.model";
 import { Store } from "@ngrx/store";
 import { AppState } from "src/app/state/app.reducer";
 import * as AppActions from "src/app/state/app.actions";

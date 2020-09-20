@@ -24,6 +24,7 @@ import { ContentPanelService } from "src/app/services/contentPanel.service";
 export class DashboardComponent implements OnInit {
   public questions$: Observable<Array<Question>>;
   public tags$: Observable<string[]>;
+  public selectedTag$: Observable<string>;
   public userAuth$: Observable<UserAuth>;
   public userFavoriteTags$: Observable<Array<string>>;
   public userSubscribedTags$: Observable<Array<string>>;
@@ -41,6 +42,8 @@ export class DashboardComponent implements OnInit {
     this.questions$ = this.store.select((state) => selectQuestions(state));
 
     this.tags$ = this.stackExchangeService.getDefaultTags();
+
+    this.selectedTag$ = this.store.select((state) => selectSelectedTag(state));
 
     this.store
       .select((state) => selectSelectedTag(state))

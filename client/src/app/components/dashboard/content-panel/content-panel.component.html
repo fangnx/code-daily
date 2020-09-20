@@ -11,6 +11,7 @@
   <div class="card-list-container">
     <question-card
       *ngFor="let question of questions$ | async"
+      [userAuth]="userAuth$ | async"
       [question]="question"
       (onAddToPocket)="onAddToPocket($event)"
       [@fadeInOnEnter]

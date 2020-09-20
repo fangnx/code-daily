@@ -177,7 +177,6 @@ export class AppEffects {
   notifyPocketOperation = this.actions$.pipe(
     ofType(AppActions.notifyPocketOperation),
     switchMap((action) => {
-      alert(action.operationType);
       return EMPTY;
     })
   );
