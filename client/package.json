@@ -39,6 +39,7 @@
     "angular-animations": "0.0.10",
     "he": "^1.2.0",
     "lit-html": "^1.2.1",
+    "ng2-tooltip-directive": "^2.9.22",
     "ngrx-store-localstorage": "^9.0.0",
     "ngx-markdown": "^9.1.1",
     "prismjs": "^1.20.0",

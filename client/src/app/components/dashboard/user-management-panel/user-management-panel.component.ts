@@ -24,7 +24,6 @@ export class UserManagementPanelComponent implements OnInit, OnDestroy {
   public hasUserLoggedIn: boolean = false;
   public hasUserConnectedWithPocket: boolean = false;
   private userAuthSubscription: Subscription;
-  private userSubscription: Subscription;
   private pocketConnectionSubscription: Subscription;
 
   constructor(
@@ -43,15 +42,7 @@ export class UserManagementPanelComponent implements OnInit, OnDestroy {
           if (userAuth && userAuth.email) {
             this.hasUserLoggedIn = true;
           }
-        })
-      )
-      .subscribe();
-
-    this.userSubscription = this.store
-      .select((state) => selectUser(state))
-      .pipe(
-        tap((user) => {
-          if (user && user.pocketAccessToken) {
+          if (userAuth && userAuth.pocketAccessToken) {
             this.hasUserConnectedWithPocket = true;
           }
         })
@@ -77,9 +68,6 @@ export class UserManagementPanelComponent implements OnInit, OnDestroy {
     if (this.userAuthSubscription) {
       this.userAuthSubscription.unsubscribe();
     }
-    if (this.userSubscription) {
-      this.userSubscription.unsubscribe();
-    }
     if (this.pocketConnectionSubscription) {
       this.pocketConnectionSubscription.unsubscribe();
     }
@@ -93,7 +81,10 @@ export class UserManagementPanelComponent implements OnInit, OnDestroy {
     this.router.navigate(["/user/login"]);
   }
 
-  public async onConnectToPocketClicked() {
+  public async onPocketClicked() {
+    if (this.hasUserConnectedWithPocket) {
+      return;
+    }
     await this.pocketService.redirectToPocket();
   }
 
@@ -103,5 +94,11 @@ export class UserManagementPanelComponent implements OnInit, OnDestroy {
 
   public onManageSubscriptionClicked(): void {
     this.router.navigate(["/subscription"]);
+  }
+
+  public get pocketCardTitle(): string {
+    return this.hasUserConnectedWithPocket
+      ? "Connected to Pocket"
+      : "Connect to Pocket";
   }
 }

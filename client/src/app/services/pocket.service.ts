@@ -1,7 +1,12 @@
 import { Injectable, Inject } from "@angular/core";
 import { DOCUMENT } from "@angular/common";
 import { HttpClient, HttpParams } from "@angular/common/http";
-import { PocketRequestToken, PocketAccessToken } from "../models/pocket.model";
+import {
+  PocketRequestToken,
+  PocketAccessToken,
+  AddItemToPocketDto,
+} from "../models/pocket.model";
+import { Observable } from "rxjs";
 
 @Injectable()
 export class PocketService {
@@ -24,9 +29,10 @@ export class PocketService {
 
     let url = new URL("http://getpocket.com/auth/authorize");
     url.searchParams.append("request_token", requestToken.code);
+    // TODO
     url.searchParams.append(
       "redirect_uri",
-      `http://codedaily.info/user/pocket/${requestToken.code}`
+      `http://localhost:4200/user/pocket/${requestToken.code}`
     );
     this.document.location.href = url.toString();
   }
@@ -42,5 +48,20 @@ export class PocketService {
     return this.httpClient
       .get<PocketAccessToken>("api/pocket/authorize", { params })
       .toPromise();
+  }
+
+  public addItemToPocket(
+    accessToken: string,
+    url: string,
+    title?: string,
+    tags?: string
+  ): Observable<boolean> {
+    const dto: AddItemToPocketDto = {
+      access_token: accessToken,
+      url,
+      title,
+      tags,
+    };
+    return this.httpClient.post<boolean>("api/pocket/add", dto);
   }
 }

@@ -36,7 +36,7 @@ export class UserService {
   public loginUser(loginUserDto: LoginUserDto): Observable<UserAuth> {
     return this.httpClient.post<UserAuth>("/api/auth/login", loginUserDto).pipe(
       map((userAuth) => {
-        localStorage.setItem("user", JSON.stringify(userAuth));
+        localStorage.setItem("userAuth", JSON.stringify(userAuth));
         this.store.dispatch(AppActions.loginUser({ userAuth }));
         return userAuth;
       })

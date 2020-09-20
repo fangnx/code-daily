@@ -2,6 +2,7 @@ export interface UserAuth {
   email: string;
   accessToken: string;
   expiresIn: string;
+  pocketAccessToken: string;
 }
 
 export interface User {

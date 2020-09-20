@@ -1,6 +1,7 @@
 import { createAction, props } from "@ngrx/store";
 import { Question } from "../models/stackExchange.model";
 import { UserAuth, User } from "../models/user.model";
+import { PocketOperationType } from "../models/pocket.model";
 
 export const selectTag = createAction(
   "[App] Select Tag",
@@ -54,4 +55,14 @@ export const subscribeToTag = createAction(
 export const unsubscribeToTag = createAction(
   "[App] Unsubscribe to Tag",
   props<{ tag: string }>()
+);
+
+export const addItemToPocket = createAction(
+  "[App] Add Item to Pocket",
+  props<{ url: string; title?: string; tags?: string }>()
+);
+
+export const notifyPocketOperation = createAction(
+  "[App] Notify Pocket Operation",
+  props<{ operationType: PocketOperationType; success?: boolean }>()
 );

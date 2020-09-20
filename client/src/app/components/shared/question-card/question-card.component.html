@@ -35,15 +35,19 @@
             [icon]="stackoverflowIcon"
             class="stackoverflow-icon"
             (click)="onStackOverflowIconClicked($event)"
+            tooltip="Open the question in StackOverflow"
           ></fa-icon>
-          <fa-icon [icon]="pocketIcon" class="getpocket-icon"></fa-icon>
+          <fa-icon
+            [icon]="pocketIcon"
+            class="getpocket-icon"
+            (click)="onGetPocketIconClicked($event)"
+            tooltip="Add to Pocket"
+          ></fa-icon>
         </article>
       </div>
     </div>
 
     <ng-container *ngIf="isExpanded">
-      <!-- <hr class="header-bottom-line" /> -->
-
       <div class="card-body" [@fadeInOnEnter]>
         <question-content
           [contentRawHtml]="rawHtml"

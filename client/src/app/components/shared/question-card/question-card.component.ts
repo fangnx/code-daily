@@ -19,6 +19,7 @@ import {
   faGetPocket,
   faStackOverflow,
 } from "@fortawesome/free-brands-svg-icons";
+// import { PocketService } from "../../../services/pocket.service";
 @Component({
   selector: "question-card",
   templateUrl: "./question-card.component.html",
@@ -29,7 +30,7 @@ import {
 export class QuestionCardComponent implements OnInit {
   @Input() public question: Question;
   @Input() public selectedTagNames: Set<string> = new Set();
-  @Output() public onTagSelected: EventEmitter<Tag> = new EventEmitter();
+  @Output() public onAddToPocket: EventEmitter<any> = new EventEmitter();
 
   public isExpanded: boolean;
 
@@ -51,6 +52,8 @@ export class QuestionCardComponent implements OnInit {
   public pocketIcon = faGetPocket;
   public stackoverflowIcon = faStackOverflow;
 
+  constructor() {}
+
   ngOnInit(): void {
     this.isExpanded = false;
 
@@ -66,7 +69,6 @@ export class QuestionCardComponent implements OnInit {
     this.creationDate = parseUnixTimestamp(this.question.creation_date);
     this.lastEditDate = parseUnixTimestamp(this.question.last_edit_date);
     this.link = this.question.link;
-
     this.tags = this.question.tags;
   }
 
@@ -88,5 +90,10 @@ export class QuestionCardComponent implements OnInit {
 
   public onGetPocketIconClicked(event): void {
     event.stopPropagation();
+    this.onAddToPocket.emit({
+      url: this.link,
+      title: this.title,
+      tags: this.tags.join(","),
+    });
   }
 }

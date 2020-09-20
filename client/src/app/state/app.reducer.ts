@@ -42,8 +42,10 @@ export const appReducer = createReducer(
     userAuth: null,
     user: null,
   })),
-  on(AppActions.fetchCurrentUserSuccess, (state, { user }) => ({
-    ...state,
-    user,
-  }))
+  on(AppActions.fetchCurrentUserSuccess, (state, { user }) => {
+    return {
+      ...state,
+      user,
+    };
+  })
 );

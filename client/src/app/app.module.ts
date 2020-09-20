@@ -17,6 +17,7 @@ import { storageMetaReducer } from "./storage.metareducer";
 import { ClarityModule } from "@clr/angular";
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 import { MarkdownModule } from "ngx-markdown";
+import { TooltipModule } from "ng2-tooltip-directive";
 
 import { UserService } from "./services/user.service";
 import { PocketService } from "./services/pocket.service";
@@ -76,6 +77,7 @@ import { SimpleTagComponent } from "./components/shared/simple-tag/simple-tag.co
     HttpClientModule,
     StoreDevtoolsModule,
     MarkdownModule.forRoot(),
+    TooltipModule,
   ],
   entryComponents: [AnswerSectionComponent],
   providers: [

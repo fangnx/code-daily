@@ -37,6 +37,7 @@ export class AuthService {
 
     return {
       email: user.email,
+      pocketAccessToken: user.pocketAccessToken,
       ...token,
     };
   }

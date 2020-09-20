@@ -1,5 +1,6 @@
 import { Component, ChangeDetectionStrategy, OnInit } from "@angular/core";
 import { Observable } from "rxjs";
+import { map } from "rxjs/operators";
 import {
   selectQuestions,
   selectSelectedTag,
@@ -7,6 +8,7 @@ import {
   selectUserAuth,
 } from "src/app/state/app.selectors";
 import { Store } from "@ngrx/store";
+import * as AppActions from "src/app/state/app.actions";
 import { AppState } from "src/app/state/app.reducer";
 import { Question } from "src/app/models/stackExchange.model";
 import {
@@ -15,8 +17,8 @@ import {
   bounceOnEnterAnimation,
 } from "angular-animations";
 import { ContentPanelService } from "src/app/services/contentPanel.service";
-import { map } from "rxjs/operators";
 import { UserAuth } from "src/app/models/user.model";
+import { PocketService } from "../../../services/pocket.service";
 
 @Component({
   selector: "content-panel",
@@ -40,14 +42,15 @@ export class ContentPanelComponent implements OnInit {
 
   constructor(
     private store: Store<AppState>,
-    private contentPanelService: ContentPanelService
+    private contentPanelService: ContentPanelService,
+    private pocketService: PocketService
   ) {
     this.contentPanelService.isContentPanelReady$.subscribe((value) => {
       this.ready = value;
     });
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.userAuth$ = this.store.select((state) => selectUserAuth(state));
     this.questions$ = this.store.select((state) => selectQuestions(state));
     this.currentTag$ = this.store.select((state) => selectSelectedTag(state));
@@ -73,5 +76,15 @@ export class ContentPanelComponent implements OnInit {
           return user.subscribedTags;
         })
       );
+  }
+
+  public onAddToPocket(event) {
+    this.store.dispatch(
+      AppActions.addItemToPocket({
+        url: event.url,
+        title: event.title,
+        tags: event.tags,
+      })
+    );
   }
 }

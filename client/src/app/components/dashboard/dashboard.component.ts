@@ -11,7 +11,7 @@ import {
   selectUser,
   selectUserAuth,
 } from "src/app/state/app.selectors";
-import { Tag, Question } from "src/app/models/stackExchange.model";
+import { Question } from "src/app/models/stackExchange.model";
 import { UserAuth } from "src/app/models/user.model";
 import { ContentPanelService } from "src/app/services/contentPanel.service";
 

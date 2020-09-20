@@ -4,6 +4,7 @@ import { catchError, map } from 'rxjs/operators';
 import { PocketAccessToken, PocketRequestToken } from './pocket.interface';
 import { UsersService } from '../users/users.service';
 import { pocketApiBaseUrl } from '../constants';
+import { AddPocketItemDto } from './dto/add-pocket-item.dto';
 
 @Injectable()
 export class PocketService {
@@ -71,5 +72,32 @@ export class PocketService {
       accessToken.access_token,
       accessToken.username,
     );
+  }
+
+  public async addItemToPocket(
+    addPocketItemDto: AddPocketItemDto,
+  ): Promise<boolean> {
+    if (!addPocketItemDto.access_token) {
+      return;
+    }
+
+    const url = `${pocketApiBaseUrl}/v3/add`;
+
+    return this.httpService
+      .post<any>(
+        url,
+        JSON.stringify({
+          ...addPocketItemDto,
+          consumer_key: process.env.POCKET_CONSUMER_KEY,
+        }),
+        {
+          headers: this.httpHeaders,
+        },
+      )
+      .pipe(
+        map(res => res.status === 200),
+        catchError(_ => of(false)),
+      )
+      .toPromise();
   }
 }
