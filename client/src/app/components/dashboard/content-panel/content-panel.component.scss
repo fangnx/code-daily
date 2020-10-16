@@ -5,7 +5,9 @@ main {
   height: 100%;
   width: 100%;
   overflow-y: scroll;
-  padding: 0 0 40px 0;
+  padding: 0 40px 40px 40px;
+
+  scroll-behavior: smooth;
 
   .content-header-container {
     margin: 20px auto 0 auto;

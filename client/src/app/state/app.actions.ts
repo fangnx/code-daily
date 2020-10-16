@@ -3,6 +3,7 @@ import { Question } from "../models/stackExchange.model";
 import { UserAuth, User } from "../models/user.model";
 import { PocketOperationType } from "../models/pocket.model";
 
+// Stack Overflow API services.
 export const selectTag = createAction(
   "[App] Select Tag",
   props<{ tag: string }>()
@@ -23,6 +24,7 @@ export const fetchQuestionsSuccess = createAction(
   props<{ questions: Question[] }>()
 );
 
+// User services.
 export const loginUser = createAction(
   "[App] Log In User",
   props<{ userAuth: UserAuth }>()
@@ -55,6 +57,12 @@ export const subscribeToTag = createAction(
 export const unsubscribeToTag = createAction(
   "[App] Unsubscribe to Tag",
   props<{ tag: string }>()
+);
+
+// Pocket API services.
+export const authorizePocket = createAction(
+  "[App] Authorize Pocket",
+  props<{ email: string; requestToken: string }>()
 );
 
 export const addItemToPocket = createAction(

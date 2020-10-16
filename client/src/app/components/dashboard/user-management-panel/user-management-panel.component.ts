@@ -8,11 +8,12 @@ import {
 import { Router, ActivatedRoute } from "@angular/router";
 import { UserService } from "src/app/services/user.service";
 import { Store } from "@ngrx/store";
-import { AppState } from "src/app/state/app.reducer";
-import { selectUserAuth, selectUser } from "src/app/state/app.selectors";
-import { tap, map } from "rxjs/operators";
-import { PocketService } from "src/app/services/pocket.service";
+import * as AppActions from "../../../state/app.actions";
 import { combineLatest, Subscription } from "rxjs";
+import { selectUserAuth, selectUser } from "src/app/state/app.selectors";
+import { AppState } from "src/app/state/app.reducer";
+import { tap } from "rxjs/operators";
+import { PocketService } from "src/app/services/pocket.service";
 
 @Component({
   selector: "user-management-panel",
@@ -56,10 +57,14 @@ export class UserManagementPanelComponent implements OnInit, OnDestroy {
       .pipe(
         tap(async ([params, userAuth]) => {
           const requestToken: string = params.get("pocket_request_token");
-          // TODO: move the logic to ngrx effects.
+          // TODO: move the logic to NgRx effects.
           if (requestToken) {
-            await this.pocketService.authorize(userAuth.email, requestToken);
-            localStorage.setItem("userAuth", JSON.stringify(userAuth));
+            this.store.dispatch(
+              AppActions.authorizePocket({
+                email: userAuth.email,
+                requestToken,
+              })
+            );
           }
         })
       )

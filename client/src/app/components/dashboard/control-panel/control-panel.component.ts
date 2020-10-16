@@ -57,7 +57,7 @@ export class ControlPanelComponent {
 
   public onSelectTag(tag: string): void {
     // TODO: find a better way to redirect.
-    this.router.navigate(["/dashboard"]);
+    this.router.navigate(["/dashboard", tag]);
     if (this.selectedTag != tag) {
       this.selectedTag = tag;
       this.onTagSelected.emit(tag);

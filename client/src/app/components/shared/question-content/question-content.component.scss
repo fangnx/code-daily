@@ -2,6 +2,23 @@
 
 main {
   .markdown-wrapper ::ng-deep {
+    font-size: 14px;
+
+    .expandable-code {
+      background-color: $indigo-lighter;
+      color: $darkgrey-0;
+      cursor: pointer;
+      height: 30px;
+      margin-top: 10px;
+      width: 100%;
+      text-align: center;
+    }
+
+    .panel {
+      display: none;
+      overflow: hidden;
+    }
+
     h1,
     h2,
     h3,
@@ -9,11 +26,13 @@ main {
     h5 {
       color: $darkgrey-0;
       font-weight: 500;
-      margin-top: 15px;
+      margin-top: 10px;
     }
 
     p {
       color: $darkgrey-0;
+      font-size: 14px;
+      line-height: 21px;
     }
 
     li {
@@ -21,6 +40,9 @@ main {
     }
 
     pre {
+      border: none;
+      border-radius: 0;
+      margin-top: 0;
       white-space: pre-wrap !important;
 
       code {

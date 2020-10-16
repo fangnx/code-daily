@@ -7,8 +7,9 @@ import { LoginComponent } from "./components/dashboard/user-management-panel/log
 import { SubscriptionManagementComponent } from "./components/dashboard/user-management-panel/subscription-management/subscription-management.component";
 
 const routes: Routes = [
-  { path: "", redirectTo: "/dashboard", pathMatch: "full" },
-  { path: "dashboard", component: ContentPanelComponent },
+  // TODO: better default tag path -> remove hardcoded Java tag.
+  { path: "", redirectTo: "/dashboard/java", pathMatch: "full" },
+  { path: "dashboard/:tag", component: ContentPanelComponent },
   {
     path: "user/pocket/:pocket_request_token",
     component: UserManagementPanelComponent,

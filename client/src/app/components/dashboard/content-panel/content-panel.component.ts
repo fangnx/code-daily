@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, OnInit } from "@angular/core";
+import { Component, ChangeDetectionStrategy, OnInit, OnChanges } from "@angular/core";
 import { Observable } from "rxjs";
 import { map } from "rxjs/operators";
 import {
@@ -48,7 +48,7 @@ export class ContentPanelComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {
+  ngOnInit(): void {    
     this.userAuth$ = this.store.select((state) => selectUserAuth(state));
     this.questions$ = this.store.select((state) => selectQuestions(state));
     this.currentTag$ = this.store.select((state) => selectSelectedTag(state));

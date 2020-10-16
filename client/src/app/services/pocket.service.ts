@@ -39,14 +39,14 @@ export class PocketService {
   public authorize(
     userEmail: string,
     requestToken: string
-  ): Promise<PocketAccessToken> {
+  ): Observable<PocketAccessToken> {
     let params = new HttpParams();
     params = params.append("email", userEmail);
     params = params.append("request_token", requestToken);
 
-    return this.httpClient
-      .get<PocketAccessToken>("api/pocket/authorize", { params })
-      .toPromise();
+    return this.httpClient.get<PocketAccessToken>("api/pocket/authorize", {
+      params,
+    });
   }
 
   public addItemToPocket(

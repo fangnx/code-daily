@@ -1,8 +1,9 @@
 <main>
   <div
     class="card"
+    [id]="cardId"
     [ngClass]="{ clickable: !isExpanded }"
-    (click)="onCardClicked()"
+    (click)="onCardClicked($event)"
   >
     <div class="card-header">
       <article>

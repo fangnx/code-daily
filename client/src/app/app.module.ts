@@ -88,7 +88,7 @@ import { tooltipOptions } from "./custom-tooltip";
       useFactory: (store: Store<AppState>) => {
         return () => {
           store.dispatch(AppActions.fetchCurrentUser());
-          store.dispatch(AppActions.selectTag({ tag: "java" }));
+          // store.dispatch(AppActions.selectTag({ tag: "java" }));
         };
       },
       multi: true,

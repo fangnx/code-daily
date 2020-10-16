@@ -74,10 +74,17 @@ export class QuestionCardComponent implements OnInit {
     this.tags = this.question.tags;
   }
 
-  public onCardClicked(): void {
+  public onCardClicked(event): void {
+    event.stopPropagation();
+
     if (!this.isExpanded) {
+      document.getElementById(this.cardId).scrollIntoView({ block: "start" });
       this.isExpanded = true;
     }
+  }
+
+  public get cardId(): string {
+    return `question-card-${this.question.question_id}`;
   }
 
   public onCloseIconClicked(event): void {

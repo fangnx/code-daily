@@ -20,6 +20,7 @@ export const adapter: EntityAdapter<Question> = createEntityAdapter<Question>({
 export const initialState: AppState = adapter.getInitialState(<AppState>{
   tags: [],
   selectedTag: null,
+  questions: [],
   userAuth: null,
   user: null,
 });
