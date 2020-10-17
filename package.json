@@ -1,6 +1,6 @@
 {
   "name": "code-daily",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "main": "index.js",
   "scripts": {
     "install:client": "cd ./client/ && npm install",
