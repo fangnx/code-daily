@@ -27,8 +27,6 @@ export class PocketService {
       redirect_uri: process.env.POCKET_REDIRECT_URL,
     };
 
-    console.log('obtain r token ' + dto);
-
     return this.httpService
       .post(url, JSON.stringify(dto), {
         headers: this.httpHeaders,
@@ -46,8 +44,6 @@ export class PocketService {
       consumer_key: process.env.POCKET_CONSUMER_KEY,
       code: requestToken,
     };
-
-    console.log('obtain access token ' + dto);
 
     return this.httpService
       .post(url, JSON.stringify(dto), {
@@ -68,8 +64,6 @@ export class PocketService {
       requestToken,
     );
 
-    console.log('connect user ' + requestToken);
-
     if (!accessToken || !accessToken.access_token) {
       return;
     }
@@ -83,7 +77,6 @@ export class PocketService {
   public async addItemToPocket(
     addPocketItemDto: AddPocketItemDto,
   ): Promise<boolean> {
-    console.log(addPocketItemDto);
     if (!addPocketItemDto.access_token) {
       return;
     }

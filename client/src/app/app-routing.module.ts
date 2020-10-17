@@ -8,7 +8,8 @@ import { SubscriptionManagementComponent } from "./components/dashboard/user-man
 
 const routes: Routes = [
   // TODO: better default tag path -> remove hardcoded Java tag.
-  { path: "", redirectTo: "/dashboard/java", pathMatch: "full" },
+  { path: "", redirectTo: "/user", pathMatch: "full" },
+  { path: "dashboard", redirectTo: "/dashboard/java", pathMatch: "full" },
   { path: "dashboard/:tag", component: ContentPanelComponent },
   {
     path: "user/pocket/:pocket_request_token",

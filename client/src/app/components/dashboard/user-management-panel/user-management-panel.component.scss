@@ -3,15 +3,19 @@
 main {
   background: $user-management-bg-color;
   display: flex;
+  flex-direction: column;
   height: 100%;
-  width: 100%;
+  margin: 0 auto 0 auto;
+  max-width: 900px;
+  padding: 200px 20px 200px 20px;
 
   section {
     margin: auto;
+    width: 100%;
 
     .card-list-container {
       display: flex;
-      flex-direction: column;
+      justify-content: space-between;
     }
   }
 }

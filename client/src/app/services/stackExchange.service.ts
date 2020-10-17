@@ -13,6 +13,7 @@ export class StackExchangeService {
     params = params.append("tags", query.tags);
     params = params.append("sort", query.sort);
     params = params.append("pagesize", query.pagesize.toString());
+    params = params.append("page", query.page.toString());
     return this.httpClient
       .get<Question[]>("/api/questions", {
         params,
@@ -27,6 +28,7 @@ export class StackExchangeService {
     params = params.append("tags", query.tags);
     params = params.append("sort", query.sort);
     params = params.append("pagesize", query.pagesize.toString());
+    params = params.append("page", query.page.toString());
     return this.httpClient
       .get<Question[]>("/api/questions/random", {
         params,

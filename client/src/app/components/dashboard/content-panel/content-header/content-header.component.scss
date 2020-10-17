@@ -22,7 +22,28 @@ main {
 
       &:nth-child(2) {
         color: $lightgrey-0;
+        display: flex;
+        font-family: $codefont;
         margin-left: auto;
+
+        > span {
+          padding: 0 10px 0 10px;
+        }
+
+        > fa-icon {
+          font-size: 24px;
+          cursor: pointer;
+
+          &.disabled {
+            color: $lightgrey-3;
+            pointer-events: none;
+          }
+        }
+      }
+
+      &:last-child {
+        color: $lightgrey-0;
+        margin-left: 50px;
         margin-right: 15px;
 
         .dropdown {

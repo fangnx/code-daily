@@ -4,6 +4,7 @@ import { User } from './user.interface';
 import { AddFavoriteTagDto } from './dto/add-favorite-tag.dto';
 import { GetUserDto } from './dto/get-user.dto';
 import { UserDto } from './dto/user.dto';
+import { UserAuthDto } from './dto/user-auth.dto';
 import { SubscribeToTagDto } from './dto/subscribe-to-tag.dto';
 
 @Controller('users')
@@ -19,6 +20,11 @@ export class UsersController {
   @Post('/user')
   public getUser(@Body() getUserDto: GetUserDto): Promise<UserDto> {
     return this.usersService.findUserByEmail(getUserDto.email);
+  }
+
+  @Post('/userauth')
+  public getUserAuth(@Body() getUserDto: GetUserDto): Promise<UserAuthDto> {
+    return this.usersService.findUserAuthByEmail(getUserDto.email);
   }
 
   @Post('/tags/add')

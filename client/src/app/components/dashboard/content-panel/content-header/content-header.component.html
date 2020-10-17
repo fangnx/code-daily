@@ -5,6 +5,20 @@
     </article>
 
     <article>
+      <fa-icon
+        [icon]="arrowLeftIcon"
+        [class]="arrowLeftClass"
+        (click)="onPaginationClicked()"
+      ></fa-icon>
+      <span>Page {{ page }}</span>
+      <fa-icon
+        [icon]="arrowRightIcon"
+        [class]="arrowRightClass"
+        (click)="onPaginationClicked(true)"
+      ></fa-icon>
+    </article>
+
+    <article>
       <div #dropdown class="dropdown bottom-right" [ngClass]="dropdownClass">
         <fa-icon
           [icon]="dropdownIcon"

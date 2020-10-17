@@ -6,7 +6,7 @@ import { PocketOperationType } from "../models/pocket.model";
 // Stack Overflow API services.
 export const selectTag = createAction(
   "[App] Select Tag",
-  props<{ tag: string }>()
+  props<{ tag: string; page?: number }>()
 );
 
 export const unselectTag = createAction(
@@ -14,14 +14,19 @@ export const unselectTag = createAction(
   props<{ tag: string }>()
 );
 
+export const setPage = createAction(
+  "[App] Set Page",
+  props<{ page: number }>()
+);
+
 export const fetchQuestions = createAction(
   "[App] Fetch Questions",
-  props<{ tag: string; fetchRandom?: boolean }>()
+  props<{ tag: string; fetchRandom?: boolean; page?: number }>()
 );
 
 export const fetchQuestionsSuccess = createAction(
   "[App] Fetch Questions Success",
-  props<{ questions: Question[] }>()
+  props<{ questions: Question[]; page?: number }>()
 );
 
 // User services.
@@ -37,6 +42,15 @@ export const fetchCurrentUser = createAction("[App] Fetch Current User");
 export const fetchCurrentUserSuccess = createAction(
   "[App] Fetch Current User Success",
   props<{ user: User }>()
+);
+
+export const updateCurrentUserAuth = createAction(
+  "[App] Update Current User Authentication"
+);
+
+export const updateCurrentUserAuthSuccess = createAction(
+  "[App] Update Current User Authentication Success",
+  props<{ userAuth: UserAuth }>()
 );
 
 export const addFavoriteTagToUser = createAction(
@@ -74,3 +88,6 @@ export const notifyPocketOperation = createAction(
   "[App] Notify Pocket Operation",
   props<{ operationType: PocketOperationType; success?: boolean }>()
 );
+
+// Auxiliary actions.
+export const navigateToDashboard = createAction("[App] Navigate to Dashboard");

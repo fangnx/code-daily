@@ -1,4 +1,8 @@
-<main>
+<main [@fadeInOnEnter] [@fadeOutOnLeave]>
+  <section>
+    <display-board></display-board>
+  </section>
+
   <section>
     <div class="card-list-container">
       <div
@@ -10,15 +14,11 @@
 
 <ng-template #loggedInBlock>
   <setting-card
+    [@fadeInOnEnter]
+    [@fadeOutOnLeave]
     title="Log Out"
     clarityIconClass="logout"
     (onCardClicked)="onLogoutClicked()"
-  ></setting-card>
-
-  <setting-card
-    title="(Coming Soon) Subscription"
-    clarityIconClass="envelope"
-    (onCardClicked)="onManageSubscriptionClicked()"
   ></setting-card>
 
   <setting-card

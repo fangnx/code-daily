@@ -56,8 +56,15 @@ export class ControlPanelComponent {
   }
 
   public onSelectTag(tag: string): void {
-    // TODO: find a better way to redirect.
-    this.router.navigate(["/dashboard", tag]);
+    // TODO: move this to effects.
+    const controlPanelElement: Element = document.querySelector(
+      "content-panel main"
+    );
+    if (controlPanelElement) {
+      controlPanelElement.scrollTo(0, 0);
+    }
+    this.router.navigate(["/dashboard", tag, { page: 1 }]);
+
     if (this.selectedTag != tag) {
       this.selectedTag = tag;
       this.onTagSelected.emit(tag);

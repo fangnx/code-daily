@@ -8,6 +8,8 @@ export interface AppState extends EntityState<Question> {
   tags: Array<string>;
   selectedTag: string;
   questions: Array<Question>;
+  totalQuestions: number;
+  page: number;
   userAuth: UserAuth;
   user: User;
 }
@@ -21,19 +23,23 @@ export const initialState: AppState = adapter.getInitialState(<AppState>{
   tags: [],
   selectedTag: null,
   questions: [],
+  totalQuestions: 0,
+  page: 1,
   userAuth: null,
   user: null,
 });
 
 export const appReducer = createReducer(
   initialState,
-  on(AppActions.selectTag, (state, { tag }) => ({
+  on(AppActions.selectTag, (state, { tag, page }) => ({
     ...state,
     selectedTag: tag,
     questions: [],
+    totalQuestions: 0,
+    page: page || 1,
   })),
-  on(AppActions.fetchQuestionsSuccess, (state, { questions }) => {
-    return { ...state, questions: questions };
+  on(AppActions.fetchQuestionsSuccess, (state, { questions, page }) => {
+    return { ...state, questions, page };
   }),
   on(AppActions.loginUser, (state, { userAuth }) => ({
     ...state,
@@ -48,6 +54,12 @@ export const appReducer = createReducer(
     return {
       ...state,
       user,
+    };
+  }),
+  on(AppActions.updateCurrentUserAuthSuccess, (state, { userAuth }) => {
+    return {
+      ...state,
+      userAuth,
     };
   })
 );

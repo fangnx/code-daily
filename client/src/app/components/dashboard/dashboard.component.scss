@@ -19,12 +19,9 @@ main {
         width: 275px;
       }
 
-      content-panel {
-        flex-grow: 1;
-        height: 100vh;
-      }
-
-      user-management-panel {
+      content-panel,
+      user-management-panel,
+      welcome-page {
         flex-grow: 1;
         height: 100vh;
       }

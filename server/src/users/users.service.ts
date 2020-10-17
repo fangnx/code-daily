@@ -6,6 +6,8 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { LoginUserDto } from './dto/login-user.dto';
 import { DtoHelper } from './dto/dto.helper';
 import { UserDto } from './dto/user.dto';
+import { UserAuthDto } from './dto/user-auth.dto';
+
 import { AddFavoriteTagDto } from './dto/add-favorite-tag.dto';
 import { SubscribeToTagDto } from './dto/subscribe-to-tag.dto';
 import { Payload } from '../auth/auth.interface';
@@ -21,6 +23,11 @@ export class UsersService {
 
   public async findAllUsers(): Promise<Array<User>> {
     return await this.userModel.find().exec();
+  }
+
+  public async findUserAuthByEmail(email: string): Promise<UserAuthDto> {
+    const user: User = await this.userModel.findOne({ email }).exec();
+    return DtoHelper.toUserAuthDto(user);
   }
 
   public async findUserByEmail(email: string): Promise<UserDto> {

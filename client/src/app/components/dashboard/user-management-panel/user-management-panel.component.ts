@@ -10,16 +10,24 @@ import { UserService } from "src/app/services/user.service";
 import { Store } from "@ngrx/store";
 import * as AppActions from "../../../state/app.actions";
 import { combineLatest, Subscription } from "rxjs";
-import { selectUserAuth, selectUser } from "src/app/state/app.selectors";
+import { selectUserAuth } from "src/app/state/app.selectors";
 import { AppState } from "src/app/state/app.reducer";
 import { tap } from "rxjs/operators";
 import { PocketService } from "src/app/services/pocket.service";
+import {
+  fadeInOnEnterAnimation,
+  fadeOutOnLeaveAnimation,
+} from "angular-animations";
 
 @Component({
   selector: "user-management-panel",
   templateUrl: "./user-management-panel.component.html",
   styleUrls: ["./user-management-panel.component.scss"],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  animations: [
+    fadeInOnEnterAnimation(),
+    fadeOutOnLeaveAnimation({ delay: 25 }),
+  ],
 })
 export class UserManagementPanelComponent implements OnInit, OnDestroy {
   public hasUserLoggedIn: boolean;
@@ -105,7 +113,7 @@ export class UserManagementPanelComponent implements OnInit, OnDestroy {
 
   public get pocketCardTitle(): string {
     return this.hasUserConnectedWithPocket
-      ? "Connected to Pocket"
+      ? "Pocket Connected"
       : "Connect to Pocket";
   }
 }

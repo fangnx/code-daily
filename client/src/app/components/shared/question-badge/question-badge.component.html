@@ -1,7 +1,10 @@
 <main>
   <div>
     <article>
-      <img [src]="profileImageUrl" loading="lazy" />
+      <img
+        [src]="profileImageUrl"
+        onerror="this.onerror=null; this.src='https://png.pngtree.com/element_our/png/20181206/users-vector-icon-png_260862.jpg';"
+      />
       <h4>{{ ownerName }}</h4>
     </article>
 

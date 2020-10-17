@@ -19,6 +19,7 @@ import { ClarityModule } from "@clr/angular";
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 import { MarkdownModule } from "ngx-markdown";
 import { TooltipModule, TooltipOptions } from "ng2-tooltip-directive";
+import { tooltipOptions } from "./custom-tooltip";
 
 import { UserService } from "./services/user.service";
 import { PocketService } from "./services/pocket.service";
@@ -42,7 +43,7 @@ import { ContentPanelService } from "./services/contentPanel.service";
 import { SubscriptionManagementComponent } from "./components/dashboard/user-management-panel/subscription-management/subscription-management.component";
 import { ContentHeaderComponent } from "./components/dashboard/content-panel/content-header/content-header.component";
 import { SimpleTagComponent } from "./components/shared/simple-tag/simple-tag.component";
-import { tooltipOptions } from "./custom-tooltip";
+import { DisplayBoardComponent } from "./components/dashboard/user-management-panel/display-board/display-board.component";
 
 @NgModule({
   declarations: [
@@ -62,6 +63,7 @@ import { tooltipOptions } from "./custom-tooltip";
     SettingCardComponent,
     SubscriptionManagementComponent,
     SimpleTagComponent,
+    DisplayBoardComponent,
   ],
   imports: [
     ClarityModule,
@@ -88,7 +90,6 @@ import { tooltipOptions } from "./custom-tooltip";
       useFactory: (store: Store<AppState>) => {
         return () => {
           store.dispatch(AppActions.fetchCurrentUser());
-          // store.dispatch(AppActions.selectTag({ tag: "java" }));
         };
       },
       multi: true,

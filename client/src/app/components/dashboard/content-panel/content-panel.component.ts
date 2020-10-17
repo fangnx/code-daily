@@ -1,7 +1,13 @@
-import { Component, ChangeDetectionStrategy, OnInit, OnChanges } from "@angular/core";
+import {
+  Component,
+  ChangeDetectionStrategy,
+  OnInit,
+  OnChanges,
+} from "@angular/core";
 import { Observable } from "rxjs";
 import { map } from "rxjs/operators";
 import {
+  selectPage,
   selectQuestions,
   selectSelectedTag,
   selectUser,
@@ -14,7 +20,6 @@ import { Question } from "src/app/models/stackExchange.model";
 import {
   fadeInOnEnterAnimation,
   fadeOutOnLeaveAnimation,
-  bounceOnEnterAnimation,
 } from "angular-animations";
 import { ContentPanelService } from "src/app/services/contentPanel.service";
 import { UserAuth } from "src/app/models/user.model";
@@ -27,7 +32,6 @@ import { UserAuth } from "src/app/models/user.model";
   animations: [
     fadeInOnEnterAnimation(),
     fadeOutOnLeaveAnimation({ delay: 25 }),
-    bounceOnEnterAnimation(),
   ],
 })
 export class ContentPanelComponent implements OnInit {
@@ -35,6 +39,7 @@ export class ContentPanelComponent implements OnInit {
   public userAuth$: Observable<UserAuth>;
   public questions$: Observable<Question[]>;
   public currentTag$: Observable<string>;
+  public currentPage$: Observable<number>;
   public userFavoriteTags$: Observable<Array<string>>;
   public userSubscribedTags$: Observable<Array<string>>;
   public ready: boolean = false;
@@ -48,10 +53,11 @@ export class ContentPanelComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {    
+  ngOnInit(): void {
     this.userAuth$ = this.store.select((state) => selectUserAuth(state));
     this.questions$ = this.store.select((state) => selectQuestions(state));
     this.currentTag$ = this.store.select((state) => selectSelectedTag(state));
+    this.currentPage$ = this.store.select((state) => selectPage(state));
 
     this.userFavoriteTags$ = this.store
       .select((state) => selectUser(state))

@@ -11,6 +11,7 @@ import {
   LoginUserDto,
   UserAuth,
   GetUserQuery,
+  AuthResponse,
 } from "../models/user.model";
 
 @Injectable()
@@ -21,15 +22,17 @@ export class UserService {
     return this.httpClient.post<User>("/api/users/user", getUserQuery);
   }
 
+  public getUserAuth(getUserQuery: GetUserQuery): Observable<UserAuth> {
+    return this.httpClient.post<User>("/api/users/userauth", getUserQuery);
+  }
+
   public getAllUsers(): Observable<User[]> {
     return this.httpClient.get<User[]>("/api/users");
   }
 
-  public registerUser(createUserDto: CreateUserDto) {
+  public registerUser(createUserDto: CreateUserDto): Observable<AuthResponse> {
     return this.httpClient
-      .post("/api/auth/register", createUserDto, {
-        observe: "response",
-      })
+      .post<AuthResponse>("/api/auth/register", createUserDto)
       .pipe(map((value) => value));
   }
 

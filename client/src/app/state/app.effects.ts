@@ -7,12 +7,13 @@ import { filter, map, switchMap, withLatestFrom } from "rxjs/operators";
 import { StackExchangeService } from "../services/stackExchange.service";
 import { PocketService } from "../services/pocket.service";
 import { QuestionsQuery, QuestionsSortBy } from "../models/stackExchange.model";
-import { GetUserQuery, User } from "../models/user.model";
+import { GetUserQuery, User, UserAuth } from "../models/user.model";
 import { AppState } from "./app.reducer";
-import { selectUser, selectUserAuth } from "./app.selectors";
+import { selectSelectedTag, selectUserAuth } from "./app.selectors";
 import { UserService } from "../services/user.service";
-import { ActivationEnd, NavigationEnd, Router } from "@angular/router";
-import { PocketAccessToken, PocketOperationType } from "../models/pocket.model";
+import { ActivationEnd, Router } from "@angular/router";
+import { PocketOperationType } from "../models/pocket.model";
+import { normalizePageNumber } from "../helpers";
 
 @Injectable()
 export class AppEffects {
@@ -34,27 +35,39 @@ export class AppEffects {
       .pipe(filter((event) => event instanceof ActivationEnd))
       .subscribe((event: ActivationEnd) => {
         if (event.snapshot.params.tag) {
+          let page: number = 1;
+          if (event.snapshot.params.page) {
+            page = normalizePageNumber(+event.snapshot.params.page, 8);
+          }
+
           this.store.dispatch(
-            AppActions.selectTag({ tag: event.snapshot.params.tag })
+            AppActions.selectTag({
+              tag: event.snapshot.params.tag,
+              page,
+            })
           );
         }
       });
   }
 
-  @Effect()
-  scrollToTop$ = this.actions$.pipe(
-    ofType(AppActions.selectTag),
-    switchMap(() => {
-      document.querySelector("content-panel main").scrollTo(50, 0);
-      return EMPTY;
-    })
-  );
+  // @Effect()
+  // scrollToTop$ = this.actions$.pipe(
+  //   ofType(AppActions.fetchQuestions),
+  //   switchMap(() => {
+  //     console.log("scroll");
+  //     document.querySelector("content-panel main").scrollTo(0, 0);
+  //     return EMPTY;
+  //   })
+  // );
 
   @Effect()
   fetchQuestions$ = this.actions$.pipe(
     ofType(AppActions.fetchQuestions),
     switchMap((action) => {
+      const page = action.page || 1;
+
       const query: QuestionsQuery = {
+        page,
         tags: action.tag,
         sort: QuestionsSortBy.Votes,
         pagesize: 10,
@@ -64,14 +77,18 @@ export class AppEffects {
         return this.stackExchangeApiService
           .getRandomQuestionsByTags(query)
           .pipe(
-            map((questions) => AppActions.fetchQuestionsSuccess({ questions }))
+            map((questions) =>
+              AppActions.fetchQuestionsSuccess({ questions, page })
+            )
           );
       }
 
       return this.stackExchangeApiService
         .getQuestionsByTags(query)
         .pipe(
-          map((questions) => AppActions.fetchQuestionsSuccess({ questions }))
+          map((questions) =>
+            AppActions.fetchQuestionsSuccess({ questions, page })
+          )
         );
     })
   );
@@ -168,10 +185,45 @@ export class AppEffects {
   );
 
   @Effect()
-  updateQuestions$ = this.actions$.pipe(
+  updateCurrentUserAuth$ = this.actions$.pipe(
+    ofType(AppActions.updateCurrentUserAuth),
+    withLatestFrom(this.store.select((state) => selectUserAuth(state))),
+    switchMap(([_, userAuth]) => {
+      if (!userAuth || !userAuth.email) {
+        return EMPTY;
+      }
+
+      const query: GetUserQuery = {
+        email: userAuth.email,
+      };
+
+      return this.userService.getUserAuth(query).pipe(
+        map((userAuth: UserAuth) => {
+          return AppActions.updateCurrentUserAuthSuccess({ userAuth });
+        })
+      );
+    })
+  );
+
+  // Fetch questions when a new tag is selected.
+  @Effect()
+  updateQuestionsOnNewTag$ = this.actions$.pipe(
     ofType(AppActions.selectTag),
     switchMap((action) => {
-      return [AppActions.fetchQuestions({ tag: action.tag })];
+      return [
+        AppActions.fetchQuestions({ tag: action.tag, page: +action.page }),
+      ];
+    })
+  );
+
+  // Fetch questions when a new page is set.
+  @Effect()
+  updateQuestionsOnNewPage$ = this.actions$.pipe(
+    ofType(AppActions.setPage),
+    withLatestFrom(this.store.select((state) => selectSelectedTag(state))),
+    switchMap(([action, tag]) => {
+      this.router.navigate(["dashboard", tag, { page: action.page }]);
+      return [AppActions.fetchQuestions({ tag, page: action.page })];
     })
   );
 
@@ -183,7 +235,8 @@ export class AppEffects {
         .authorize(action.email, action.requestToken)
         .pipe(
           map(() => {
-            return AppActions.fetchCurrentUser();
+            this.router.navigate(["/dashboard"]);
+            return AppActions.updateCurrentUserAuth();
           })
         );
     })
@@ -192,11 +245,11 @@ export class AppEffects {
   @Effect()
   requestAddItemToPocket = this.actions$.pipe(
     ofType(AppActions.addItemToPocket),
-    withLatestFrom(this.store.select((state) => selectUser(state))),
-    switchMap(([action, user]) => {
+    withLatestFrom(this.store.select((state) => selectUserAuth(state))),
+    switchMap(([action, userAuth]) => {
       return this.pocketApiService
         .addItemToPocket(
-          user.pocketAccessToken,
+          userAuth.pocketAccessToken,
           action.url,
           action.title,
           action.tags
@@ -216,6 +269,15 @@ export class AppEffects {
   notifyPocketOperation = this.actions$.pipe(
     ofType(AppActions.notifyPocketOperation),
     switchMap(() => {
+      return EMPTY;
+    })
+  );
+
+  @Effect()
+  routeToDashboard$ = this.actions$.pipe(
+    ofType(AppActions.navigateToDashboard),
+    switchMap(() => {
+      this.router.navigate(["/dashboard"]);
       return EMPTY;
     })
   );

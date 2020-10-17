@@ -1,8 +1,9 @@
 export interface UserAuth {
   email: string;
-  accessToken: string;
-  expiresIn: string;
+  accessToken?: string;
+  expiresIn?: string;
   pocketAccessToken: string;
+  pocketUserName: string;
 }
 
 export interface User {
@@ -27,4 +28,9 @@ export interface LoginUserDto {
 
 export interface GetUserQuery {
   email: string;
+}
+
+export interface AuthResponse {
+  isSuccessful: boolean;
+  message?: string;
 }

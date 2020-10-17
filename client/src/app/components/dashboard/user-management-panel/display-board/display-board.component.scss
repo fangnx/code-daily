@@ -1,0 +1,48 @@
+@import "../../../../styles/colors.scss";
+@import "../../../../styles/fonts.scss";
+
+:host {
+  width: 100%;
+
+  main {
+    width: 100%;
+
+    .card {
+      background: $white;
+      box-shadow: 0 4px 0 0 $almostwhite;
+      border-radius: 3px;
+      border-width: 1.5px;
+      border-color: $white;
+      color: $darkgrey-0;
+      opacity: 0.75;
+
+      .card-header {
+        align-items: center;
+        border-bottom: none;
+        color: $darkgrey-0;
+        display: flex;
+        flex-direction: row;
+        font-weight: normal;
+        justify-content: space-between;
+      }
+
+      .card-block {
+        font-family: $codefont;
+
+        #stackoverflow-link {
+          color: $stackoverflow-brand-color;
+          font-style: italic;
+        }
+
+        #pocket-link {
+          color: $get-pocket-brand-color;
+          font-style: italic;
+        }
+
+        p {
+          color: $darkgrey-0;
+        }
+      }
+    }
+  }
+}

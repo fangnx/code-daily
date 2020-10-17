@@ -4,11 +4,8 @@ import { Store } from "@ngrx/store";
 import { AppState } from "../../../state/app.reducer";
 import * as AppActions from "src/app/state/app.actions";
 import { UserAuth } from "src/app/models/user.model";
-import {
-  faUserNinja,
-  faFileCode,
-  faCloud,
-} from "@fortawesome/free-solid-svg-icons";
+import { faUserCheck, faUserSecret } from "@fortawesome/free-solid-svg-icons";
+import { faGithub } from "@fortawesome/free-brands-svg-icons";
 
 @Component({
   selector: "navigation-panel",
@@ -19,14 +16,14 @@ import {
 export class NavigationPanelComponent {
   @Input() public user?: UserAuth;
 
-  public faUserNinja = faUserNinja;
-  public faFileCode = faFileCode;
-  public faCloud = faCloud;
+  public userIcon = faUserSecret;
+  public userCheckedIcon = faUserCheck;
+  public githubIcon = faGithub;
 
   constructor(private router: Router, private store: Store<AppState>) {}
 
-  public navigateToDashboard() {
-    this.router.navigate(["/dashboard"]);
+  public openGithubRepo() {
+    window.open("https://github.com/fangnx/code-daily", "_blank");
   }
 
   public navigateToUserManagement() {

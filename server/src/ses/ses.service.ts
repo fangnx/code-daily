@@ -34,11 +34,6 @@ export class SesService {
       },
     };
 
-    new SES(this.SESConfig)
-      .sendEmail(params)
-      .promise()
-      .then(res => {
-        console.log(res);
-      });
+    new SES(this.SESConfig).sendEmail(params).promise();
   }
 }

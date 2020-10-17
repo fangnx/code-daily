@@ -16,6 +16,8 @@ import {
   faFireAlt,
   faRedoAlt,
   faBars,
+  faCaretSquareLeft,
+  faCaretSquareRight,
 } from "@fortawesome/free-solid-svg-icons";
 
 @Component({
@@ -29,12 +31,15 @@ export class ContentHeaderComponent implements OnInit, OnDestroy {
 
   @Input() public userAuth?: UserAuth;
   @Input() public tag: string;
+  @Input() public page: number;
   @Input() public userFavoriteTags: Array<string>;
   @Input() public userSubscribedTags: Array<string>;
 
   public dropdownIcon = faBars;
   public trendingIcon = faFireAlt;
   public randomIcon = faRedoAlt;
+  public arrowLeftIcon = faCaretSquareLeft;
+  public arrowRightIcon = faCaretSquareRight;
 
   public isMenuExpanded: boolean;
   public menuSelectedOption: string;
@@ -84,7 +89,12 @@ export class ContentHeaderComponent implements OnInit, OnDestroy {
     return this.isTagSubscribedByUser(this.tag) ? "is-solid" : "";
   }
 
-  public onStarClicked() {
+  public onPaginationClicked(goNext?: boolean): void {
+    this.page += goNext ? 1 : -1;
+    this.store.dispatch(AppActions.setPage({ page: this.page }));
+  }
+
+  public onStarClicked(): void {
     if (!this.hasUserLoggedIn) {
       this.router.navigate(["/user/login"]);
       return;
@@ -104,7 +114,6 @@ export class ContentHeaderComponent implements OnInit, OnDestroy {
   }
 
   public onDropdownOptionClicked(mode: string) {
-    // TODO: make this cleaner.
     if (mode === "random") {
       this.menuSelectedOption = "random";
       this.store.dispatch(
@@ -118,6 +127,16 @@ export class ContentHeaderComponent implements OnInit, OnDestroy {
 
   private get hasUserLoggedIn(): boolean {
     return !!this.userAuth && !!this.userAuth.email;
+  }
+
+  public get arrowLeftClass(): string {
+    return this.page <= 1 ? "disabled" : "";
+  }
+
+  // TODO: change this.
+  // Note: this is a temporary solution, since Stack Exchange API does not give total number of items/pages.
+  public get arrowRightClass(): string {
+    return this.page >= 8 ? "disabled" : "";
   }
 
   public get dropdownClass(): string {

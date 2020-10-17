@@ -18,17 +18,11 @@ export class AuthController {
   public async register(
     @Body() createUserDto: CreateUserDto,
   ): Promise<RegistrationStatus> {
-    const res: RegistrationStatus = await this.authService.register(
-      createUserDto,
-    );
-    if (!res.isSuccessful) {
-      throw new HttpException(res.message, HttpStatus.BAD_REQUEST);
-    }
-    return res;
+    return this.authService.register(createUserDto);
   }
 
   @Post('login')
   public async login(@Body() loginUserDto: LoginUserDto): Promise<LoginStatus> {
-    return await this.authService.login(loginUserDto);
+    return this.authService.login(loginUserDto);
   }
 }

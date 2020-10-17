@@ -1,14 +1,14 @@
 <main>
   <div class="flex-container">
     <div class="flex-top">
-      <fa-icon [icon]="faFileCode" (click)="navigateToDashboard()"></fa-icon>
+      <fa-icon [icon]="githubIcon" (click)="openGithubRepo()"></fa-icon>
     </div>
 
     <div class="flex-mid">Code Daily</div>
 
     <div class="flex-bottom">
       <fa-icon
-        [icon]="hasUserLoggedIn ? faUserNinja : faCloud"
+        [icon]="hasUserLoggedIn ? userCheckedIcon : userIcon"
         (click)="navigateToUserManagement()"
       ></fa-icon>
     </div>
