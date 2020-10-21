@@ -12,3 +12,6 @@ script:
 
 cache:
   npm: false
+
+addons:
+  chrome: stable
