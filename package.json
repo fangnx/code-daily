@@ -9,12 +9,12 @@
     "start:client": "cd ./client/ && npm start",
     "start:server": "cd ./server/ && npm start",
     "start:server-prod": "cd ./server && npm run prod",
-    "test:server": "cd ./server && npm run test",
     "build:client": "cd ./client/ && npm run build",
     "dev": "concurrently --kill-others-on-fail \"npm run start:server\" \"npm run start:client\"",
     "start": "npm run start:server",
     "prod": "npm run start:server-prod",
-    "test": "npm run test:server"
+    "test:client": "cd ./client && npm run test",
+    "test:server": "cd ./server && npm run test"
   },
   "repository": {
     "type": "git",

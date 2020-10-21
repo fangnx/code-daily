@@ -6,10 +6,7 @@ before_install:
   - npm install -g npm@6.9.0
 
 script:
-  - npm run test
-
-services:
-  - mongodb
+  - npm run test:client
 
 cache:
   npm: false
