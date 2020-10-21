@@ -6,4 +6,6 @@ import { Component, OnInit, ChangeDetectionStrategy } from "@angular/core";
   styleUrls: ["./app.component.scss"],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AppComponent {}
+export class AppComponent {
+  public title = "Code Daily";
+}
