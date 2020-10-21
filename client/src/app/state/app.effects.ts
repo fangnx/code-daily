@@ -13,7 +13,7 @@ import { selectSelectedTag, selectUserAuth } from "./app.selectors";
 import { UserService } from "../services/user.service";
 import { ActivationEnd, Router } from "@angular/router";
 import { PocketOperationType } from "../models/pocket.model";
-import { normalizePageNumber } from "../helpers";
+import { normalizePageNumber } from "../utils/helpers";
 
 @Injectable()
 export class AppEffects {

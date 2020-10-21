@@ -6,7 +6,7 @@ import {
   AfterViewInit,
 } from "@angular/core";
 import { MarkdownService } from "ngx-markdown";
-import { parseHtmlEntities } from "src/app/helpers";
+import { parseHtmlEntities } from "src/app/utils/helpers";
 
 @Component({
   selector: "question-content",

@@ -29,7 +29,7 @@ import { QuestionCardComponent } from "./components/shared/question-card/questio
 import { QuestionContentComponent } from "./components/shared/question-content/question-content.component";
 import { SettingCardComponent } from "./components/shared/setting-card/setting-card.component";
 import { SimpleTagComponent } from "./components/shared/simple-tag/simple-tag.component";
-import { tooltipOptions } from "./custom-tooltip";
+import { tooltipOptions } from "./utils/custom-tooltip";
 import { ErrorInterceptor } from "./interceptors/error.interceptor";
 import { ContentPanelService } from "./services/contentPanel.service";
 import { PocketService } from "./services/pocket.service";

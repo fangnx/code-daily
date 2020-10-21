@@ -6,7 +6,7 @@ import {
   EventEmitter,
   OnInit,
 } from "@angular/core";
-import { parseHtmlEntities, parseUnixTimestamp } from "../../../helpers";
+import { parseHtmlEntities, parseUnixTimestamp } from "../../../utils/helpers";
 import {
   Question,
   Tag,

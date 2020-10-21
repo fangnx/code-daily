@@ -1,4 +1,4 @@
-import { Tag } from "./models/stackExchange.model";
+import { Tag } from "../models/stackExchange.model";
 import * as he from "he";
 
 export const throttle = (func, limit: number) => {

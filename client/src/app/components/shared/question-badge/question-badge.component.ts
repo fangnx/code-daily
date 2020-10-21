@@ -14,7 +14,7 @@ import {
   faStackOverflow,
   faGetPocket,
 } from "@fortawesome/free-brands-svg-icons";
-import { parseHtmlEntities } from "../../../helpers";
+import { parseHtmlEntities } from "../../../utils/helpers";
 
 @Component({
   selector: "question-badge",
