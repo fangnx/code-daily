@@ -1,14 +1,18 @@
+import 'dotenv/config';
 import { HttpService, Injectable } from '@nestjs/common';
 import { of } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 import { TagsQuery } from './tags.controller';
-import { StackExchangeAppKey } from '../secrets';
 import { stackExchangeBaseUrl } from '../constants';
 import { Tag } from '../shared/stackExchangeModels';
 
 @Injectable()
 export class TagsService {
-  constructor(private readonly httpService: HttpService) {}
+  private apiKey: string;
+
+  constructor(private readonly httpService: HttpService) {
+    this.apiKey = process.env.STACK_EXCHANGE_APP_KEY;
+  }
 
   public getDefaultTagNames(): string[] {
     return [
@@ -58,7 +62,7 @@ export class TagsService {
           order: tagsQuery.order,
           sort: tagsQuery.sort,
           site: 'stackoverflow',
-          key: StackExchangeAppKey,
+          key: this.apiKey,
         },
       })
       .pipe(
@@ -79,7 +83,7 @@ export class TagsService {
           page: tagsQuery.page,
           pagesize: tagsQuery.pagesize,
           site: 'stackoverflow',
-          key: StackExchangeAppKey,
+          key: this.apiKey,
         },
       })
       .pipe(

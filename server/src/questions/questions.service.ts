@@ -1,16 +1,20 @@
+import 'dotenv/config';
 import { Injectable, HttpService } from '@nestjs/common';
 import { of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { OrderBy, QuestionsSortBy } from '../shared/stackExchangeModels';
 import { QuestionsQuery } from './questions.controller';
 import { stackExchangeBaseUrl } from '../constants';
-import { StackExchangeAppKey } from '../secrets';
 import { QuestionsApiQueryFilter } from '../shared/stackExchangeConstants';
 import { TimeRangeHelper } from '../shared/timeRangeHelper';
 
 @Injectable()
 export class QuestionsService {
-  constructor(private readonly httpService: HttpService) {}
+  private apiKey: string;
+
+  constructor(private readonly httpService: HttpService) {
+    this.apiKey = process.env.STACK_EXCHANGE_APP_KEY;
+  }
 
   async getQuestionsByTags(questionsQuery: QuestionsQuery) {
     const url: string = `${stackExchangeBaseUrl}/questions`;
@@ -27,7 +31,7 @@ export class QuestionsService {
           fromDate,
           toDate,
           site: 'stackoverflow',
-          key: StackExchangeAppKey,
+          key: this.apiKey,
           filter: QuestionsApiQueryFilter,
         },
       })
@@ -53,7 +57,7 @@ export class QuestionsService {
           fromDate,
           toDate,
           site: 'stackoverflow',
-          key: StackExchangeAppKey,
+          key: this.apiKey,
           filter: QuestionsApiQueryFilter,
         },
       })
@@ -78,7 +82,7 @@ export class QuestionsService {
           fromDate,
           toDate,
           site: 'stackoverflow',
-          key: StackExchangeAppKey,
+          key: this.apiKey,
           filter: QuestionsApiQueryFilter,
         },
       })
@@ -102,7 +106,7 @@ export class QuestionsService {
           order,
           sort,
           site: 'stackoverflow',
-          key: StackExchangeAppKey,
+          key: this.apiKey,
           filter: QuestionsApiQueryFilter,
         },
       })
